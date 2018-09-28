@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2016
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScreenWarpTest", "ScreenWarpTest\ScreenWarpTest.csproj", "{792082A4-F5BC-438D-B714-74904DC17644}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{792082A4-F5BC-438D-B714-74904DC17644}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{792082A4-F5BC-438D-B714-74904DC17644}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{792082A4-F5BC-438D-B714-74904DC17644}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{792082A4-F5BC-438D-B714-74904DC17644}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {95EF78A5-E5A6-4226-8F3C-B0C21E694F38}
+	EndGlobalSection
+EndGlobal
