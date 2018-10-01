@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>/Users/obstacledelusions/Projects/MonoGame/TestApp1/TestApp1/Content/Tilemaps/Tilemap_01.tmx</SourceFile>
+  <SourceTime>2018-09-19T16:57:53.685832-07:00</SourceTime>
+  <DestFile>/Users/obstacledelusions/Projects/MonoGame/TestApp1/TestApp1/Content/bin/DesktopGL/Tilemaps/Tilemap_01.xnb</DestFile>
+  <DestTime>2018-09-19T16:57:59.440313-07:00</DestTime>
+  <Importer>TiledMapImporter</Importer>
+  <ImporterTime>2018-05-23T11:26:24-07:00</ImporterTime>
+  <Processor>TiledMapProcessor</Processor>
+  <ProcessorTime>2018-05-23T11:26:24-07:00</ProcessorTime>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>
