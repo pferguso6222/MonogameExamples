@@ -29,7 +29,7 @@ namespace BitmapFonts
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            dialogBox = new BitmapFontDialogBox(GraphicsDevice, Content, spriteBatch, "ArcadeClassic", new Rectangle(new Point(200, 200), new Point(400, 200)), "ONCE UPON A TIME\nTHERE WAS AN OLD\nWIZARD WHO LIVED IN A\nTOWER.");
+            dialogBox = new BitmapFontDialogBox(GraphicsDevice, Content, spriteBatch, "ArcadeClassic", new Rectangle(new Point(200, 200), new Point(400, 200)), "ONCE UPON A TIME THERE WAS AN OLD WIZARD WHO LIVED IN A TOWER.");
         }
 
         protected override void UnloadContent()
@@ -49,7 +49,7 @@ namespace BitmapFonts
       
         protected override void Draw(GameTime gameTime)
         {
-            //GraphicsDevice.Clear(Color.SteelBlue);
+            GraphicsDevice.Clear(Color.Black);
             dialogBox.Draw(gameTime);
             base.Draw(gameTime);
         }

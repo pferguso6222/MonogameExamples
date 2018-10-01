@@ -7,6 +7,7 @@ using MonoGame.Extended.BitmapFonts;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Utilities;
 using MonoGame.Extended;
 using MonoGame.Extended.Entities;
 using MonoGame.Extended.Graphics.Geometry;
@@ -61,7 +62,9 @@ namespace BitmapFonts
                     _currentText += newChar;
                     _currentCharIndex++;
                 }
-                
+
+                Console.Write("Text Length: " + _bitmapFont.GetStringRectangle(_currentText) + "\n"); //use this to add automatic newline chars.
+
             }
             else
             {
@@ -98,9 +101,11 @@ namespace BitmapFonts
             _spriteBatch.Draw(rect, coor, Color.Red);
 
             //draw our text
-            _spriteBatch.DrawString(_bitmapFont, _currentText, new Vector2(_rect.X, _rect.Y), Color.White, 0.0f, new Vector2(0, 0), 2.0f, SpriteEffects.None, 0.0f, null);
+            _spriteBatch.DrawString(_bitmapFont, _currentText, new Vector2(_rect.X, _rect.Y), Color.White, 0.0f, new Vector2(0, 0), 2.0f, SpriteEffects.None, 0.0f);
 
             _spriteBatch.End();
         }
+
+
     }
 }

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/projects/Monogame/ScreenWarpTest/ScreenWarpTest/Content/Font1_0.png</SourceFile>
-  <SourceTime>2018-09-07T15:22:10.5989382-07:00</SourceTime>
-  <DestFile>C:/projects/Monogame/ScreenWarpTest/ScreenWarpTest/Content/bin/DesktopGL/Content/Font1_0.xnb</DestFile>
-  <DestTime>2018-09-24T13:25:33.7733015-07:00</DestTime>
+  <SourceFile>/Users/obstacledelusions/Projects/MonogameExamples/ScreenWarpTest/ScreenWarpTest/Content/Font1_0.png</SourceFile>
+  <SourceTime>2018-09-29T11:59:33.342026-07:00</SourceTime>
+  <DestFile>/Users/obstacledelusions/Projects/MonogameExamples/ScreenWarpTest/ScreenWarpTest/Content/bin/DesktopGL/Content/Font1_0.xnb</DestFile>
+  <DestTime>2018-09-29T12:26:21.880262-07:00</DestTime>
   <Importer>TextureImporter</Importer>
-  <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
+  <ImporterTime>2018-09-06T06:51:48-07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
-  <ProcessorTime>2018-09-23T14:55:52-07:00</ProcessorTime>
+  <ProcessorTime>2018-09-06T06:51:48-07:00</ProcessorTime>
   <Parameters>
     <Key>ColorKeyColor</Key>
     <Value>255,0,255,255</Value>

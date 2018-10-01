@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/projects/Monogame/ScreenWarpTest/ScreenWarpTest/Content/Font1.fnt</SourceFile>
-  <SourceTime>2018-09-21T15:34:37.3340281-07:00</SourceTime>
-  <DestFile>C:/projects/Monogame/ScreenWarpTest/ScreenWarpTest/Content/bin/DesktopGL/Content/Font1.xnb</DestFile>
-  <DestTime>2018-09-24T13:25:33.7222632-07:00</DestTime>
+  <SourceFile>/Users/obstacledelusions/Projects/MonogameExamples/ScreenWarpTest/ScreenWarpTest/Content/Font1.fnt</SourceFile>
+  <SourceTime>2018-09-29T11:59:33.341788-07:00</SourceTime>
+  <DestFile>/Users/obstacledelusions/Projects/MonogameExamples/ScreenWarpTest/ScreenWarpTest/Content/bin/DesktopGL/Content/Font1.xnb</DestFile>
+  <DestTime>2018-09-29T12:26:21.81926-07:00</DestTime>
   <Importer>BitmapFontImporter</Importer>
-  <ImporterTime>2018-05-23T11:26:24-07:00</ImporterTime>
+  <ImporterTime>2018-09-29T11:59:33.51483-07:00</ImporterTime>
   <Processor>BitmapFontProcessor</Processor>
-  <ProcessorTime>2018-05-23T11:26:24-07:00</ProcessorTime>
+  <ProcessorTime>2018-09-29T11:59:33.51483-07:00</ProcessorTime>
   <Dependencies />
   <BuildAsset />
   <BuildOutput />
