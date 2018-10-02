@@ -29,7 +29,7 @@ namespace BitmapFonts
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            dialogBox = new BitmapFontDialogBox(GraphicsDevice, Content, spriteBatch, "ArcadeClassic", new Rectangle(new Point(200, 200), new Point(400, 200)), "ONCE UPON A TIME THERE WAS AN OLD WIZARD WHO LIVED IN A TOWER.");
+            dialogBox = new BitmapFontDialogBox(GraphicsDevice, Content, spriteBatch, "ArcadeClassic", new Rectangle(new Point(200, 200), new Point(400, 200)), "ONCE UPON A TIME THERE WAS AN OLD WIZARD WHO LIVED IN A TOWER.", 2.0f);
         }
 
         protected override void UnloadContent()

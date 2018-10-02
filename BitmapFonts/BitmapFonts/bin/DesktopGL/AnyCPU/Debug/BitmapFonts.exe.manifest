@@ -31,14 +31,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BitmapFonts.exe" size="566744">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BitmapFonts.exe" size="568280">
       <assemblyIdentity name="BitmapFonts" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>6x70UKsmRWKqSr99+F9Cp+yYqREPpKVdPUF98yPF30o=</dsig:DigestValue>
+        <dsig:DigestValue>G+gTUYuRC+XOYS2t4WbJ0qw3BlQDKMGbhJL7KBBk4MQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

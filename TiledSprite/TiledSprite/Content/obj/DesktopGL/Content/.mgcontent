@@ -4,7 +4,7 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>/Users/obstacledelusions/Projects/MonogameExamples/TiledSprite/TiledSprite/Content/TiledDialogBkg_01.png</File>
+    <File>C:/projects/MonogameExamples/TiledSprite/TiledSprite/Content/TiledDialogBkg_01.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
