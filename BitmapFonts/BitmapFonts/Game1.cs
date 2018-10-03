@@ -29,7 +29,7 @@ namespace BitmapFonts
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            dialogBox = new BitmapFontDialogBox(GraphicsDevice, Content, spriteBatch, "G7SilkWorm", new Rectangle(new Point(200, 200), new Point(400, 200)), "ONCE UPON A TIME... THERE WAS AN OLD WIZARD WHO LIVED IN A TOWER.", 2.0f);
+            dialogBox = new BitmapFontDialogBox(GraphicsDevice, Content, spriteBatch, "YosterIsland_12px", new Rectangle(new Point(200, 200), new Point(200, 100)), "ONCE UPON A TIME... THERE WAS AN OLD WIZARD WHO LIVED IN A TOWER. HE WAS AN IMPATIENT OLD WIZARD, AND QUICK TO ANGER.", 2.0f);
         }
 
         protected override void UnloadContent()
@@ -40,6 +40,11 @@ namespace BitmapFonts
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            {
+
+            }
 
             dialogBox.Update(gameTime);
 

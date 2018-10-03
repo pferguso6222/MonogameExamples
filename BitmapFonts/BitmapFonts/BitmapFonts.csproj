@@ -154,11 +154,13 @@
     <None Include="BitmapFonts_TemporaryKey.pfx" />
     <None Include="Content\ArcadeClassic.fnt" />
     <None Include="Content\G7SilkWorm.fnt" />
+    <None Include="Content\YosterIsland_12px.fnt" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\ArcadeClassic_0.png" />
     <Content Include="Content\G7SilkWorm_0.png" />
+    <Content Include="Content\YosterIsland_12px_0.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">

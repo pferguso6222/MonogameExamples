@@ -31,14 +31,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BitmapFonts.exe" size="568280">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BitmapFonts.exe" size="568792">
       <assemblyIdentity name="BitmapFonts" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>0bSqO4KpF6V5WSyNOQIOXP1oQoDQT/yEabymTrZ16RI=</dsig:DigestValue>
+        <dsig:DigestValue>SXJo8ehq9BSByldd7yaRSj6jy0FwELeOLaD1Ok4r5ys=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -178,6 +178,33 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>vawp15p3KydvwkwW88gdepCqo8TNfZ5KvCPM2mOR0YM=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\YosterIsland_12px.xnb" size="3179">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>qzRG0Ft1+ao6JVikgdlI/pVH6vgauEQKLKdo4UhsbI8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\YosterIsland_12px_0.png" size="8503">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>t30diL76kO2gyGu+sER3JO2t15+Bw0TTnw1IvWq6GMg=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\YosterIsland_12px_0.xnb" size="65621">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>YbigkLpi1Tq7CEatGgZ63PnUr/yGbMHonta+DYFtt4I=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Icon.ico" size="147541">
