@@ -123,3 +123,5 @@ C:\projects\MonogameExamples\BitmapFonts\BitmapFonts\obj\Debug\BitmapFonts.appli
 C:\projects\MonogameExamples\BitmapFonts\BitmapFonts\obj\Debug\BitmapFonts.csproj.CopyComplete
 C:\projects\MonogameExamples\BitmapFonts\BitmapFonts\obj\Debug\BitmapFonts.exe
 C:\projects\MonogameExamples\BitmapFonts\BitmapFonts\obj\Debug\BitmapFonts.pdb
+C:\projects\MonogameExamples\BitmapFonts\BitmapFonts\bin\DesktopGL\AnyCPU\Debug\Content\G7SilkWorm.xnb
+C:\projects\MonogameExamples\BitmapFonts\BitmapFonts\bin\DesktopGL\AnyCPU\Debug\Content\G7SilkWorm_0.xnb

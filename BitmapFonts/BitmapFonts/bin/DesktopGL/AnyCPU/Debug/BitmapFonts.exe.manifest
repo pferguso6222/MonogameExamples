@@ -38,7 +38,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>whlb2qWNJDCfSp801OxaVmkNqG/vcrhKOWxz70Q1DUg=</dsig:DigestValue>
+        <dsig:DigestValue>0bSqO4KpF6V5WSyNOQIOXP1oQoDQT/yEabymTrZ16RI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -151,6 +151,33 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>Lkg9OnGvxtbCD1pZCbnq31Ga7YwyJn7F0nqdIqcB/QY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\G7SilkWorm.xnb" size="6988">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>7ZUVlfTNQ2O2esq5p1wJBf3hdm0sT2RbddN2YP90wkY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\G7SilkWorm_0.png" size="9947">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>2gqicunI8o+t5uGjBgvvCtxHmou/pxfDbPhlooox1kg=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\G7SilkWorm_0.xnb" size="131157">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>vawp15p3KydvwkwW88gdepCqo8TNfZ5KvCPM2mOR0YM=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Icon.ico" size="147541">

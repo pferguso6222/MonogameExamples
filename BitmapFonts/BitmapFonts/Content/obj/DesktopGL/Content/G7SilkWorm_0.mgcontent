@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/ArcadeClassic_0.png</SourceFile>
-  <SourceTime>2018-09-11T09:21:21.9003629-07:00</SourceTime>
-  <DestFile>C:/projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/bin/DesktopGL/ArcadeClassic_0.xnb</DestFile>
-  <DestTime>2018-10-03T14:35:51.1751248-07:00</DestTime>
+  <SourceFile>C:/projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/G7SilkWorm_0.png</SourceFile>
+  <SourceTime>2018-10-03T14:33:49.2432332-07:00</SourceTime>
+  <DestFile>C:/projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/bin/DesktopGL/Content/G7SilkWorm_0.xnb</DestFile>
+  <DestTime>2018-10-03T14:36:36.8180758-07:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

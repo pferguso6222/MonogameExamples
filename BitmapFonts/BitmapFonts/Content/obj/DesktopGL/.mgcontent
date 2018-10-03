@@ -4,7 +4,15 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/projects/Monogame/BitmapFonts/BitmapFonts/Content/ArcadeClassic.fnt</File>
-    <File>C:/projects/Monogame/BitmapFonts/BitmapFonts/Content/ArcadeClassic_0.png</File>
+    <File>C:/projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/ArcadeClassic.fnt</File>
+    <File>C:/projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/ArcadeClassic_0.png</File>
+    <File>C:/projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/G7SilkWorm.fnt</File>
+    <File>C:/projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/G7SilkWorm_0.png</File>
   </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
 </SourceFileCollection>

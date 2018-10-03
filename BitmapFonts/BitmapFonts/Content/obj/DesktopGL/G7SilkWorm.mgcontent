@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/ArcadeClassic.fnt</SourceFile>
-  <SourceTime>2018-09-11T15:23:29.3910815-07:00</SourceTime>
-  <DestFile>C:/projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/bin/DesktopGL/ArcadeClassic.xnb</DestFile>
-  <DestTime>2018-10-03T14:35:50.953957-07:00</DestTime>
+  <SourceFile>C:/projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/G7SilkWorm.fnt</SourceFile>
+  <SourceTime>2018-10-03T14:31:34.6956236-07:00</SourceTime>
+  <DestFile>C:/projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/bin/DesktopGL/G7SilkWorm.xnb</DestFile>
+  <DestTime>2018-10-03T14:35:51.1881343-07:00</DestTime>
   <Importer>BitmapFontImporter</Importer>
   <ImporterTime>2018-05-23T11:26:24-07:00</ImporterTime>
   <Processor>BitmapFontProcessor</Processor>
