@@ -63,51 +63,88 @@ namespace BitmapFonts
             Point currentTextRange = new Point(0, 0);//char index, length
             char newChar = '.';
             int currentSpaceCharIdx = 0;
-
+            string _newLine = "";
             //string secondArg = myString.Substring(begin, end - begin + 1);//get range inside string
 
-            while (currentTextRange.X + currentTextRange.Y < str.Length -2)
+            while (currentTextRange.X + currentTextRange.Y < str.Length -1)
             {
+                //build columns
                 while ((int)font.GetStringRectangle(_currentText).Height < (rect.Height / _pixelScale))
                 {
-                    string _newLine = "";
+                    //build rows
+                    _newLine = "";
+
                     while ((int)font.GetStringRectangle(_newLine).Width < rect.Width / _pixelScale)
                     {
-                        if (currentTextRange.Y <= str.Length - 2)
+
+                        if ((currentTextRange.X + currentTextRange.Y) < str.Length)
                         {
                             currentTextRange.Y++;
                         }
-                        else
-                        {
-                            break;
-                        }
                         newChar = str[currentTextRange.X + currentTextRange.Y];
+
+                        if (newChar == '.')
+                        {
+                            Console.Write("");
+                        }
 
                         if (newChar == ' ')
                         {
-                            currentSpaceCharIdx = currentTextRange.Y;
+                            if (currentTextRange.Y >= 2)
+                            {
+                                currentSpaceCharIdx = currentTextRange.Y;
+                            }
                         }
-
                         _newLine += newChar;
+
+                        if ((currentTextRange.X + currentTextRange.Y) >= str.Length - 1)
+                        {
+                            //End of entire string.
+                            currentTextRange.Y++;
+                            break;
+                        }
                     }
 
-                    currentTextRange.Y = currentSpaceCharIdx;//we hit a new word that was too big to fit on the line, so go back to the last space and end the line
+                    if ((currentTextRange.X + currentTextRange.Y) < str.Length - 1)
+                    {
+                        currentTextRange.Y = currentSpaceCharIdx;//we hit a new word that was too big to fit on the line, so go back to the last space and end the line
+                    }
+                    
                     _newLine = str.Substring(currentTextRange.X, currentTextRange.Y);
 
                     //reached end of line, so add new line char
-                    _newLine += '\n';
+                    if ((currentTextRange.X + currentTextRange.Y) < str.Length - 1)
+                    {
+                        _newLine += '\n';
+                    }
+                    
 
                     //add current line onto _currentText
                     _currentText += _newLine;
-
-                    currentTextRange.X += currentTextRange.Y;
-                    currentTextRange.Y = 0;
+                    if ((currentTextRange.X + currentTextRange.Y) >= str.Length - 1){
+                        //End of entire string.
+                        break;
+                    }
+                    else
+                    {
+                        currentTextRange.X += currentTextRange.Y + 1;//increment ange start index, adding 1 to remove a first character space
+                        currentTextRange.Y = 0;//reset range length
+                    }
                 }
 
                 textArray.Add(_currentText);
                 _currentText = "";
+
+                if ((currentTextRange.X + currentTextRange.Y) >= str.Length - 1)
+                {
+                    //End of entire string.
+                    break;
+                }
+
                 currentTextRange.X += currentTextRange.Y;
                 currentTextRange.Y = 0;
+
+
 
             }
 
@@ -120,7 +157,7 @@ namespace BitmapFonts
 
         public void Refresh()
         {
-            if (_currentCharIndex < _textArray[_textArrayIdx].Length)
+            if (_currentCharIndex <= _textArray[_textArrayIdx].Length -1)
             {
                 char newChar = _textArray[_textArrayIdx][_currentCharIndex];
                 _currentText += newChar;
