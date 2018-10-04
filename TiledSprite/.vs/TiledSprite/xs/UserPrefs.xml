@@ -1,8 +1,9 @@
 ﻿<Properties StartupConfiguration="{A6C239FA-6547-44AF-A6F2-40709E12CE7A}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="../BitmapFonts/BitmapFonts/BitmapFontDialogBox.cs">
     <Files>
-      <File FileName="../BitmapFonts/BitmapFonts/Game1.cs" Line="28" Column="9" />
-      <File FileName="../BitmapFonts/BitmapFonts/BitmapFontDialogBox.cs" Line="107" Column="9" />
+      <File FileName="../BitmapFonts/BitmapFonts/Game1.cs" Line="38" Column="9" />
+      <File FileName="../BitmapFonts/BitmapFonts/BitmapFontDialogBox.cs" Line="181" Column="30" />
+      <File FileName="../BitmapFonts/BitmapFonts/Program.cs" Line="17" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

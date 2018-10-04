@@ -21,15 +21,16 @@ namespace BitmapFonts
         BitmapFont _bitmapFont;
         Rectangle _rect;
         string _text;
-        List<string> _textArray;
+        List<List<string>> _pageArray;
         int _textArrayIdx;
+        int _currentPage;
         string _currentText;
         public SpriteBatch _spriteBatch;
         float delayBetweenCharacters = 0.1f;
         int _currentCharIndex;
         float _startTime = 0.0f;
         float _currentTime = 0.0f;
-        bool animatingText;
+        public bool paused = true;
         float _pixelScale = 1.0f;
 
 
@@ -46,19 +47,20 @@ namespace BitmapFonts
         public void setString(string theString, bool animate)
         {
             _text = theString;
-            Console.Write("Set String: '" + "', stringLength: " + _text.Length);
-            _textArray  = stringArrayFromRect(_text, _rect, _bitmapFont);
+            //Console.Write("Set String: '" + "', stringLength: " + _text.Length);
+            _pageArray = pageArrayFromRect(_text, _rect, _bitmapFont);
             _textArrayIdx = 0;
             _currentText = "";
             _currentCharIndex = 0;
             _startTime = _currentTime;
-            animatingText = true;
+            paused = false;
         }
 
         //Returns the string divided into a string array, where each string will fit in the rectangle, including with newline chars added
-        private List<string> stringArrayFromRect(string str, Rectangle rect, BitmapFont font)
+        private List<List<string>> pageArrayFromRect(string str, Rectangle rect, BitmapFont font)
         {
-            List<string> textArray = new List<string>();
+            List<List<string>> _pageArray = new List<List<string>>();
+            List<string> textArray;
             string _currentText = "";
             Point currentTextRange = new Point(0, 0);//char index, length
             char newChar = '.';
@@ -68,13 +70,15 @@ namespace BitmapFonts
 
             while (currentTextRange.X + currentTextRange.Y < str.Length -1)
             {
+                textArray = new List<string>();
+
                 //build columns
-                while ((int)font.GetStringRectangle(_currentText).Height < (rect.Height / _pixelScale))
+                while (font.GetStringRectangle(_currentText + "\n").Height < (double)(rect.Height / _pixelScale))//add extra line when we measure
                 {
                     //build rows
                     _newLine = "";
 
-                    while ((int)font.GetStringRectangle(_newLine).Width < rect.Width / _pixelScale)
+                    while (font.GetStringRectangle(_newLine + ' ').Width < (double)(rect.Width / _pixelScale))//add extra character when we measure
                     {
 
                         if ((currentTextRange.X + currentTextRange.Y) < str.Length)
@@ -85,7 +89,7 @@ namespace BitmapFonts
 
                         if (newChar == '.')
                         {
-                            Console.Write("");
+                            //Console.Write("");
                         }
 
                         if (newChar == ' ')
@@ -123,6 +127,7 @@ namespace BitmapFonts
                     _currentText += _newLine;
                     if ((currentTextRange.X + currentTextRange.Y) >= str.Length - 1){
                         //End of entire string.
+                        textArray.Add(_currentText);
                         break;
                     }
                     else
@@ -130,9 +135,12 @@ namespace BitmapFonts
                         currentTextRange.X += currentTextRange.Y + 1;//increment ange start index, adding 1 to remove a first character space
                         currentTextRange.Y = 0;//reset range length
                     }
+
+                    textArray.Add(_currentText);
                 }
 
-                textArray.Add(_currentText);
+                Console.Write("_pageArray.Add(" + _currentText + ") + width:" + font.GetStringRectangle(_newLine).Width + "\n");
+                _pageArray.Add(textArray);
                 _currentText = "";
 
                 if ((currentTextRange.X + currentTextRange.Y) >= str.Length - 1)
@@ -143,47 +151,62 @@ namespace BitmapFonts
 
                 currentTextRange.X += currentTextRange.Y;
                 currentTextRange.Y = 0;
-
-
-
             }
 
-            for (int i = 0; i < textArray.Count; i++)
+            Console.Write("PageArray Created. PageArray.Count: " + _pageArray.Count +"\n");
+            for (int i = 0; i < _pageArray.Count; i++)
             {
-                Console.Write("textArray: " + textArray[i]);
+                List<string> _txt = _pageArray[i];
+
+                Console.Write("pageArray[" + i + "]");
+                for (int j = 0; j < _txt.Count; j++)
+                {
+                    string _str = _txt[j];
+                    Console.Write(_str +"\n");
+                }
             }
-            return textArray;
+            return _pageArray;
         }
 
         public void Refresh()
         {
-            if (_currentCharIndex <= _textArray[_textArrayIdx].Length -1)
+            if (_currentPage >= _pageArray.Count){
+                paused = true;
+                return;
+            }
+            if (_currentCharIndex <= _pageArray[_currentPage][_textArrayIdx].Length -1)
             {
-                char newChar = _textArray[_textArrayIdx][_currentCharIndex];
+                if (_currentCharIndex == 0) _currentText = "";
+                //char newChar = _textArray[_textArrayIdx][_currentCharIndex];
+                char newChar = _pageArray[_currentPage][_textArrayIdx][_currentCharIndex];
                 _currentText += newChar;
                 _currentCharIndex++;
                 
                 //if our character is a space character, then let's add it and skip delaying
                 if (newChar == ' ')
                 {
-                    newChar = _textArray[_textArrayIdx][_currentCharIndex];
+                    newChar = _pageArray[_currentPage][_textArrayIdx][_currentCharIndex];
                     _currentText += newChar;
                     _currentCharIndex++;
                 }
 
-                Console.Write("Text: " + _currentText + " length: " + _bitmapFont.GetStringRectangle(_currentText) + "\n"); //use this to add automatic newline chars.
+                //Console.Write("Text: " + _currentText + " length: " + _bitmapFont.GetStringRectangle(_currentText) + "\n"); //use this to add automatic newline chars.
 
             }
             else
             {
                 _textArrayIdx++;
-                if (_textArrayIdx >= _textArray.Count())
+                if (_textArrayIdx >= _pageArray[_currentPage].Count && _currentPage < _pageArray.Count)
                 {
-                    animatingText = false;
+                    _currentCharIndex = 0;
+                    _currentPage++;
+                    _textArrayIdx = 0;
+                    paused = true;
                 }
                 else
                 {
                     //finished line
+                    //paused = true;
                 }
                 
             }
@@ -192,7 +215,7 @@ namespace BitmapFonts
         public void Update(GameTime gameTime)
         {
             ///Id we are animating text, check to see if we exceeded the delay between characters, and if so, refresh the field.
-            if (animatingText)
+            if (!paused)
             {
                 _currentTime = (float)gameTime.TotalGameTime.TotalSeconds;
                 float elapsed = _currentTime - _startTime;
