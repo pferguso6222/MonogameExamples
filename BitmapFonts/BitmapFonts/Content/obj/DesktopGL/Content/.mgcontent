@@ -4,12 +4,12 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/ArcadeClassic.fnt</File>
-    <File>C:/projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/ArcadeClassic_0.png</File>
-    <File>C:/projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/G7SilkWorm.fnt</File>
-    <File>C:/projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/G7SilkWorm_0.png</File>
-    <File>C:/projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/YosterIsland_12px.fnt</File>
-    <File>C:/projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/YosterIsland_12px_0.png</File>
+    <File>/Users/obstacledelusions/Projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/ArcadeClassic.fnt</File>
+    <File>/Users/obstacledelusions/Projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/ArcadeClassic_0.png</File>
+    <File>/Users/obstacledelusions/Projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/G7SilkWorm.fnt</File>
+    <File>/Users/obstacledelusions/Projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/G7SilkWorm_0.png</File>
+    <File>/Users/obstacledelusions/Projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/YosterIsland_12px.fnt</File>
+    <File>/Users/obstacledelusions/Projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/YosterIsland_12px_0.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
