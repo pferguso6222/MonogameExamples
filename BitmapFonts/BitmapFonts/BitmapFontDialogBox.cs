@@ -56,19 +56,23 @@ namespace BitmapFonts
             paused = false;
         }
 
+        private bool rangeValid(Point range, int maxLength){
+            return (range.X + range.Y < maxLength - 1);
+        }
+
         //Returns the string divided into a string array, where each string will fit in the rectangle, including with newline chars added
         private List<List<string>> pageArrayFromRect(string str, Rectangle rect, BitmapFont font)
         {
-            List<List<string>> _pageArray = new List<List<string>>();
+            List<List<string>> pageArray = new List<List<string>>();
             List<string> textArray;
-            string _currentText = "";
+            _currentText = "";
             Point currentTextRange = new Point(0, 0);//char index, length
             char newChar = '.';
             int currentSpaceCharIdx = 0;
             string _newLine = "";
             //string secondArg = myString.Substring(begin, end - begin + 1);//get range inside string
 
-            while (currentTextRange.X + currentTextRange.Y < str.Length -1)
+            while(rangeValid(currentTextRange, str.Length))
             {
                 textArray = new List<string>();
 
@@ -78,7 +82,7 @@ namespace BitmapFonts
                     //build rows
                     _newLine = "";
 
-                    while (font.GetStringRectangle(_newLine + ' ').Width < (double)(rect.Width / _pixelScale))//add extra character when we measure
+                    while (font.GetStringRectangle(_newLine + 'Z').Width < (double)(rect.Width / _pixelScale))//add extra character when we measure
                     {
 
                         if ((currentTextRange.X + currentTextRange.Y) < str.Length)
@@ -140,7 +144,7 @@ namespace BitmapFonts
                 }
 
                 Console.Write("_pageArray.Add(" + _currentText + ") + width:" + font.GetStringRectangle(_newLine).Width + "\n");
-                _pageArray.Add(textArray);
+                pageArray.Add(textArray);
                 _currentText = "";
 
                 if ((currentTextRange.X + currentTextRange.Y) >= str.Length - 1)
@@ -153,10 +157,10 @@ namespace BitmapFonts
                 currentTextRange.Y = 0;
             }
 
-            Console.Write("PageArray Created. PageArray.Count: " + _pageArray.Count +"\n");
-            for (int i = 0; i < _pageArray.Count; i++)
+            Console.Write("PageArray Created. PageArray.Count: " + pageArray.Count +"\n");
+            for (int i = 0; i < pageArray.Count; i++)
             {
-                List<string> _txt = _pageArray[i];
+                List<string> _txt = pageArray[i];
 
                 Console.Write("pageArray[" + i + "]");
                 for (int j = 0; j < _txt.Count; j++)
@@ -165,7 +169,7 @@ namespace BitmapFonts
                     Console.Write(_str +"\n");
                 }
             }
-            return _pageArray;
+            return pageArray;
         }
 
         public void Refresh()
