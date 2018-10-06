@@ -14,7 +14,7 @@ namespace TiledSprite
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        ContentManager contentManager;
+        //ContentManager contentManager;
 
         SlicedSprite myDialogBkg;
 
@@ -47,12 +47,12 @@ namespace TiledSprite
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            myDialogBkg = new SlicedSprite(Content.Load<Texture2D>(".\\TiledDialogBkg_01"), new Rectangle(new Point(8, 8), new Point(48, 48)), GraphicsDevice, 2.0f, SlicedSprite.alignment.ALIGNMENT_TOP_LEFT);
+            myDialogBkg = new SlicedSprite(Content.Load<Texture2D>(".\\TiledDialogBkg_01"), new Rectangle(new Point(8, 8), new Point(48, 48)), GraphicsDevice, 2.0f, SlicedSprite.CenterType.TILED, SlicedSprite.alignment.ALIGNMENT_MID_CENTER);
 
             Point center = new Point(GraphicsDevice.Viewport.Bounds.Width / 2, GraphicsDevice.Viewport.Bounds.Height / 2);
 
-            myDialogBkg.SetRectangle(new Rectangle(new Point(10, 0), new Point(200, 80)));
-
+            //myDialogBkg.SetRectangle(new Rectangle(new Point(0, 0), new Point(300, 150)));
+            myDialogBkg.SetRectangle(new Rectangle(center, new Point(300, 150)));
             // TODO: use this.Content to load your game content here
         }
 
@@ -86,7 +86,7 @@ namespace TiledSprite
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(Color.White);
 
             myDialogBkg.Draw(spriteBatch);
 
