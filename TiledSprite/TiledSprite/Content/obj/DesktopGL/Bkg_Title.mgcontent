@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>/Users/obstacledelusions/Projects/MonogameExamples/TiledSprite/TiledSprite/Content/TiledDialogBkg_01.png</SourceFile>
-  <SourceTime>2018-10-05T17:12:44.439383-07:00</SourceTime>
-  <DestFile>/Users/obstacledelusions/Projects/MonogameExamples/TiledSprite/TiledSprite/Content/bin/DesktopGL/TiledDialogBkg_01.xnb</DestFile>
-  <DestTime>2018-10-05T17:13:02.347287-07:00</DestTime>
+  <SourceFile>/Users/obstacledelusions/Projects/MonogameExamples/TiledSprite/TiledSprite/Content/Bkg_Title.png</SourceFile>
+  <SourceTime>2018-10-07T09:44:28-07:00</SourceTime>
+  <DestFile>/Users/obstacledelusions/Projects/MonogameExamples/TiledSprite/TiledSprite/Content/bin/DesktopGL/Bkg_Title.xnb</DestFile>
+  <DestTime>2018-10-07T12:26:51.4622-07:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-09-06T06:51:48-07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

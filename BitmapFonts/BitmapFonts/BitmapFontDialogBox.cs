@@ -33,6 +33,8 @@ namespace BitmapFonts
         public bool paused = true;
         float _pixelScale = 1.0f;
 
+        public static char pageBreak = '\b';
+
 
         public BitmapFontDialogBox(GraphicsDevice graphicsDevice, ContentManager content, SpriteBatch spriteBatch, string bitmapFontName, Rectangle rect, string text, float pixelScale)
         {
@@ -90,11 +92,6 @@ namespace BitmapFonts
                             currentTextRange.Y++;
                         }
                         newChar = str[currentTextRange.X + currentTextRange.Y];
-
-                        if (newChar == '.')
-                        {
-                            //Console.Write("");
-                        }
 
                         if (newChar == ' ')
                         {
