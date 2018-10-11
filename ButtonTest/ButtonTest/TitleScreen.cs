@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Content;
 using MonoGame.Extended.Screens;
+using MonoGame.Extended.BitmapFonts;
 using ButtonTest.Desktop;
 
 namespace ButtonTest
@@ -19,6 +20,8 @@ namespace ButtonTest
         public ScreenManager screenManager;
         private Texture2D background;
 
+        private BitmapFont textField1;
+
         public TitleScreen(Game1 game)
         {
             Game = game;
@@ -30,6 +33,7 @@ namespace ButtonTest
         {
             base.LoadContent();
             background = Content.Load<Texture2D>(".\\Bkg_Title");
+            textField1 = Content.Load<BitmapFont>(".\\YosterIsland_12px_2");
         }
 
         public override void Update(GameTime gameTime)
@@ -50,6 +54,8 @@ namespace ButtonTest
                               Matrix.CreateScale(1.0f));
 
             spriteBatch.Draw(background, new Rectangle(new Point(0,0), new Point(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height)), Color.White);
+
+            spriteBatch.DrawString(textField1, "Copyright 2018", new Vector2(GraphicsDevice.Viewport.Width /2, (float)(GraphicsDevice.Viewport.Height * .95)), Color.White, 0.0f, new Vector2(50, 1), 2.0f, SpriteEffects.None, 0.0f);
 
             spriteBatch.End();
 

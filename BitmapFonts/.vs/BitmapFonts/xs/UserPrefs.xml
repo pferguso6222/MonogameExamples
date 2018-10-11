@@ -1,10 +1,5 @@
 ﻿<Properties StartupConfiguration="{A6C239FA-6547-44AF-A6F2-40709E12CE7A}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="BitmapFonts/Game1.cs">
-    <Files>
-      <File FileName="BitmapFonts/Game1.cs" Line="32" Column="94" />
-      <File FileName="BitmapFonts/BitmapFontDialogBox.cs" Line="44" Column="1" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
