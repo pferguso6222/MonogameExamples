@@ -239,7 +239,7 @@ namespace BitmapFonts
             for (int i = 0; i < data.Length; ++i) data[i] = Color.Chocolate;
             rect.SetData(data);
             Vector2 coor = new Vector2(_rect.X, _rect.Y);
-            _spriteBatch.Draw(rect, coor, Color.Red);
+            _spriteBatch.Draw(rect, coor, Color.Black);
 
             //draw our text
             _spriteBatch.DrawString(_bitmapFont, _currentText, new Vector2(_rect.X, _rect.Y), Color.White, 0.0f, new Vector2(0, 0), _pixelScale, SpriteEffects.None, 0.0f);

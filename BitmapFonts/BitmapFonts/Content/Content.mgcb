@@ -14,12 +14,12 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin ArcadeClassic.fnt
+#begin ../../../Fonts/ArcadeClassic.fnt
 /importer:BitmapFontImporter
 /processor:BitmapFontProcessor
-/build:ArcadeClassic.fnt
+/build:../../../Fonts/ArcadeClassic.fnt;ArcadeClassic.fnt
 
-#begin ArcadeClassic_0.png
+#begin ../../../Fonts/ArcadeClassic_0.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -29,14 +29,14 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:ArcadeClassic_0.png
+/build:../../../Fonts/ArcadeClassic_0.png;ArcadeClassic_0.png
 
-#begin G7SilkWorm.fnt
-/importer:
-/processor:
-/build:G7SilkWorm.fnt
+#begin ../../../Fonts/G7SilkWorm.fnt
+/importer:BitmapFontImporter
+/processor:BitmapFontProcessor
+/build:../../../Fonts/G7SilkWorm.fnt;G7SilkWorm.fnt
 
-#begin G7SilkWorm_0.png
+#begin ../../../Fonts/G7SilkWorm_0.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -46,14 +46,14 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:G7SilkWorm_0.png
+/build:../../../Fonts/G7SilkWorm_0.png;G7SilkWorm_0.png
 
-#begin YosterIsland_12px.fnt
-/importer:
-/processor:
-/build:YosterIsland_12px.fnt
+#begin ../../../Fonts/YosterIsland_12px.fnt
+/importer:BitmapFontImporter
+/processor:BitmapFontProcessor
+/build:../../../Fonts/YosterIsland_12px.fnt;YosterIsland_12px.fnt
 
-#begin YosterIsland_12px_0.png
+#begin ../../../Fonts/YosterIsland_12px_0.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -63,5 +63,39 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:YosterIsland_12px_0.png
+/build:../../../Fonts/YosterIsland_12px_0.png;YosterIsland_12px_0.png
+
+#begin ../../../Fonts/YosterIsland_12px_01.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../Fonts/YosterIsland_12px_01.png;YosterIsland_12px_01.png
+
+#begin ../../../Fonts/YosterIsland_12px_02.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../Fonts/YosterIsland_12px_02.png;YosterIsland_12px_02.png
+
+#begin ../../../Fonts/YosterIsland_12px_1.fnt
+/importer:BitmapFontImporter
+/processor:BitmapFontProcessor
+/build:../../../Fonts/YosterIsland_12px_1.fnt;YosterIsland_12px_1.fnt
+
+#begin ../../../Fonts/YosterIsland_12px_2.fnt
+/importer:BitmapFontImporter
+/processor:BitmapFontProcessor
+/build:../../../Fonts/YosterIsland_12px_2.fnt;YosterIsland_12px_2.fnt
 

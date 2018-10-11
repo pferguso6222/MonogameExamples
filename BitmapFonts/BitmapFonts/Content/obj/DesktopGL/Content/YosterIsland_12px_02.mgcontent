@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>/Users/obstacledelusions/Projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/../../../Fonts/YosterIsland_12px_0.png</SourceFile>
+  <SourceFile>/Users/obstacledelusions/Projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/../../../Fonts/YosterIsland_12px_02.png</SourceFile>
   <SourceTime>2018-10-08T21:08:10-07:00</SourceTime>
-  <DestFile>/Users/obstacledelusions/Projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/bin/DesktopGL/YosterIsland_12px_0.xnb</DestFile>
-  <DestTime>2018-10-10T20:11:38.327204-07:00</DestTime>
+  <DestFile>/Users/obstacledelusions/Projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/bin/DesktopGL/Content/YosterIsland_12px_02.xnb</DestFile>
+  <DestTime>2018-10-10T20:13:46.828994-07:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-09-06T06:51:48-07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

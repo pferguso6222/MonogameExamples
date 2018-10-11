@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/YosterIsland_12px.fnt</SourceFile>
-  <SourceTime>2018-10-03T14:59:34.5730325-07:00</SourceTime>
-  <DestFile>C:/projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/bin/DesktopGL/YosterIsland_12px.xnb</DestFile>
-  <DestTime>2018-10-03T15:26:24.4481682-07:00</DestTime>
+  <SourceFile>/Users/obstacledelusions/Projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/../../../Fonts/YosterIsland_12px.fnt</SourceFile>
+  <SourceTime>2018-10-08T21:08:10-07:00</SourceTime>
+  <DestFile>/Users/obstacledelusions/Projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/bin/DesktopGL/YosterIsland_12px.xnb</DestFile>
+  <DestTime>2018-10-10T20:11:38.321217-07:00</DestTime>
   <Importer>BitmapFontImporter</Importer>
-  <ImporterTime>2018-05-23T11:26:24-07:00</ImporterTime>
+  <ImporterTime>2018-10-10T15:12:22.495429-07:00</ImporterTime>
   <Processor>BitmapFontProcessor</Processor>
-  <ProcessorTime>2018-05-23T11:26:24-07:00</ProcessorTime>
+  <ProcessorTime>2018-10-10T15:12:22.495429-07:00</ProcessorTime>
   <Dependencies />
   <BuildAsset />
   <BuildOutput />

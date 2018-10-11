@@ -4,19 +4,27 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/ArcadeClassic.fnt</File>
-    <File>C:/projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/ArcadeClassic_0.png</File>
-    <File>C:/projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/G7SilkWorm.fnt</File>
-    <File>C:/projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/G7SilkWorm_0.png</File>
-    <File>C:/projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/YosterIsland_12px.fnt</File>
-    <File>C:/projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/YosterIsland_12px_0.png</File>
+    <File>/Users/obstacledelusions/Projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/../../../Fonts/ArcadeClassic.fnt</File>
+    <File>/Users/obstacledelusions/Projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/../../../Fonts/ArcadeClassic_0.png</File>
+    <File>/Users/obstacledelusions/Projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/../../../Fonts/G7SilkWorm.fnt</File>
+    <File>/Users/obstacledelusions/Projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/../../../Fonts/G7SilkWorm_0.png</File>
+    <File>/Users/obstacledelusions/Projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/../../../Fonts/YosterIsland_12px.fnt</File>
+    <File>/Users/obstacledelusions/Projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/../../../Fonts/YosterIsland_12px_0.png</File>
+    <File>/Users/obstacledelusions/Projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/../../../Fonts/YosterIsland_12px_01.png</File>
+    <File>/Users/obstacledelusions/Projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/../../../Fonts/YosterIsland_12px_02.png</File>
+    <File>/Users/obstacledelusions/Projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/../../../Fonts/YosterIsland_12px_1.fnt</File>
+    <File>/Users/obstacledelusions/Projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/../../../Fonts/YosterIsland_12px_2.fnt</File>
   </SourceFiles>
   <DestFiles>
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
+    <File>ArcadeClassic.fnt</File>
+    <File>ArcadeClassic_0.png</File>
+    <File>G7SilkWorm.fnt</File>
+    <File>G7SilkWorm_0.png</File>
+    <File>YosterIsland_12px.fnt</File>
+    <File>YosterIsland_12px_0.png</File>
+    <File>YosterIsland_12px_01.png</File>
+    <File>YosterIsland_12px_02.png</File>
+    <File>YosterIsland_12px_1.fnt</File>
+    <File>YosterIsland_12px_2.fnt</File>
   </DestFiles>
 </SourceFileCollection>
