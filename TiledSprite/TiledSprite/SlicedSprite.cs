@@ -7,7 +7,7 @@ using MonoGame.Extended.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace TiledSprite
+namespace PatUtils
 {
     class SlicedSprite
     {

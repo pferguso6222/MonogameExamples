@@ -3,7 +3,8 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
-using TiledSprite;
+using PatUtils;
+
 
 namespace TiledSprite
 {
@@ -16,7 +17,7 @@ namespace TiledSprite
         SpriteBatch spriteBatch;
         //ContentManager contentManager;
 
-        SlicedSprite myDialogBkg;
+        SlicedSpriteAnimated myDialogBkg;
 
         public Game1()
         {
@@ -47,7 +48,7 @@ namespace TiledSprite
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            myDialogBkg = new SlicedSprite(Content.Load<Texture2D>(".\\TiledDialogBkg_01"), new Rectangle(new Point(8, 8), new Point(48, 48)), GraphicsDevice, 2.0f, SlicedSprite.CenterType.TILED, SlicedSprite.alignment.ALIGNMENT_MID_CENTER);
+            myDialogBkg = new SlicedSpriteAnimated(Content.Load<Texture2D>(".\\TiledDialogBkg_01"), new Rectangle(new Point(8, 8), new Point(48, 48)), GraphicsDevice, 2.0f, SlicedSprite.CenterType.TILED, SlicedSprite.alignment.ALIGNMENT_MID_CENTER);
 
             Point center = new Point(GraphicsDevice.Viewport.Bounds.Width / 2, GraphicsDevice.Viewport.Bounds.Height / 2);
 
