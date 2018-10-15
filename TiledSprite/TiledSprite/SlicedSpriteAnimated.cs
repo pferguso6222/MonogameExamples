@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Tweening;
 
@@ -11,13 +13,10 @@ namespace PatUtils
 
         Tweener _tweener;
 
-        public Vector2 Linear = new Vector2(200, 50);
-        public Vector2 Quadratic = new Vector2(200, 100);
-        public Vector2 Exponential = new Vector2(200, 150);
-        public Vector2 Bounce = new Vector2(200, 200);
-        public Vector2 Back = new Vector2(200, 250);
-        public Vector2 Elastic = new Vector2(200, 300);
-        public Vector2 Size = new Vector2(50, 50);
+        public Rectangle _tweenRect = new Rectangle();
+
+        public Vector2 myPoint = new Vector2(0, 0);
+        
 
         public SlicedSpriteAnimated(
                 Texture2D _sourceTexture,           //the sprite to be 9-Sliced
@@ -34,13 +33,30 @@ namespace PatUtils
         
         public void animate(Rectangle startRect, Rectangle endRect, float duration, float delay)
         {
-            _tweener.TweenTo(this, a => a.Linear, new Vector2(550, 50), duration: 2, delay: 1)
-                .RepeatForever(repeatDelay: 0.2f)
+            _tweenRect = startRect;
+            myPoint.X = _tweenRect.Width;
+            myPoint.Y = _tweenRect.Height;
+            //_tweener.TweenTo(this, a => a.Linear, mouseState.Position.ToVector2(), 1.0f).Easing(EasingFunctions.QuadraticOut);
+            _tweener.TweenTo(this, a => a.myPoint, new Vector2(endRect.Width, endRect.Height), duration: duration, delay: delay)
+                .RepeatForever(repeatDelay: delay)
                 .AutoReverse()
-                .Easing(EasingFunctions.Linear);
+                .Easing(EasingFunctions.SineOut);
         }
 
-        
-        
+        public void Update(GameTime gameTime)
+        {
+            var elapsedSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            _tweenRect.Width = (int)myPoint.X;
+            _tweenRect.Height = (int)myPoint.Y;
+            _tweener.Update(elapsedSeconds);
+            SetRectangle(_tweenRect);
+
+            Console.WriteLine("tweenRect.Width:" + elapsedSeconds);
+        }
+
+        public override void Draw(SpriteBatch _spriteBatch)
+        {
+            base.Draw(_spriteBatch);
+        }
     }
 }

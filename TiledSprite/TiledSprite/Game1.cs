@@ -53,8 +53,10 @@ namespace TiledSprite
             Point center = new Point(GraphicsDevice.Viewport.Bounds.Width / 2, GraphicsDevice.Viewport.Bounds.Height / 2);
 
             //myDialogBkg.SetRectangle(new Rectangle(new Point(0, 0), new Point(300, 150)));
-            myDialogBkg.SetRectangle(new Rectangle(center, new Point(300, 150)));
+            //myDialogBkg.SetRectangle(new Rectangle(center, new Point(300, 150)));
             // TODO: use this.Content to load your game content here
+
+            myDialogBkg.animate(new Rectangle(center, new Point(1, 1)), new Rectangle(center, new Point(300, 150)), .5f, 1.0f);
         }
 
         /// <summary>
@@ -77,7 +79,7 @@ namespace TiledSprite
                 Exit();
 
             // TODO: Add your update logic here
-
+            myDialogBkg.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -93,6 +95,5 @@ namespace TiledSprite
 
             base.Draw(gameTime);
         }
-
     }
 }
