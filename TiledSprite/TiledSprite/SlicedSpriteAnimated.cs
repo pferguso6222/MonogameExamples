@@ -11,6 +11,7 @@ namespace PatUtils
     class SlicedSpriteAnimated : SlicedSprite
     {
 
+        Tween tween;
         Tweener _tweener;
 
         public Rectangle _tweenRect = new Rectangle();
@@ -37,23 +38,27 @@ namespace PatUtils
             _tweenRect = startRect;
             myPoint.X = _tweenRect.Width;
             myPoint.Y = _tweenRect.Height;
-            //_tweener.TweenTo(this, a => a.Linear, mouseState.Position.ToVector2(), 1.0f).Easing(EasingFunctions.QuadraticOut);
-            _tweener.TweenTo(this, a => a.myPoint, new Vector2(endRect.Width, endRect.Height), duration: duration, delay: delay)
-                //.RepeatForever(repeatDelay: delay)
-                //.AutoReverse()
-                .Easing(EasingFunctions.SineOut)
-                .OnEnd(notifyAnimationComplete);
+
+
+            tween = _tweener.TweenTo(this, a => a.myPoint, new Vector2(endRect.Width, endRect.Height), duration: duration, delay: delay)
+                .RepeatForever(repeatDelay: delay) //optional
+                .AutoReverse() //optional
+                .Easing(EasingFunctions.SineOut) //optional
+                .OnEnd(notifyAnimationComplete); //optional
         }
 
         public void Update(GameTime gameTime)
         {
-            var elapsedSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            _tweenRect.Width = (int)myPoint.X;
-            _tweenRect.Height = (int)myPoint.Y;
-            _tweener.Update(elapsedSeconds);
-            SetRectangle(_tweenRect);
-
-            //Console.WriteLine("tweenRect.Width:" + elapsedSeconds);
+            //if (!tween.IsComplete)
+            //{
+                var elapsedSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds;
+                _tweenRect.Width = (int)myPoint.X;
+                _tweenRect.Height = (int)myPoint.Y;
+                _tweener.Update(elapsedSeconds);
+                SetRectangle(_tweenRect);
+                Console.WriteLine("tweenRect.Width:" + elapsedSeconds + "\n");
+           // }
+            
         }
 
         public override void Draw(SpriteBatch _spriteBatch)

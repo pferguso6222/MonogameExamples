@@ -58,7 +58,6 @@ C:/projects/Monogame/TiledSprite/TiledSprite/obj/Debug/TiledSprite.pdb
 C:\projects\MonogameExamples\TiledSprite\TiledSprite\obj\Debug\TiledSprite.csproj.CoreCompileInputs.cache
 C:\projects\MonogameExamples\TiledSprite\TiledSprite\obj\Debug\TiledSprite.csprojAssemblyReference.cache
 C:\projects\MonogameExamples\TiledSprite\TiledSprite\bin\DesktopGL\AnyCPU\Debug\MonoGame.Framework.dll.config
-C:\projects\MonogameExamples\TiledSprite\TiledSprite\bin\DesktopGL\AnyCPU\Debug\Content\Bkg_Title.xnb
 C:\projects\MonogameExamples\TiledSprite\TiledSprite\bin\DesktopGL\AnyCPU\Debug\Content\TiledDialogBkg_01.xnb
 C:\projects\MonogameExamples\TiledSprite\TiledSprite\bin\DesktopGL\AnyCPU\Debug\x86\SDL2.dll
 C:\projects\MonogameExamples\TiledSprite\TiledSprite\bin\DesktopGL\AnyCPU\Debug\x64\SDL2.dll

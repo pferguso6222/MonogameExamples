@@ -52,7 +52,8 @@ namespace TiledSprite
 
             myDialogBkg = new SlicedSpriteAnimated(Content.Load<Texture2D>(".\\TiledDialogBkg_01"), new Rectangle(new Point(8, 8), new Point(48, 48)), GraphicsDevice, 2.0f, SlicedSprite.CenterType.TILED, SlicedSprite.alignment.ALIGNMENT_TOP_CENTER);
 
-            Point center = new Point(GraphicsDevice.Viewport.Bounds.Width / 2, GraphicsDevice.Viewport.Bounds.Height / 2);
+            //Point center = new Point(GraphicsDevice.Viewport.Bounds.Width / 2, GraphicsDevice.Viewport.Bounds.Height / 2);
+            Point center = new Point(GraphicsDevice.Viewport.Bounds.Width / 2, 0);
 
             //myDialogBkg.SetRectangle(new Rectangle(new Point(0, 0), new Point(300, 150)));
             //myDialogBkg.SetRectangle(new Rectangle(center, new Point(300, 150)));
@@ -63,7 +64,7 @@ namespace TiledSprite
 
         public void TweenComplete(Tween tween)
         {
-            Console.Write("Tween Complete");
+            Console.Write("Tween Complete\n");
         }
 
         /// <summary>
