@@ -14,9 +14,9 @@ namespace PatUtils
         Tweener _tweener;
 
         public Rectangle _tweenRect = new Rectangle();
-
         public Vector2 myPoint = new Vector2(0, 0);
-        
+
+        public Action <Tween> notifyAnimationComplete;
 
         public SlicedSpriteAnimated(
                 Texture2D _sourceTexture,           //the sprite to be 9-Sliced
@@ -31,16 +31,18 @@ namespace PatUtils
         }
 
         
-        public void animate(Rectangle startRect, Rectangle endRect, float duration, float delay)
+        public void animate(Rectangle startRect, Rectangle endRect, float duration, float delay, Action <Tween> OnCompleteFunc)
         {
+            notifyAnimationComplete = OnCompleteFunc;
             _tweenRect = startRect;
             myPoint.X = _tweenRect.Width;
             myPoint.Y = _tweenRect.Height;
             //_tweener.TweenTo(this, a => a.Linear, mouseState.Position.ToVector2(), 1.0f).Easing(EasingFunctions.QuadraticOut);
             _tweener.TweenTo(this, a => a.myPoint, new Vector2(endRect.Width, endRect.Height), duration: duration, delay: delay)
-                .RepeatForever(repeatDelay: delay)
-                .AutoReverse()
-                .Easing(EasingFunctions.SineOut);
+                //.RepeatForever(repeatDelay: delay)
+                //.AutoReverse()
+                .Easing(EasingFunctions.SineOut)
+                .OnEnd(notifyAnimationComplete);
         }
 
         public void Update(GameTime gameTime)
@@ -51,7 +53,7 @@ namespace PatUtils
             _tweener.Update(elapsedSeconds);
             SetRectangle(_tweenRect);
 
-            Console.WriteLine("tweenRect.Width:" + elapsedSeconds);
+            //Console.WriteLine("tweenRect.Width:" + elapsedSeconds);
         }
 
         public override void Draw(SpriteBatch _spriteBatch)

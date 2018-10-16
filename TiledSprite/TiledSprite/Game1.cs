@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using PatUtils;
+using MonoGame.Extended.Tweening;
+using System;
 
 
 namespace TiledSprite
@@ -48,7 +50,7 @@ namespace TiledSprite
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            myDialogBkg = new SlicedSpriteAnimated(Content.Load<Texture2D>(".\\TiledDialogBkg_01"), new Rectangle(new Point(8, 8), new Point(48, 48)), GraphicsDevice, 2.0f, SlicedSprite.CenterType.TILED, SlicedSprite.alignment.ALIGNMENT_MID_CENTER);
+            myDialogBkg = new SlicedSpriteAnimated(Content.Load<Texture2D>(".\\TiledDialogBkg_01"), new Rectangle(new Point(8, 8), new Point(48, 48)), GraphicsDevice, 2.0f, SlicedSprite.CenterType.TILED, SlicedSprite.alignment.ALIGNMENT_TOP_CENTER);
 
             Point center = new Point(GraphicsDevice.Viewport.Bounds.Width / 2, GraphicsDevice.Viewport.Bounds.Height / 2);
 
@@ -56,7 +58,12 @@ namespace TiledSprite
             //myDialogBkg.SetRectangle(new Rectangle(center, new Point(300, 150)));
             // TODO: use this.Content to load your game content here
 
-            myDialogBkg.animate(new Rectangle(center, new Point(1, 1)), new Rectangle(center, new Point(300, 150)), .5f, 1.0f);
+            myDialogBkg.animate(new Rectangle(center, new Point(16, 16)), new Rectangle(center, new Point(300, 150)), .5f, 1.0f, TweenComplete);
+        }
+
+        public void TweenComplete(Tween tween)
+        {
+            Console.Write("Tween Complete");
         }
 
         /// <summary>
