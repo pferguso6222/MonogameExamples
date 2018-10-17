@@ -10,7 +10,7 @@
 
 #-------------------------------- References --------------------------------#
 
-/reference:../../packages/MonoGame.Extended.Content.Pipeline.1.1.0/tools/MonoGame.Extended.Content.Pipeline.dll
+/reference:..\..\packages\MonoGame.Extended.Content.Pipeline.1.1.0\tools\MonoGame.Extended.Content.Pipeline.dll
 
 #---------------------------------- Content ---------------------------------#
 
@@ -27,7 +27,19 @@
 /build:../../../Fonts/YosterIsland_12px_02.png;YosterIsland_12px_02.png
 
 #begin ../../../Fonts/YosterIsland_12px_2.fnt
-/importer:BitmapFontImporter
-/processor:BitmapFontProcessor
+/importer:
+/processor:
 /build:../../../Fonts/YosterIsland_12px_2.fnt;YosterIsland_12px_2.fnt
+
+#begin Bkg_Title.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Bkg_Title.png
 
