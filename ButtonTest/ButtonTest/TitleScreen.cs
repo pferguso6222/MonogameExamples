@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Content;
 using MonoGame.Extended.Screens;
 using MonoGame.Extended.BitmapFonts;
+using Source.PatUtils;
 using ButtonTest.Desktop;
 
 namespace ButtonTest
@@ -22,6 +23,10 @@ namespace ButtonTest
 
         private BitmapFont textField1;
 
+        BitmapFontButton buttonStartGame;
+
+        ButtonMenu menu;
+
         public TitleScreen(Game1 game)
         {
             Game = game;
@@ -34,6 +39,12 @@ namespace ButtonTest
             base.LoadContent();
             background = Content.Load<Texture2D>(".\\Bkg_Title");
             textField1 = Content.Load<BitmapFont>(".\\YosterIsland_12px_2");
+            buttonStartGame = new BitmapFontButton(spriteBatch, Content.Load<BitmapFont>(".\\YosterIsland_12px_1"), Content.Load<BitmapFont>(".\\YosterIsland_12px_2"), "START GAME", new Vector2(300, 400), new Vector2(0, 0), 2.0f);
+            //buttonStartGame.State = Button.BUTTON_STATE.HIGHLIGHTED;
+
+            menu = new ButtonMenu(10, 10, 5, 5);
+
+            menu.addButtonAt(buttonStartGame, 2, 2);
         }
 
         public override void Update(GameTime gameTime)
@@ -54,6 +65,8 @@ namespace ButtonTest
                               Matrix.CreateScale(1.0f));
 
             spriteBatch.Draw(background, new Rectangle(new Point(0,0), new Point(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height)), Color.White);
+
+            buttonStartGame.Draw(gameTime);
 
             spriteBatch.DrawString(textField1, "Copyright 2018", new Vector2(GraphicsDevice.Viewport.Width /2, (float)(GraphicsDevice.Viewport.Height * .95)), Color.White, 0.0f, new Vector2(50, 1), 2.0f, SpriteEffects.None, 0.0f);
 

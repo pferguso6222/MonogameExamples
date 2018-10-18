@@ -1,8 +1,9 @@
-﻿<Properties StartupConfiguration="{A6C239FA-6547-44AF-A6F2-40709E12CE7A}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="../BitmapFonts/BitmapFonts/BitmapFontDialogBox.cs">
+﻿<Properties StartupConfiguration="{5F0E117B-C99A-4FDC-B811-D74C670AA0A8}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
+  <MonoDevelop.Ide.Workbench ActiveDocument="TiledSprite/Game1.cs">
     <Files>
-      <File FileName="../BitmapFonts/BitmapFonts/Game1.cs" Line="32" Column="187" />
-      <File FileName="../BitmapFonts/BitmapFonts/BitmapFontDialogBox.cs" Line="80" Column="17" />
+      <File FileName="TiledSprite/Game1.cs" Line="64" Column="9" />
+      <File FileName="TiledSprite/SlicedSpriteAnimated.cs" Line="15" Column="26" />
+      <File FileName="TiledSprite/SlicedSprite.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

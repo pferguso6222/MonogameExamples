@@ -59,7 +59,7 @@ namespace TiledSprite
             //myDialogBkg.SetRectangle(new Rectangle(center, new Point(300, 150)));
             // TODO: use this.Content to load your game content here
 
-            myDialogBkg.animate(new Rectangle(center, new Point(16, 16)), new Rectangle(center, new Point(300, 150)), .5f, 1.0f, TweenComplete);
+            myDialogBkg.animate(new Rectangle(center, new Point(16, 16)), new Rectangle(center, new Point((int)GraphicsDevice.Viewport.Bounds.Width * .95, 150)), .25f, 1.0f, TweenComplete);
         }
 
         public void TweenComplete(Tween tween)

@@ -72,6 +72,15 @@
     </Compile>
     <Compile Include="Content\\Screens\Transitions\Transition.cs">
     </Compile>
+    <Compile Include="..\..\Source\PatUtils\BitmapFontButton.cs">
+      <Link>Content\BitmapFontButton.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\PatUtils\Button.cs">
+      <Link>Content\Button.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\PatUtils\ButtonMenu.cs">
+      <Link>Content\ButtonMenu.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

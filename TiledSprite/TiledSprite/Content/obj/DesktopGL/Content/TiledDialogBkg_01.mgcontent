@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/projects/MonogameExamples/TiledSprite/TiledSprite/Content/TiledDialogBkg_01.png</SourceFile>
-  <SourceTime>2018-10-16T12:30:08.3603903-07:00</SourceTime>
-  <DestFile>C:/projects/MonogameExamples/TiledSprite/TiledSprite/Content/bin/DesktopGL/Content/TiledDialogBkg_01.xnb</DestFile>
-  <DestTime>2018-10-16T12:31:46.7545589-07:00</DestTime>
+  <SourceFile>/Users/obstacledelusions/Projects/MonogameExamples/TiledSprite/TiledSprite/Content/TiledDialogBkg_01.png</SourceFile>
+  <SourceTime>2018-10-16T17:09:55.528884-07:00</SourceTime>
+  <DestFile>/Users/obstacledelusions/Projects/MonogameExamples/TiledSprite/TiledSprite/Content/bin/DesktopGL/Content/TiledDialogBkg_01.xnb</DestFile>
+  <DestTime>2018-10-16T17:10:13.085479-07:00</DestTime>
   <Importer>TextureImporter</Importer>
-  <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
+  <ImporterTime>2018-09-06T06:51:48-07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
-  <ProcessorTime>2018-09-23T14:55:52-07:00</ProcessorTime>
+  <ProcessorTime>2018-09-06T06:51:48-07:00</ProcessorTime>
   <Parameters>
     <Key>ColorKeyColor</Key>
     <Value>255,0,255,255</Value>

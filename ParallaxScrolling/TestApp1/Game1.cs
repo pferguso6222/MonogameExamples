@@ -33,6 +33,7 @@ namespace TestApp1.Desktop
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = 1920;
             graphics.PreferredBackBufferWidth = 1080;
+            graphics.Fullscreen = true;
         }
 
         protected override void Initialize()
