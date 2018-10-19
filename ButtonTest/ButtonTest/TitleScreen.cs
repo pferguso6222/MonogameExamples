@@ -22,6 +22,7 @@ namespace ButtonTest
         private Texture2D background;
 
         KeyboardState previousState;
+        GamePadState previousGamepadState;
 
         private BitmapFont textField1;
 
@@ -40,6 +41,7 @@ namespace ButtonTest
         {
             base.LoadContent();
             previousState = Keyboard.GetState();
+            previousGamepadState = GamePad.GetState(PlayerIndex.One);
             background = Content.Load<Texture2D>(".\\Bkg_Title");
             textField1 = Content.Load<BitmapFont>(".\\YosterIsland_12px_2");
             //buttonStartGame = new BitmapFontButton(spriteBatch, Content.Load<BitmapFont>(".\\YosterIsland_12px_1"), Content.Load<BitmapFont>(".\\YosterIsland_12px_2"), "START GAME", new Vector2(300, 400), new Vector2(0, 0), 2.0f);
@@ -98,6 +100,29 @@ namespace ButtonTest
                 menu.setActiveOffset(0, 1);
 
             previousState = state;
+
+            GamePadCapabilities capabilities = GamePad.GetCapabilities(
+                                               PlayerIndex.One);
+                
+            if (capabilities.IsConnected)
+            {
+                // Get the current state of Controller1
+                GamePadState _state = GamePad.GetState(PlayerIndex.One);
+
+                if(_state.IsButtonDown(Buttons.DPadRight) && !previousGamepadState.IsButtonDown(Buttons.DPadRight))
+                    menu.setActiveOffset(1, 0);
+                if (_state.IsButtonDown(Buttons.DPadLeft) && !previousGamepadState.IsButtonDown(Buttons.DPadLeft))
+                    menu.setActiveOffset(-1, 0);
+                if (_state.IsButtonDown(Buttons.DPadUp) && !previousGamepadState.IsButtonDown(Buttons.DPadUp))
+                    menu.setActiveOffset(0, -1);
+                if (_state.IsButtonDown(Buttons.DPadDown) && !previousGamepadState.IsButtonDown(Buttons.DPadDown))
+                    menu.setActiveOffset(0, 1);
+
+                previousGamepadState = _state;
+            }
+
+
+        
         }
 
         public override void Draw(GameTime gameTime)
