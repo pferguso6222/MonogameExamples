@@ -101,15 +101,20 @@ namespace ButtonTest
 
             previousState = state;
 
-            GamePadCapabilities capabilities = GamePad.GetCapabilities(
-                                               PlayerIndex.One);
-                
+            GamePadCapabilities capabilities = GamePad.GetCapabilities(PlayerIndex.One);
+            GamePadCapabilities capabilities2 = GamePad.GetCapabilities(PlayerIndex.Two);
+            GamePadCapabilities capabilities3 = GamePad.GetCapabilities(PlayerIndex.Three);
+            GamePadCapabilities capabilities4 = GamePad.GetCapabilities(PlayerIndex.Four);
+
             if (capabilities.IsConnected)
             {
                 // Get the current state of Controller1
                 GamePadState _state = GamePad.GetState(PlayerIndex.One);
+                GamePadState _state2 = GamePad.GetState(PlayerIndex.Two);
+                GamePadState _state3 = GamePad.GetState(PlayerIndex.Three);
+                GamePadState _state4 = GamePad.GetState(PlayerIndex.Four);
 
-                if(_state.IsButtonDown(Buttons.DPadRight) && !previousGamepadState.IsButtonDown(Buttons.DPadRight))
+                if (_state.IsButtonDown(Buttons.DPadRight) && !previousGamepadState.IsButtonDown(Buttons.DPadRight))
                     menu.setActiveOffset(1, 0);
                 if (_state.IsButtonDown(Buttons.DPadLeft) && !previousGamepadState.IsButtonDown(Buttons.DPadLeft))
                     menu.setActiveOffset(-1, 0);
