@@ -13,9 +13,9 @@ using MonoGame.Extended.Entities;
 using MonoGame.Extended.Graphics.Geometry;
 //using MonoGame.Extended.Entities.Systems;
 
-namespace PatUtils
+namespace Source.PatUtils
 {
-    class BitmapFontDialogBox : EntitySystem
+    class BitmapFontDialogBox
     {
         GraphicsDevice _graphicsDevice;
         BitmapFont _bitmapFont;

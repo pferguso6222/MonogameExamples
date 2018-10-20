@@ -1,23 +1,23 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Tweening;
 
 
-namespace PatUtils
+namespace Source.PatUtils
 {
 
     class SlicedSpriteAnimated : SlicedSprite
     {
 
+        Tween tween;
         Tweener _tweener;
 
-        public Vector2 Linear = new Vector2(200, 50);
-        public Vector2 Quadratic = new Vector2(200, 100);
-        public Vector2 Exponential = new Vector2(200, 150);
-        public Vector2 Bounce = new Vector2(200, 200);
-        public Vector2 Back = new Vector2(200, 250);
-        public Vector2 Elastic = new Vector2(200, 300);
-        public Vector2 Size = new Vector2(50, 50);
+        public Rectangle _tweenRect = new Rectangle();
+        public Vector2 myPoint = new Vector2(0, 0);
+
+        public Action <Tween> notifyAnimationComplete;
 
         public SlicedSpriteAnimated(
                 Texture2D _sourceTexture,           //the sprite to be 9-Sliced
@@ -32,15 +32,38 @@ namespace PatUtils
         }
 
         
-        public void animate(Rectangle startRect, Rectangle endRect, float duration, float delay)
+        public void animate(Rectangle startRect, Rectangle endRect, float duration, float delay, Action <Tween> OnCompleteFunc)
         {
-            _tweener.TweenTo(this, a => a.Linear, new Vector2(550, 50), duration: 2, delay: 1)
-                .RepeatForever(repeatDelay: 0.2f)
-                .AutoReverse()
-                .Easing(EasingFunctions.Linear);
+            notifyAnimationComplete = OnCompleteFunc;
+            _tweenRect = startRect;
+            myPoint.X = _tweenRect.Width;
+            myPoint.Y = _tweenRect.Height;
+
+
+            tween = _tweener.TweenTo(this, a => a.myPoint, new Vector2(endRect.Width, endRect.Height), duration: duration, delay: delay)
+                .RepeatForever(repeatDelay: delay) //optional
+                .AutoReverse() //optional
+                .Easing(EasingFunctions.SineOut) //optional
+                .OnEnd(notifyAnimationComplete); //optional
         }
 
-        
-        
+        public void Update(GameTime gameTime)
+        {
+            //if (!tween.IsComplete)
+            //{
+                var elapsedSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds;
+                _tweenRect.Width = (int)myPoint.X;
+                _tweenRect.Height = (int)myPoint.Y;
+                _tweener.Update(elapsedSeconds);
+                SetRectangle(_tweenRect);
+                Console.WriteLine("tweenRect.Width:" + elapsedSeconds + "\n");
+           // }
+            
+        }
+
+        public override void Draw(SpriteBatch _spriteBatch)
+        {
+            base.Draw(_spriteBatch);
+        }
     }
 }

@@ -6,9 +6,10 @@ namespace Source.PatUtils
 {
     public class BitmapFontButton : Button
     {
-
         BitmapFont _textNormal;
         BitmapFont _textHighlighted;
+        BitmapFont _textPressed;
+
         string _buttonText;
         protected SpriteBatch _spriteBatch;
         float _pixelScale;
@@ -16,7 +17,8 @@ namespace Source.PatUtils
 
         public BitmapFontButton(SpriteBatch spriteBatch, 
                                 BitmapFont textNormal, 
-                                BitmapFont textHighlighted, 
+                                BitmapFont textHighlighted,
+                                BitmapFont textPressed,
                                 string buttonText, 
                                 Vector2 position, 
                                 Vector2 origin, 
@@ -26,6 +28,7 @@ namespace Source.PatUtils
             _spriteBatch = spriteBatch;
             _textNormal = textNormal;
             _textHighlighted = textHighlighted;
+            _textPressed = textPressed;
             _buttonText = buttonText;
             _origin = origin;
             _position = position;
@@ -46,7 +49,7 @@ namespace Source.PatUtils
                     _spriteBatch.DrawString(_textHighlighted, _buttonText, _position, Color.White, 0.0f, _origin, _pixelScale, SpriteEffects.None, 0.0f);
                     break;
                 case BUTTON_STATE.PRESSED:
-                    _spriteBatch.DrawString(_textHighlighted, _buttonText, _position, Color.White, 0.0f, _origin, _pixelScale, SpriteEffects.None, 0.0f);
+                    _spriteBatch.DrawString(_textPressed, _buttonText, _position, Color.White, 0.0f, _origin, _pixelScale, SpriteEffects.None, 0.0f);
                     break;
             }
         }

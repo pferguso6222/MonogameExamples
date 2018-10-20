@@ -1,38 +1,53 @@
 ﻿using System;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
-using MonoGame.Extended.Content;
-using MonoGame.Extended.Screens;
 using MonoGame.Extended.BitmapFonts;
-using Source.PatUtils;
-using ButtonTest.Desktop;
+using MonoGame.Extended.Screens;
 
-namespace ButtonTest
+namespace Source.PatUtils
 {
-    public class TitleScreen : Screen
+    public class TitleScreen_Base : Screen
     {
-        public Game1 Game { get; }
+        public GameBase Game { get; }
         public ContentManager Content => Game.Content;
         public GraphicsDevice GraphicsDevice => Game.GraphicsDevice;
         public GameServiceContainer Services => Game.Services;
-        private SpriteBatch spriteBatch;
+        private SpriteBatch SpriteBatch;
         public ScreenManager screenManager;
-        private Texture2D background;
+
+        private Texture2D _background;
+        private string _backgroundImage;
+        private string _menuFontNormal;
+        private string _menuFontHighlighted;
+        private string _menuFontPressed;
+        private string _fontCopyright;
+
+        private BitmapFont font_normal;
+        private BitmapFont font_highlighted;
+        private BitmapFont font_pressed;
+        private BitmapFont tfCopyright;
 
         KeyboardState previousState;
         GamePadState previousGamepadState;
 
-        private BitmapFont textField1;
-
         ButtonMenu menu;
 
-        public TitleScreen(Game1 game)
+        public TitleScreen_Base(GameBase game, 
+                                string backgroundImage, 
+                                string menuFontNormal,
+                               string menuFontHighlighted,
+                               string menuFontPressed,
+                               string fontCopyright)
         {
             Game = game;
-            spriteBatch = game.spriteBatch;
-            Content.RootDirectory = "Content";
+            _backgroundImage = backgroundImage;
+            _menuFontNormal = menuFontNormal;
+            _menuFontPressed = menuFontPressed;
+            _menuFontHighlighted = menuFontHighlighted;
+            _fontCopyright = fontCopyright;
+            SpriteBatch = game.spriteBatch;
         }
 
         public override void LoadContent()
@@ -40,8 +55,11 @@ namespace ButtonTest
             base.LoadContent();
             previousState = Keyboard.GetState();
             previousGamepadState = GamePad.GetState(PlayerIndex.One);
-            background = Content.Load<Texture2D>(".\\Bkg_Title");
-            textField1 = Content.Load<BitmapFont>(".\\YosterIsland_12px_2");
+            _background = Content.Load<Texture2D>(_backgroundImage);
+            font_normal = Content.Load<BitmapFont>(_menuFontNormal);
+            font_highlighted = Content.Load<BitmapFont>(_menuFontHighlighted);
+            font_pressed = Content.Load<BitmapFont>(_menuFontPressed);
+            tfCopyright = Content.Load<BitmapFont>(_fontCopyright);
 
             int rows = 5;
             int cols = 6;
@@ -53,15 +71,18 @@ namespace ButtonTest
             int row = 0;
             int col = 0;
 
-            for (int i = 0; i < chars.Length; i++){
+            for (int i = 0; i < chars.Length; i++)
+            {
                 char c = chars[i];
-                BitmapFontButton charButton = new BitmapFontButton(spriteBatch, Content.Load<BitmapFont>(".\\YosterIsland_12px_1"), Content.Load<BitmapFont>(".\\YosterIsland_12px_2"), Content.Load<BitmapFont>(".\\YosterIsland_12px_2"), c.ToString(), new Vector2(0, 0), new Vector2(0, 0), 4.0f);
+                BitmapFontButton charButton = new BitmapFontButton(SpriteBatch, font_normal, font_highlighted, font_pressed, c.ToString(), new Vector2(0, 0), new Vector2(0, 0), 4.0f);
                 menu.addButtonAt(charButton, col, row);
                 col++;
-                if (col >= cols){
+                if (col >= cols)
+                {
                     col = 0;
                     row++;
-                    if (row >= rows){
+                    if (row >= rows)
+                    {
                         row = rows - 1;
                     }
                 }
@@ -72,7 +93,7 @@ namespace ButtonTest
 
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
+           // base.Update(gameTime);
 
             KeyboardState state = Keyboard.GetState();
 
@@ -126,23 +147,23 @@ namespace ButtonTest
         {
             GraphicsDevice.Clear(Color.Red);
 
-            spriteBatch.Begin(SpriteSortMode.Deferred,
-                              BlendState.AlphaBlend, 
-                              SamplerState.PointClamp, 
-                              DepthStencilState.Default, 
-                              RasterizerState.CullNone, 
-                              null, 
+            SpriteBatch.Begin(SpriteSortMode.Deferred,
+                              BlendState.AlphaBlend,
+                              SamplerState.PointClamp,
+                              DepthStencilState.Default,
+                              RasterizerState.CullNone,
+                              null,
                               Matrix.CreateScale(1.0f));
 
-            spriteBatch.Draw(background, new Rectangle(new Point(0,0), new Point(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height)), Color.White);
+            //SpriteBatch.Draw(_background, new Rectangle(new Point(0, 0), new Point(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height)), Color.White);
 
-            menu.Draw(gameTime);
+            //menu.Draw(gameTime);
 
-            spriteBatch.DrawString(textField1, "Copyright 2018", new Vector2(GraphicsDevice.Viewport.Width /2, (float)(GraphicsDevice.Viewport.Height * .95)), Color.White, 0.0f, new Vector2(50, 1), 2.0f, SpriteEffects.None, 0.0f);
+            //SpriteBatch.DrawString(tfCopyright, "Copyright 2018", new Vector2(GraphicsDevice.Viewport.Width / 2, (float)(GraphicsDevice.Viewport.Height * .95)), Color.White, 0.0f, new Vector2(50, 1), 2.0f, SpriteEffects.None, 0.0f);
 
-            spriteBatch.End();
+            SpriteBatch.End();
 
-            base.Draw(gameTime);
+           // base.Draw(gameTime);
         }
     }
 }

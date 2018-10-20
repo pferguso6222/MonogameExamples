@@ -7,7 +7,7 @@ using MonoGame.Extended.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace PatUtils
+namespace Source.PatUtils
 {
     class SlicedSprite
     {
@@ -89,7 +89,7 @@ namespace PatUtils
                 targetRectangles[i].Height = sourceRectangles[i].Height;
 
                 Rectangle rect = sourceRectangles[i];
-                Console.WriteLine("sourceRectangle[" + i + "].Origin: " + rect.X + ", " + rect.Y + ", Width: " + rect.Width + ", Height: " + rect.Height);
+                //Console.WriteLine("sourceRectangle[" + i + "].Origin: " + rect.X + ", " + rect.Y + ", Width: " + rect.Width + ", Height: " + rect.Height);
 
 
                 tex = new Texture2D(_graphicsDevice, sourceRectangles[i].Width, sourceRectangles[i].Height);
@@ -122,7 +122,7 @@ namespace PatUtils
 
             for (int i = 0; i < targetRectangles.Length; i++){
                 Rectangle rect = targetRectangles[i];
-                Console.WriteLine("targetRectangle[" + i + "].Origin: " + rect.X + ", " + rect.Y + ", Width: " + rect.Width + ", Height: " + rect.Height);
+                //Console.WriteLine("targetRectangle[" + i + "].Origin: " + rect.X + ", " + rect.Y + ", Width: " + rect.Width + ", Height: " + rect.Height);
             }
 
             UpdateAlignment();
@@ -180,7 +180,7 @@ namespace PatUtils
             }
         }
 
-        public void Draw(SpriteBatch _spriteBatch)
+        public virtual void Draw(SpriteBatch _spriteBatch)
         {
             _spriteBatch.Begin(SpriteSortMode.Deferred,BlendState.AlphaBlend,SamplerState.PointClamp,DepthStencilState.Default,RasterizerState.CullNone,null,Matrix.CreateScale(pixelScaleFactor));
             for (int i = 0; i < 8; i++){_spriteBatch.Draw(sourceTextures[i], targetRectangles[i], sourceRectangles[i], Color.White);}
