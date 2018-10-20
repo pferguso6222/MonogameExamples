@@ -7,6 +7,8 @@ namespace Source.PatUtils
     public abstract class Button : IDisposable
     {
 
+        public Action OnPress;
+
         public enum BUTTON_STATE{
             NORMAL,
             HIGHLIGHTED,
@@ -28,10 +30,20 @@ namespace Source.PatUtils
             set;
         }
 
+        public bool Enabled
+        {
+            get;
+            set;
+        }
+
         public Vector2 _position
         {
             get;
             set;
+        }
+
+        public void Press(){
+            OnPress();
         }
 
         public virtual void Dispose() { }

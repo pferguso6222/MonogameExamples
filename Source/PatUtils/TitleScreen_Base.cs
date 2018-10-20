@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 using MonoGame.Extended.BitmapFonts;
 using MonoGame.Extended.Screens;
 
@@ -50,6 +51,10 @@ namespace Source.PatUtils
             SpriteBatch = game.spriteBatch;
         }
 
+        private void notifyButtonPressed(){
+            Console.Write("TitleScreen_Base: Button Pressed!");
+        }
+
         public override void LoadContent()
         {
             base.LoadContent();
@@ -64,7 +69,7 @@ namespace Source.PatUtils
             int rows = 5;
             int cols = 6;
 
-            menu = new ButtonMenu(120, 120, 6, 5, new Vector2(400, 200));
+            menu = new ButtonMenu(120, 120, 6, 5, new Vector2(400, 200), Content.Load<SoundEffect>(".\\ButtonClick_1"), Content.Load<SoundEffect>(".\\ButtonSelected_1"));
 
             string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ,.!?";
 
@@ -75,6 +80,7 @@ namespace Source.PatUtils
             {
                 char c = chars[i];
                 BitmapFontButton charButton = new BitmapFontButton(SpriteBatch, font_normal, font_highlighted, font_pressed, c.ToString(), new Vector2(0, 0), new Vector2(0, 0), 4.0f);
+                charButton.OnPress = notifyButtonPressed;
                 menu.addButtonAt(charButton, col, row);
                 col++;
                 if (col >= cols)
@@ -114,6 +120,9 @@ namespace Source.PatUtils
             if (state.IsKeyDown(Keys.Down) & !previousState.IsKeyDown(
                 Keys.Down))
                 menu.setActiveOffset(0, 1);
+            if (state.IsKeyDown(Keys.Space) & !previousState.IsKeyDown(
+                Keys.Space))
+                menu.PressCurrentButton();
 
             previousState = state;
 

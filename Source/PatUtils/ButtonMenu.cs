@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Source.PatUtils
 {
@@ -15,12 +16,18 @@ namespace Source.PatUtils
         int xIndex;
         int yIndex;
 
+        SoundEffect sound_move_to_next_button;
+        SoundEffect sound_press_button;
+
         protected SpriteBatch _spriteBatch;
 
         Button[,] buttons;
 
-        public ButtonMenu(int xSpacing, int ySpacing, int cols, int rows, Vector2 position)
+        public ButtonMenu(int xSpacing, int ySpacing, int cols, int rows, Vector2 position, SoundEffect nextButtonSound = null, SoundEffect pressButtonSound = null)
         {
+            sound_move_to_next_button = nextButtonSound;
+            sound_press_button = pressButtonSound;
+
             _xSpacing = xSpacing;
             _ySpacing = ySpacing;
             _cols = cols;
@@ -38,6 +45,22 @@ namespace Source.PatUtils
                     Console.Write("buttons[" + i + "][" + j + "]: " + buttons[i, j]);
                 }
             }
+        }
+
+        public void PressCurrentButton(){
+            Button b = buttons[xIndex, yIndex];
+            if (b.Enabled){
+                b.Press();
+                b.State = Button.BUTTON_STATE.PRESSED;
+                if (sound_press_button != null)
+                {
+                    sound_press_button.Play();
+                }
+            }
+        }
+
+        private void notifyButtonPressed(){
+
         }
 
         public int xSpacing{
@@ -83,6 +106,11 @@ namespace Source.PatUtils
             if (b != null)
             {
                 b.State = Button.BUTTON_STATE.HIGHLIGHTED;
+                b.Enabled = true;
+                if (sound_move_to_next_button != null)
+                {
+                    sound_move_to_next_button.Play();
+                }
             }
         }
 
@@ -108,6 +136,7 @@ namespace Source.PatUtils
                     if (b != null)
                     {
                         b.State = Button.BUTTON_STATE.NORMAL;
+                        b.Enabled = false;
                     }
                 }
             }

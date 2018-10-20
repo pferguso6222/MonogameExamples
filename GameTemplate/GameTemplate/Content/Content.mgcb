@@ -82,6 +82,18 @@
 /processor:BitmapFontProcessor
 /build:../../../Fonts/YosterIsland_12px_2.fnt;YosterIsland_12px_2.fnt
 
+#begin ../../../GenericSounds/ButtonClick_1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../../GenericSounds/ButtonClick_1.wav;ButtonClick_1.wav
+
+#begin ../../../GenericSounds/ButtonSelected_1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../../GenericSounds/ButtonSelected_1.wav;ButtonSelected_1.wav
+
 #begin Graphics/Bkg_Title.png
 /importer:TextureImporter
 /processor:TextureProcessor
