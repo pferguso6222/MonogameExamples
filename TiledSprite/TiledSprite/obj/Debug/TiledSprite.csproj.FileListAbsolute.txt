@@ -268,3 +268,4 @@ C:/projects/MonogameExamples/TiledSprite/TiledSprite/obj/Debug/TiledSprite.pdb
 /Users/obstacledelusions/Projects/MonogameExamples/TiledSprite/TiledSprite/obj/Debug/TiledSprite.csproj.CopyComplete
 /Users/obstacledelusions/Projects/MonogameExamples/TiledSprite/TiledSprite/obj/Debug/TiledSprite.exe
 /Users/obstacledelusions/Projects/MonogameExamples/TiledSprite/TiledSprite/obj/Debug/TiledSprite.pdb
+/Users/obstacledelusions/Projects/MonogameExamples/TiledSprite/TiledSprite/obj/Debug/TiledSprite.csprojAssemblyReference.cache

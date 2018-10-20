@@ -26,8 +26,6 @@ namespace ButtonTest
 
         private BitmapFont textField1;
 
-        //BitmapFontButton buttonStartGame;
-
         ButtonMenu menu;
 
         public TitleScreen(Game1 game)
@@ -44,8 +42,6 @@ namespace ButtonTest
             previousGamepadState = GamePad.GetState(PlayerIndex.One);
             background = Content.Load<Texture2D>(".\\Bkg_Title");
             textField1 = Content.Load<BitmapFont>(".\\YosterIsland_12px_2");
-            //buttonStartGame = new BitmapFontButton(spriteBatch, Content.Load<BitmapFont>(".\\YosterIsland_12px_1"), Content.Load<BitmapFont>(".\\YosterIsland_12px_2"), "START GAME", new Vector2(300, 400), new Vector2(0, 0), 2.0f);
-            //buttonStartGame.State = Button.BUTTON_STATE.HIGHLIGHTED;
 
             int rows = 5;
             int cols = 6;
@@ -71,7 +67,6 @@ namespace ButtonTest
                 }
             }
 
-            //menu.addButtonAt(buttonStartGame, 2, 2);
             menu.setActiveButton(2, 2);
         }
 
@@ -82,8 +77,8 @@ namespace ButtonTest
             KeyboardState state = Keyboard.GetState();
 
             // If they hit esc, exit
-           // if (state.IsKeyDown(Keys.Escape))
-             //   Exit();
+            if (state.IsKeyDown(Keys.Escape))
+                Game.Exit();
 
             // Move our sprite based on arrow keys being pressed:
             if (state.IsKeyDown(Keys.Right) & !previousState.IsKeyDown(
@@ -125,9 +120,6 @@ namespace ButtonTest
 
                 previousGamepadState = _state;
             }
-
-
-        
         }
 
         public override void Draw(GameTime gameTime)
@@ -143,8 +135,6 @@ namespace ButtonTest
                               Matrix.CreateScale(1.0f));
 
             spriteBatch.Draw(background, new Rectangle(new Point(0,0), new Point(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height)), Color.White);
-
-            //buttonStartGame.Draw(gameTime);
 
             menu.Draw(gameTime);
 
