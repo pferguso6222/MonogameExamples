@@ -155,15 +155,13 @@ namespace Source.PatUtils
                               null,
                               Matrix.CreateScale(1.0f));
 
-            //SpriteBatch.Draw(_background, new Rectangle(new Point(0, 0), new Point(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height)), Color.White);
+            SpriteBatch.Draw(_background, new Rectangle(new Point(0, 0), new Point(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height)), Color.White);
 
-            //menu.Draw(gameTime);
+            menu.Draw(gameTime);
 
-            //SpriteBatch.DrawString(tfCopyright, "Copyright 2018", new Vector2(GraphicsDevice.Viewport.Width / 2, (float)(GraphicsDevice.Viewport.Height * .95)), Color.White, 0.0f, new Vector2(50, 1), 2.0f, SpriteEffects.None, 0.0f);
+            SpriteBatch.DrawString(tfCopyright, "Copyright 2018", new Vector2(GraphicsDevice.Viewport.Width / 2, (float)(GraphicsDevice.Viewport.Height * .95)), Color.White, 0.0f, new Vector2(50, 1), 1.0f, SpriteEffects.None, 0.0f);
 
             SpriteBatch.End();
-
-           // base.Draw(gameTime);
         }
     }
 }

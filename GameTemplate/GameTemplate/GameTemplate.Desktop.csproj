@@ -69,6 +69,7 @@
     <Compile Include="..\..\Source\PatUtils\TitleScreen_Base.cs">
       <Link>Content\TitleScreen_Base.cs</Link>
     </Compile>
+    <Compile Include="Content\ScreenManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
