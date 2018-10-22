@@ -7,14 +7,21 @@ using System;
 
 namespace SaveGameTest.Desktop
 {
+
+    
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
     public class Game1 : Game
     {
+
+        
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        
+
+        /*
         struct SaveData{
             string name;
             int score;
@@ -24,7 +31,7 @@ namespace SaveGameTest.Desktop
                 score = _score;
             }
         }
-
+        */
 
         public Game1()
         {
@@ -66,12 +73,12 @@ namespace SaveGameTest.Desktop
 
             //Save(new Filestream(_data));
 
-            DoOpenFile();
+            //DoOpenFile();
             
        
 
         }
-
+        /*
         private static void DoOpenFile()
         {
             try
@@ -89,7 +96,7 @@ namespace SaveGameTest.Desktop
                 // doesn't exist in the title storage location
             }
         }
-
+        */
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
         /// game-specific content.
