@@ -10,6 +10,8 @@ namespace Source.PatUtils
     public class GameBase : Game
     {
 
+        public static GameBase Instance;
+
         public enum GameState
         {
             WAIT,
@@ -22,7 +24,7 @@ namespace Source.PatUtils
 
         GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
-        protected ScreenManager screenManager;
+        public ScreenManager screenManager;
         protected GameState gameState;
         protected Transition fadeOut2Sec;
 
@@ -32,6 +34,7 @@ namespace Source.PatUtils
             graphics.PreferredBackBufferWidth = 1920;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 1080;
             Content.RootDirectory = "Content";
+            Instance = this;
         }
 
         protected virtual void ChangeGameState(GameState state){

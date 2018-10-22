@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.BitmapFonts;
 
@@ -32,11 +33,22 @@ namespace Source.PatUtils
             _buttonText = buttonText;
             _origin = origin;
             _position = position;
+           
+        }
+
+        public override float GetWidth()
+        {
+            return (float)_textNormal.GetStringRectangle(_buttonText).Width * _pixelScale;
         }
 
         public override void Update(GameTime gameTime)
         {
 
+        }
+
+        public override void Press()
+        {
+            base.Press();
         }
 
         public override void Draw(GameTime gameTime) 

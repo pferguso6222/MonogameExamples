@@ -32,7 +32,7 @@ namespace GameTemplate.Desktop
             //ScreenGameComponent screenGameComponent = new ScreenGameComponent(this);
             //Components.Add(screenGameComponent);
 
-            titleScreen = new TitleScreen_Base(this, "Graphics/Bkg_Title", ".\\YosterIsland_12px", ".\\YosterIsland_12px_1", ".\\YosterIsland_12px_2", ".\\Makaimura");
+            titleScreen = new TitleScreen_Base("Graphics/Bkg_Title", ".\\YosterIsland_12px_2", ".\\YosterIsland_12px_1", ".\\YosterIsland_12px", ".\\Makaimura", 2.0f);
             ChangeGameState(GameState.TITLE_MAIN);//Make this the program start
         }
 

@@ -42,7 +42,11 @@ namespace Source.PatUtils
             set;
         }
 
-        public void Press(){
+        public virtual float GetWidth(){
+            return 0.0f;
+        }
+
+        public virtual void Press(){
             OnPress();
         }
 

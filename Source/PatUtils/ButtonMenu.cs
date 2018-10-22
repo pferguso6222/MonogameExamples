@@ -79,7 +79,7 @@ namespace Source.PatUtils
 
         public void addButtonAt(Button button, int col, int row){
             buttons[col, row] = button;
-            button._position = new Vector2(_position.X + (_xSpacing * col), _position.Y + (_ySpacing * row));
+            button._position = new Vector2((_position.X + (_xSpacing * col)) - (button.GetWidth() * .5f), _position.Y + (_ySpacing * row));
         }
 
         public void setActiveOffset(int x, int y){

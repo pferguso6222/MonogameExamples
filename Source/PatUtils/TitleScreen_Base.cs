@@ -11,13 +11,6 @@ namespace Source.PatUtils
 {
     public class TitleScreen_Base : Screen
     {
-        public GameBase Game { get; }
-        public ContentManager Content => Game.Content;
-        public GraphicsDevice GraphicsDevice => Game.GraphicsDevice;
-        public GameServiceContainer Services => Game.Services;
-        private SpriteBatch SpriteBatch;
-        public ScreenManager screenManager;
-
         private Texture2D _background;
         private string _backgroundImage;
         private string _menuFontNormal;
@@ -30,25 +23,26 @@ namespace Source.PatUtils
         private BitmapFont font_pressed;
         private BitmapFont tfCopyright;
 
+        private float _pixelScale = 1.0f;
+
         KeyboardState previousState;
         GamePadState previousGamepadState;
 
         ButtonMenu menu;
 
-        public TitleScreen_Base(GameBase game, 
-                                string backgroundImage, 
+        public TitleScreen_Base(string backgroundImage, 
                                 string menuFontNormal,
                                string menuFontHighlighted,
                                string menuFontPressed,
-                               string fontCopyright)
+                               string fontCopyright,
+                               float pixelScale)
         {
-            Game = game;
             _backgroundImage = backgroundImage;
             _menuFontNormal = menuFontNormal;
             _menuFontPressed = menuFontPressed;
             _menuFontHighlighted = menuFontHighlighted;
             _fontCopyright = fontCopyright;
-            SpriteBatch = game.spriteBatch;
+            _pixelScale = pixelScale;
         }
 
         private void notifyButtonPressed(){
@@ -60,16 +54,18 @@ namespace Source.PatUtils
             base.LoadContent();
             previousState = Keyboard.GetState();
             previousGamepadState = GamePad.GetState(PlayerIndex.One);
-            _background = Content.Load<Texture2D>(_backgroundImage);
-            font_normal = Content.Load<BitmapFont>(_menuFontNormal);
-            font_highlighted = Content.Load<BitmapFont>(_menuFontHighlighted);
-            font_pressed = Content.Load<BitmapFont>(_menuFontPressed);
-            tfCopyright = Content.Load<BitmapFont>(_fontCopyright);
+            _background = GameBase.Instance.Content.Load<Texture2D>(_backgroundImage);
+            font_normal = GameBase.Instance.Content.Load<BitmapFont>(_menuFontNormal);
+            font_highlighted = GameBase.Instance.Content.Load<BitmapFont>(_menuFontHighlighted);
+            font_pressed = GameBase.Instance.Content.Load<BitmapFont>(_menuFontPressed);
+            tfCopyright = GameBase.Instance.Content.Load<BitmapFont>(_fontCopyright);
 
+            /*
+            //THE FOLLOWING IS THE LAYOUT FOR NAME ENTRY BUTTONS. SAVE THIS FOR NAME ENTRY SCREEN
             int rows = 5;
             int cols = 6;
 
-            menu = new ButtonMenu(120, 120, 6, 5, new Vector2(400, 200), Content.Load<SoundEffect>(".\\ButtonClick_1"), Content.Load<SoundEffect>(".\\ButtonSelected_1"));
+            menu = new ButtonMenu(120, 120, 6, 5, new Vector2(400, 200), GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonClick_1"), GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonSelected_1"));
 
             string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ,.!?";
 
@@ -79,7 +75,7 @@ namespace Source.PatUtils
             for (int i = 0; i < chars.Length; i++)
             {
                 char c = chars[i];
-                BitmapFontButton charButton = new BitmapFontButton(SpriteBatch, font_normal, font_highlighted, font_pressed, c.ToString(), new Vector2(0, 0), new Vector2(0, 0), 4.0f);
+                BitmapFontButton charButton = new BitmapFontButton(GameBase.Instance.spriteBatch, font_normal, font_highlighted, font_pressed, c.ToString(), new Vector2(0, 0), new Vector2(0, 0), 4.0f);
                 charButton.OnPress = notifyButtonPressed;
                 menu.addButtonAt(charButton, col, row);
                 col++;
@@ -95,6 +91,28 @@ namespace Source.PatUtils
             }
 
             menu.setActiveButton(2, 2);
+
+            */
+
+            menu = new ButtonMenu(0, 100, 1, 3, new Vector2(GameBase.Instance.ScreenWidth() / 2.0f, GameBase.Instance.ScreenHeight() * .3f), GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonClick_1"), GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonSelected_1"));
+
+            //START GAME BUTTON
+            BitmapFontButton bStartGame = new BitmapFontButton(GameBase.Instance.spriteBatch, font_normal, font_highlighted, font_pressed, "START GAME", new Vector2(0, 0), new Vector2(0, 0), 4.0f);
+            bStartGame.OnPress = notifyButtonPressed;
+            menu.addButtonAt(bStartGame, 0, 0);
+
+            //OPTIONS BUTTON
+            BitmapFontButton bOptions = new BitmapFontButton(GameBase.Instance.spriteBatch, font_normal, font_highlighted, font_pressed, "OPTIONS", new Vector2(0, 0), new Vector2(0, 0), 4.0f);
+            bOptions.OnPress = notifyButtonPressed;
+            menu.addButtonAt(bOptions, 0, 1);
+
+            //QUIT GAME
+            BitmapFontButton bQuit = new BitmapFontButton(GameBase.Instance.spriteBatch, font_normal, font_highlighted, font_pressed, "EXIT GAME", new Vector2(0, 0), new Vector2(0, 0), 4.0f);
+            bQuit.OnPress = notifyButtonPressed;
+            menu.addButtonAt(bQuit, 0, 2);
+
+            menu.setActiveButton(0, 0);
+
         }
 
         public override void Update(GameTime gameTime)
@@ -105,7 +123,7 @@ namespace Source.PatUtils
 
             // If they hit esc, exit
             if (state.IsKeyDown(Keys.Escape))
-                Game.Exit();
+                GameBase.Instance.Exit();
 
             // Move our sprite based on arrow keys being pressed:
             if (state.IsKeyDown(Keys.Right) & !previousState.IsKeyDown(
@@ -154,9 +172,9 @@ namespace Source.PatUtils
 
         public override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Red);
+            //GraphicsDevice.Clear(Color.Red);
 
-            SpriteBatch.Begin(SpriteSortMode.Deferred,
+            GameBase.Instance.spriteBatch.Begin(SpriteSortMode.Deferred,
                               BlendState.AlphaBlend,
                               SamplerState.PointClamp,
                               DepthStencilState.Default,
@@ -164,13 +182,13 @@ namespace Source.PatUtils
                               null,
                               Matrix.CreateScale(1.0f));
 
-            SpriteBatch.Draw(_background, new Rectangle(new Point(0, 0), new Point(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height)), Color.White);
+            GameBase.Instance.spriteBatch.Draw(_background, new Rectangle(new Point(0, 0), new Point(GameBase.Instance.GraphicsDevice.Viewport.Width, GameBase.Instance.GraphicsDevice.Viewport.Height)), Color.White);
 
             menu.Draw(gameTime);
 
-            SpriteBatch.DrawString(tfCopyright, "Copyright 2018", new Vector2(GraphicsDevice.Viewport.Width / 2, (float)(GraphicsDevice.Viewport.Height * .95)), Color.White, 0.0f, new Vector2(50, 1), 1.0f, SpriteEffects.None, 0.0f);
+            GameBase.Instance.spriteBatch.DrawString(tfCopyright, "Copyright 2018", new Vector2((GameBase.Instance.GraphicsDevice.Viewport.Width * .5f) - (tfCopyright.GetStringRectangle("Copyright 2018").Width * .38f), (float)(GameBase.Instance.GraphicsDevice.Viewport.Height * .95)), Color.White, 0.0f, new Vector2(50, 1), 1.0f, SpriteEffects.None, 0.0f);
 
-            SpriteBatch.End();
+            GameBase.Instance.spriteBatch.End();
         }
     }
 }
