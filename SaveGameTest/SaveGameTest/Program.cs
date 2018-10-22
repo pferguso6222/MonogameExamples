@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
-using System.Collections;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -12,8 +13,9 @@ namespace SaveGameTest.Desktop
     public class Tutorial
     {
         public int ID;
-        public string Name;
+        public Int64 Name;
         public int LevelsComplete;
+        public List<string> activeItems;
 
     }
     /// <summary>
@@ -30,8 +32,9 @@ namespace SaveGameTest.Desktop
             //DECLARE AN INSTANCE OF THE CLASS
             Tutorial obj = new Tutorial();
             obj.ID = 1;
-            obj.Name = "Pat";
+            obj.Name = Int64.Parse("123");//let's figure out how to convert name string into numbers to hide them in the save file.
             obj.LevelsComplete = 10;
+            obj.activeItems = new List<string> { "Pat", "John", "Shawn", "Brian"};
 
             //SEE IF FILE EXISTS
             string curFile = ".\\Save.dat";
@@ -52,6 +55,11 @@ namespace SaveGameTest.Desktop
             Console.WriteLine("objNew.ID: " + objNew.ID);
             Console.WriteLine("objNew.Name: " + objNew.Name);
             Console.WriteLine("objNew.LevelsComplete: " + objNew.LevelsComplete);
+            for (int i = 0; i < objNew.activeItems.Count; i++)
+            {
+                Console.WriteLine("objNew.activeItem[" + i + "]:" + objNew.activeItems[i]);
+            }
+            
 
             using (var game = new Game1())
                 game.Run();

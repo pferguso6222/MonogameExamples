@@ -19,8 +19,6 @@ namespace SaveGameTest.Desktop
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        
-
         /*
         struct SaveData{
             string name;
