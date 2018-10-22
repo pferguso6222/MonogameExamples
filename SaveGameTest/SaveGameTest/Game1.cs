@@ -1,9 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System.Xml.Serialization;
-using System.IO;
-using System;
+using Source.PatUtils;
+
 
 namespace SaveGameTest.Desktop
 {
@@ -19,17 +19,7 @@ namespace SaveGameTest.Desktop
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        /*
-        struct SaveData{
-            string name;
-            int score;
-
-            public SaveData(string _name, int _score){
-                name = _name;
-                score = _score;
-            }
-        }
-        */
+        SaveGameUtility saveGameUtility = new SaveGameUtility();
 
         public Game1()
         {
@@ -72,6 +62,19 @@ namespace SaveGameTest.Desktop
             //Save(new Filestream(_data));
 
             //DoOpenFile();
+
+            if (!saveGameUtility.LoadVars())
+            {
+                Console.Write("ERROR! COULD NOT RETRIEVE SAVE DATA");
+            }
+            else
+            {
+                for (int i = 0; i < saveGameUtility.entries.Count; i++)
+                {
+                    Console.WriteLine("objNew.activeItem[" + i + "]: " + saveGameUtility.entries[i] + "ID:" + saveGameUtility.entries[i].ID);
+                }
+
+            }
             
        
 

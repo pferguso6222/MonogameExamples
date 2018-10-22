@@ -8,8 +8,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace SaveGameTest.Desktop
 {
 
-    [Serializable]
-
+    //[Serializable]
+    /*
     public class Tutorial
     {
         public int ID;
@@ -18,6 +18,7 @@ namespace SaveGameTest.Desktop
         public List<string> activeItems;
 
     }
+    */
     /// <summary>
     /// The main class.
     /// </summary>
@@ -29,6 +30,7 @@ namespace SaveGameTest.Desktop
         [STAThread]
         static void Main()
         {
+            /*
             //DECLARE AN INSTANCE OF THE CLASS
             Tutorial obj = new Tutorial();
             obj.ID = 1;
@@ -59,7 +61,7 @@ namespace SaveGameTest.Desktop
             {
                 Console.WriteLine("objNew.activeItem[" + i + "]:" + objNew.activeItems[i]);
             }
-            
+            */
 
             using (var game = new Game1())
                 game.Run();
