@@ -10,10 +10,11 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class SaveGameEntry
 {
     public int ID;
-    public Int64 Name;
+    public string Name;
     public int LevelsComplete;
-    public List<string> activeItems;
 }
+
+[Serializable]
 
 public class SaveGameData
 {
