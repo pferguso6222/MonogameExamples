@@ -22,7 +22,7 @@ namespace Source.PatUtils
             OPTIONS_MAIN,
         }
 
-        GraphicsDeviceManager graphics;
+        public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
         public ScreenManager screenManager;
         protected GameState gameState;
