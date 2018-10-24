@@ -9,19 +9,18 @@ using MonoGame.Extended.Screens;
 
 namespace Source.PatUtils
 {
-    public class TitleScreen_Base : Screen
+    public class Options_Base : Screen
     {
         private Texture2D _background;
         private string _backgroundImage;
         private string _menuFontNormal;
         private string _menuFontHighlighted;
         private string _menuFontPressed;
-        private string _fontCopyright;
 
+        private BitmapFont tfTitle;
         private BitmapFont font_normal;
         private BitmapFont font_highlighted;
         private BitmapFont font_pressed;
-        private BitmapFont tfCopyright;
 
         private float _pixelScale = 1.0f;
 
@@ -30,23 +29,21 @@ namespace Source.PatUtils
 
         ButtonMenu menu;
 
-        public TitleScreen_Base(string backgroundImage, 
+        public Options_Base(string backgroundImage, 
                                 string menuFontNormal,
                                string menuFontHighlighted,
                                string menuFontPressed,
-                               string fontCopyright,
                                float pixelScale)
         {
             _backgroundImage = backgroundImage;
             _menuFontNormal = menuFontNormal;
             _menuFontPressed = menuFontPressed;
             _menuFontHighlighted = menuFontHighlighted;
-            _fontCopyright = fontCopyright;
             _pixelScale = pixelScale;
         }
 
         private void notifyButtonPressed(){
-            Console.Write("TitleScreen_Base: Button Pressed!");
+            Console.Write("Options_Base: Button Pressed!");
         }
 
         public override void LoadContent()
@@ -56,9 +53,9 @@ namespace Source.PatUtils
             previousGamepadState = GamePad.GetState(PlayerIndex.One);
             _background = GameBase.Instance.Content.Load<Texture2D>(_backgroundImage);
             font_normal = GameBase.Instance.Content.Load<BitmapFont>(_menuFontNormal);
+            tfTitle = GameBase.Instance.Content.Load<BitmapFont>(_menuFontNormal);
             font_highlighted = GameBase.Instance.Content.Load<BitmapFont>(_menuFontHighlighted);
             font_pressed = GameBase.Instance.Content.Load<BitmapFont>(_menuFontPressed);
-            tfCopyright = GameBase.Instance.Content.Load<BitmapFont>(_fontCopyright);
 
             /*
             //THE FOLLOWING IS THE LAYOUT FOR NAME ENTRY BUTTONS. SAVE THIS FOR NAME ENTRY SCREEN
@@ -96,23 +93,37 @@ namespace Source.PatUtils
 
             menu = new ButtonMenu(0, 100, 1, 3, new Vector2(GameBase.Instance.ScreenWidth() / 2.0f, GameBase.Instance.ScreenHeight() * .3f), GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonClick_1"), GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonSelected_1"));
 
-            //START GAME BUTTON
-            BitmapFontButton bStartGame = new BitmapFontButton(GameBase.Instance.spriteBatch, font_normal, font_highlighted, font_pressed, "START GAME", new Vector2(0, 0), new Vector2(0, 0), 4.0f);
-            bStartGame.OnPress = notifyButtonPressed;
+
+
+            //BACK BUTTON
+            BitmapFontButton bStartGame = new BitmapFontButton(GameBase.Instance.spriteBatch, font_normal, font_highlighted, font_pressed, "RETURN", new Vector2(0, 0), new Vector2(0, 0), _pixelScale);
+            bStartGame.OnPress = returnToMain;
             menu.addButtonAt(bStartGame, 0, 0);
 
-            //OPTIONS BUTTON
-            BitmapFontButton bOptions = new BitmapFontButton(GameBase.Instance.spriteBatch, font_normal, font_highlighted, font_pressed, "OPTIONS", new Vector2(0, 0), new Vector2(0, 0), 4.0f);
-            bOptions.OnPress = LoadOptions;
+            //Display BUTTON
+            BitmapFontButton bOptions = new BitmapFontButton(GameBase.Instance.spriteBatch, font_normal, font_highlighted, font_pressed, "DISPLAY", new Vector2(0, 0), new Vector2(0, 0), _pixelScale);
+            bOptions.OnPress = notifyButtonPressed;
             menu.addButtonAt(bOptions, 0, 1);
 
             //QUIT GAME
-            BitmapFontButton bQuit = new BitmapFontButton(GameBase.Instance.spriteBatch, font_normal, font_highlighted, font_pressed, "EXIT GAME", new Vector2(0, 0), new Vector2(0, 0), 4.0f);
-            bQuit.OnPress = QuitGame;
+            BitmapFontButton bQuit = new BitmapFontButton(GameBase.Instance.spriteBatch, font_normal, font_highlighted, font_pressed, "CONTROLS", new Vector2(0, 0), new Vector2(0, 0), _pixelScale);
+            bQuit.OnPress = notifyButtonPressed;
             menu.addButtonAt(bQuit, 0, 2);
 
             menu.setActiveButton(0, 0);
 
+        }
+
+        private void onDisplayPressed(){
+            Console.WriteLine("Resolutions Available:\n");
+            foreach (DisplayMode mode in GraphicsAdapter.DefaultAdapter.SupportedDisplayModes)
+            {
+                Console.WriteLine(mode.Width + "X" + mode.Height +"\n");
+            }
+        }
+
+        private void returnToMain(){
+            GameBase.Instance.ChangeGameState(GameBase.GameState.TITLE_MAIN);
         }
 
         private void LoadOptions(){
@@ -196,10 +207,10 @@ namespace Source.PatUtils
                               Matrix.CreateScale(1.0f));
 
             GameBase.Instance.spriteBatch.Draw(_background, new Rectangle(new Point(0, 0), new Point(GameBase.Instance.GraphicsDevice.Viewport.Width, GameBase.Instance.GraphicsDevice.Viewport.Height)), Color.White);
+            //_spriteBatch.DrawString(_textHighlighted, _buttonText, _position, Color.White, 0.0f, _origin, _pixelScale, SpriteEffects.None, 0.0f);
+            GameBase.Instance.spriteBatch.DrawString(tfTitle, "GAME OPTIONS", new Vector2(GameBase.Instance.ScreenWidth() * .5f, GameBase.Instance.ScreenHeight() * .1f), Color.White, 0.0f, new Vector2(tfTitle.GetStringRectangle("GAME OPTIONS").Width / 2,.5f), _pixelScale, SpriteEffects.None, 0.0f);
 
             menu.Draw(gameTime);
-
-            GameBase.Instance.spriteBatch.DrawString(tfCopyright, "Copyright 2018", new Vector2((GameBase.Instance.GraphicsDevice.Viewport.Width * .5f) - (tfCopyright.GetStringRectangle("Copyright 2018").Width * .38f), (float)(GameBase.Instance.GraphicsDevice.Viewport.Height * .95)), Color.White, 0.0f, new Vector2(50, 1), 1.0f, SpriteEffects.None, 0.0f);
 
             GameBase.Instance.spriteBatch.End();
         }

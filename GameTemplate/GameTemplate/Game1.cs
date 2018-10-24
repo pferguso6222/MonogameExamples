@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Source.PatUtils;
+using MonoGame.Extended.Screens.Transitions;
 using MonoGame.Extended.Content;
 
 
@@ -13,6 +14,7 @@ namespace GameTemplate.Desktop
     {
 
         protected TitleScreen_Base titleScreen;
+        protected Options_Base optionsScreen;
 
 
         protected override void Initialize()
@@ -33,6 +35,8 @@ namespace GameTemplate.Desktop
             //Components.Add(screenGameComponent);
 
             titleScreen = new TitleScreen_Base("Graphics/Bkg_Title", ".\\YosterIsland_12px_2", ".\\YosterIsland_12px_1", ".\\YosterIsland_12px", ".\\Makaimura", 2.0f);
+            optionsScreen = new Options_Base("Graphics/Bkg_Title", ".\\YosterIsland_12px_2", ".\\YosterIsland_12px_1", ".\\YosterIsland_12px", 4.0f);
+
             ChangeGameState(GameState.TITLE_MAIN);//Make this the program start
         }
 
@@ -45,7 +49,7 @@ namespace GameTemplate.Desktop
 
         }
 
-        protected override void ChangeGameState(GameState state)
+        public override void ChangeGameState(GameState state)
         {
             base.ChangeGameState(state);
 
@@ -57,7 +61,7 @@ namespace GameTemplate.Desktop
                     break;
                 case GameState.TITLE_MAIN:
                     //screenManager.LoadScreen(titleScreen);
-                    screenManager.LoadScreen(titleScreen, fadeOut2Sec);
+                    screenManager.LoadScreen(titleScreen, new FadeTransition(GraphicsDevice, Color.Black, 1.0f));//not working when switch to different screen
                     break;
                 case GameState.PLAYER_SELECTION_MAIN:
 
@@ -66,7 +70,8 @@ namespace GameTemplate.Desktop
 
                     break;
                 case GameState.OPTIONS_MAIN:
-
+                    //screenManager.LoadScreen(optionsScreen);
+                    screenManager.LoadScreen(optionsScreen, new FadeTransition(GraphicsDevice, Color.Black, 1.0f));//not working when switch to different screen
                     break;
             }
         }
@@ -89,7 +94,7 @@ namespace GameTemplate.Desktop
 
             screenManager.Update(gameTime);
 
-            base.Update(gameTime);
+            //base.Update(gameTime);
         }
 
         /// <summary>

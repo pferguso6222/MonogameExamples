@@ -26,7 +26,6 @@ namespace Source.PatUtils
         public SpriteBatch spriteBatch;
         public ScreenManager screenManager;
         protected GameState gameState;
-        protected Transition fadeOut2Sec;
 
         public GameBase()
         {
@@ -37,7 +36,7 @@ namespace Source.PatUtils
             Instance = this;
         }
 
-        protected virtual void ChangeGameState(GameState state){
+        public virtual void ChangeGameState(GameState state){
             gameState = state;
         }
 
@@ -58,7 +57,6 @@ namespace Source.PatUtils
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             screenManager = new ScreenManager();
-            fadeOut2Sec = new FadeTransition(GraphicsDevice, Color.Black, 2.0f);
             base.Initialize();
         }
 
