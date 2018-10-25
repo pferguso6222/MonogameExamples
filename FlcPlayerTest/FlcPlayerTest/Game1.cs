@@ -25,8 +25,6 @@ namespace FlcPlayerTest.Desktop
         Rectangle displayRect;
         Texture2D tex;
 
-        static FLCFile file;
-
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -45,6 +43,8 @@ namespace FlcPlayerTest.Desktop
 
         private void OnPlaybackFinished(FLCFile file, bool didFinishNormally)
         {
+            file.Dispose();
+            file = null;
         }
 
         protected override void LoadContent()
@@ -52,11 +52,11 @@ namespace FlcPlayerTest.Desktop
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            file = new FLCFile(File.OpenRead("MrTesty_Sample.flc"));
+            FLCFile file = new FLCFile(File.OpenRead("MrTesty_Sample.flc"));
             file.OnFrameUpdated += OnFrameUpdated;
             file.OnPlaybackFinished += OnPlaybackFinished;
             file.OnPlaybackStarted += OnPlaybackStarted;
-            file.ShouldLoop = true;
+            file.ShouldLoop = false;
 
             data = new Color[128 * 128];
 
@@ -84,25 +84,16 @@ namespace FlcPlayerTest.Desktop
 
         private void OnFrameUpdated(FLCFile _file)
         {
-            FLCColor[] colors = _file.GetFramebufferCopy();
-
-            for (int i = 0; i < colors.Length; i++){
-                data[i].R = colors[i].R;
-                data[i].G = colors[i].G;
-                data[i].B = colors[i].B;
-                data[i].A = colors[i].A;
-            }
-
-            tex.SetData(data);
+            Color[] colors = _file.GetFramebufferCopyColor();
+            tex.SetData(colors);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-            spriteBatch.Draw(tex, displayRect, Color.White);
-            spriteBatch.End();
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
+                spriteBatch.Draw(tex, displayRect, Color.White);
+                spriteBatch.End();
             base.Draw(gameTime);
         }
     }
