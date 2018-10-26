@@ -1,4 +1,4 @@
-This is a collection of MonoGame demos I am developing as building blocks to make a game. Each project, with the exception of the GameTemplate project demonstrates a single useage of each of the major classes I am developing. So far, I have the following:
+This is a collection of MonoGame demos I am developing as building blocks to make a game. Each project, with the exception of the GameTemplate project demonstrates a single useage of each of the major classes I am either studying, or refining. So far, I have the following:
 
 Loading, and parallax scrolling of TMX tilemaps using Monogame Extended.
 
