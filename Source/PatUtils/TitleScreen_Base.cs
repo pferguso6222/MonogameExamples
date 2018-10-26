@@ -188,12 +188,12 @@ namespace Source.PatUtils
             //GraphicsDevice.Clear(Color.Red);
 
             GameBase.Instance.spriteBatch.Begin(SpriteSortMode.Deferred,
-                              BlendState.AlphaBlend,
-                              SamplerState.PointClamp,
-                              DepthStencilState.Default,
-                              RasterizerState.CullNone,
-                              null,
-                              Matrix.CreateScale(1.0f));
+                                                BlendState.AlphaBlend,
+                                                GameBase.Instance.SamplerState,
+                                                DepthStencilState.Default,
+                                                RasterizerState.CullNone,
+                                                null,
+                                                Matrix.CreateScale(1.0f));
 
             GameBase.Instance.spriteBatch.Draw(_background, new Rectangle(new Point(0, 0), new Point(GameBase.Instance.GraphicsDevice.Viewport.Width, GameBase.Instance.GraphicsDevice.Viewport.Height)), Color.White);
 

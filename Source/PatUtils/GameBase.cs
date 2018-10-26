@@ -26,6 +26,8 @@ namespace Source.PatUtils
         public SpriteBatch spriteBatch;
         public ScreenManager screenManager;
         protected GameState gameState;
+        public int SamplerStateIndex = 0;
+        public SamplerState SamplerState = SamplerState.PointClamp;
 
         public GameBase()
         {
@@ -76,6 +78,25 @@ namespace Source.PatUtils
         protected override void UnloadContent()
         {
 
+        }
+
+        public string SamplerStateString()
+        {
+            string str = "";
+
+            switch (SamplerStateIndex)
+            {
+                case (0):
+                    str = "NO FILTERING";
+                    break;
+                case (1):
+                    str = "LINEAR FILTERING";
+                    break;
+                case (2):
+                    str = "ANSIOTROPIC FILTERING";
+                    break;
+            }
+            return str;
         }
 
         /// <summary>

@@ -71,10 +71,10 @@ namespace Source.PatUtils
             bOptions.OnPress = toggleFullscreen;
             menu.addButtonAt(bOptions, 0, 1);
 
-            //QUIT GAME
-            BitmapFontButton bQuit = new BitmapFontButton(GameBase.Instance.spriteBatch, font_normal, font_highlighted, font_pressed, "CONTROLS", new Vector2(0, 0), new Vector2(0, 0), _pixelScale);
-            bQuit.OnPress = notifyButtonPressed;
-            menu.addButtonAt(bQuit, 0, 2);
+            //Pixel Filtering
+            BitmapFontButton bFiltering = new BitmapFontButton(GameBase.Instance.spriteBatch, font_normal, font_highlighted, font_pressed, "PIXEL FILTERING", new Vector2(0, 0), new Vector2(0, 0), _pixelScale);
+            bFiltering.OnPress = toggleFiltering;
+            menu.addButtonAt(bFiltering, 0, 2);
 
             menu.setActiveButton(0, 0);
 
@@ -90,6 +90,22 @@ namespace Source.PatUtils
             foreach (DisplayMode mode in GraphicsAdapter.DefaultAdapter.SupportedDisplayModes)
             {
                 Console.WriteLine(mode.Width + "X" + mode.Height +"\n");
+            }
+        }
+
+        private void toggleFiltering(){
+
+            if (GameBase.Instance.SamplerStateIndex == 0){
+                GameBase.Instance.SamplerStateIndex = 1;
+                GameBase.Instance.SamplerState = SamplerState.LinearClamp;
+            }
+            else if (GameBase.Instance.SamplerStateIndex == 1){
+                GameBase.Instance.SamplerStateIndex = 2;
+                GameBase.Instance.SamplerState = SamplerState.AnisotropicClamp;
+            }
+            else{
+                GameBase.Instance.SamplerStateIndex = 0;
+                GameBase.Instance.SamplerState = SamplerState.PointClamp;
             }
         }
 
@@ -170,18 +186,18 @@ namespace Source.PatUtils
             //GraphicsDevice.Clear(Color.Red);
 
             GameBase.Instance.spriteBatch.Begin(SpriteSortMode.Deferred,
-                              BlendState.AlphaBlend,
-                              SamplerState.PointClamp,
-                              DepthStencilState.Default,
-                              RasterizerState.CullNone,
-                              null,
-                              Matrix.CreateScale(1.0f));
+                                                BlendState.AlphaBlend,
+                                                GameBase.Instance.SamplerState,
+                                                DepthStencilState.Default,
+                                                RasterizerState.CullNone,
+                                                null,
+                                                Matrix.CreateScale(1.0f));
 
             GameBase.Instance.spriteBatch.Draw(_background, new Rectangle(new Point(0, 0), new Point(GameBase.Instance.GraphicsDevice.Viewport.Width, GameBase.Instance.GraphicsDevice.Viewport.Height)), Color.White);
             //_spriteBatch.DrawString(_textHighlighted, _buttonText, _position, Color.White, 0.0f, _origin, _pixelScale, SpriteEffects.None, 0.0f);
             GameBase.Instance.spriteBatch.DrawString(tfTitle, "GAME OPTIONS", new Vector2(GameBase.Instance.ScreenWidth() * .5f, GameBase.Instance.ScreenHeight() * .1f), Color.White, 0.0f, new Vector2(tfTitle.GetStringRectangle("GAME OPTIONS").Width / 2,.5f), _pixelScale, SpriteEffects.None, 0.0f);
             GameBase.Instance.spriteBatch.DrawString(tfTitle, GameBase.Instance.graphics.IsFullScreen? "FULLSCREEN" : "WINDOWED", new Vector2(GameBase.Instance.ScreenWidth() * .5f, menu.getButtonAt(0, 1)._position.Y), Color.White, 0.0f, new Vector2(tfTitle.GetStringRectangle(GameBase.Instance.graphics.IsFullScreen ? "FULLSCREEN" : "WINDOWED").Width / 2, .5f), _pixelScale, SpriteEffects.None, 0.0f);
-
+            GameBase.Instance.spriteBatch.DrawString(tfTitle, GameBase.Instance.SamplerStateString(), new Vector2(GameBase.Instance.ScreenWidth() * .5f, menu.getButtonAt(0, 2)._position.Y), Color.White, 0.0f, new Vector2(tfTitle.GetStringRectangle(GameBase.Instance.SamplerStateString()).Width / 2, .5f), _pixelScale, SpriteEffects.None, 0.0f);
 
             menu.Draw(gameTime);
 
