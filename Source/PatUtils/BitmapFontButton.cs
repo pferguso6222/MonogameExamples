@@ -52,7 +52,8 @@ namespace Source.PatUtils
         }
 
         public override void Draw(GameTime gameTime) 
-        { 
+        {
+            if (!IsVisible) return;
             switch(State){
                 case BUTTON_STATE.NORMAL:
                     _spriteBatch.DrawString(_textNormal, _buttonText, _position, Color.White, 0.0f, _origin, _pixelScale, SpriteEffects.None, 0.0f);

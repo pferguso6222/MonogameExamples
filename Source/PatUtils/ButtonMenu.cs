@@ -106,6 +106,10 @@ namespace Source.PatUtils
         }
 
         public void setActiveOffset(int x, int y){
+            if (x != 0 && _cols <= 1)
+            {
+                return;
+            }
             int newX = xIndex + x;
             int newY = yIndex + y;
 

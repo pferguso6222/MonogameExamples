@@ -28,6 +28,14 @@ namespace Source.PatUtils
         GamePadState previousGamepadState;
 
         ButtonMenu menu;
+        ButtonMenu resolutionSwitchMenu;
+        ButtonMenu activeMenu = null;
+        private int currentResolutionIndex = 0;
+        private int lastKnownWidth = 0;
+        private int lastKnownHeight = 0;
+        private int desiredWidth = 0;
+        private int desiredHeight = 0;
+        private string resolutionString;
 
         public Options_Base(string backgroundImage, 
                                 string menuFontNormal,
@@ -86,7 +94,10 @@ namespace Source.PatUtils
         }
 
         private void changeResolution(){
-
+            foreach (DisplayMode mode in GraphicsAdapter.DefaultAdapter.SupportedDisplayModes)
+            {
+                Console.WriteLine(mode.Width + " x " + mode.Height +", Aspect Ratio:" + mode.AspectRatio);
+            }
         }
 
         private void toggleFullscreen(){

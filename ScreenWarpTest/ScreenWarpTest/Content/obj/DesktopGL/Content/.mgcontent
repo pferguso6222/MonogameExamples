@@ -4,9 +4,9 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>/Users/obstacledelusions/Projects/MonogameExamples/ScreenWarpTest/ScreenWarpTest/Content/Sand.png</File>
-    <File>/Users/obstacledelusions/Projects/MonogameExamples/ScreenWarpTest/ScreenWarpTest/Content/Font1.fnt</File>
-    <File>/Users/obstacledelusions/Projects/MonogameExamples/ScreenWarpTest/ScreenWarpTest/Content/Font1_0.png</File>
+    <File>C:/projects/MonogameExamples/ScreenWarpTest/ScreenWarpTest/Content/Sand.png</File>
+    <File>C:/projects/MonogameExamples/ScreenWarpTest/ScreenWarpTest/Content/Font1.fnt</File>
+    <File>C:/projects/MonogameExamples/ScreenWarpTest/ScreenWarpTest/Content/Font1_0.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
