@@ -57,26 +57,35 @@ namespace Source.PatUtils
             font_highlighted = GameBase.Instance.Content.Load<BitmapFont>(_menuFontHighlighted);
             font_pressed = GameBase.Instance.Content.Load<BitmapFont>(_menuFontPressed);
 
-            menu = new ButtonMenu(0, 100, 1, 3, new Vector2(GameBase.Instance.ScreenWidth() * .1f, GameBase.Instance.ScreenHeight() * .3f), GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonClick_1"), GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonSelected_1"), ButtonMenu.ButtonAlignment.LEFT);
+            menu = new ButtonMenu(0, 100, 1, 4, new Vector2(GameBase.Instance.ScreenWidth() * .1f, GameBase.Instance.ScreenHeight() * .3f), GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonClick_1"), GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonSelected_1"), ButtonMenu.ButtonAlignment.LEFT);
 
-
-
-            //BACK BUTTON
+            //Return to Main Menu
             BitmapFontButton bStartGame = new BitmapFontButton(GameBase.Instance.spriteBatch, font_normal, font_highlighted, font_pressed, "RETURN", new Vector2(0, 0), new Vector2(0, 0), _pixelScale);
             bStartGame.OnPress = returnToMain;
             menu.addButtonAt(bStartGame, 0, 0);
 
-            //DISPLAY MODE BUTTON
+            //Windowed / Fullscreen
             BitmapFontButton bOptions = new BitmapFontButton(GameBase.Instance.spriteBatch, font_normal, font_highlighted, font_pressed, "DISPLAY MODE", new Vector2(0, 0), new Vector2(0, 0), _pixelScale);
             bOptions.OnPress = toggleFullscreen;
             menu.addButtonAt(bOptions, 0, 1);
 
+            //Change Resolution
+            BitmapFontButton bResolution = new BitmapFontButton(GameBase.Instance.spriteBatch, font_normal, font_highlighted, font_pressed, "RESOLUTION", new Vector2(0, 0), new Vector2(0, 0), _pixelScale);
+            bResolution.OnPress = changeResolution;
+            menu.addButtonAt(bResolution, 0, 2);
+
             //Pixel Filtering
             BitmapFontButton bFiltering = new BitmapFontButton(GameBase.Instance.spriteBatch, font_normal, font_highlighted, font_pressed, "PIXEL FILTERING", new Vector2(0, 0), new Vector2(0, 0), _pixelScale);
             bFiltering.OnPress = toggleFiltering;
-            menu.addButtonAt(bFiltering, 0, 2);
+            menu.addButtonAt(bFiltering, 0, 3);
+
+
 
             menu.setActiveButton(0, 0);
+
+        }
+
+        private void changeResolution(){
 
         }
 
@@ -197,7 +206,8 @@ namespace Source.PatUtils
             //_spriteBatch.DrawString(_textHighlighted, _buttonText, _position, Color.White, 0.0f, _origin, _pixelScale, SpriteEffects.None, 0.0f);
             GameBase.Instance.spriteBatch.DrawString(tfTitle, "GAME OPTIONS", new Vector2(GameBase.Instance.ScreenWidth() * .5f, GameBase.Instance.ScreenHeight() * .1f), Color.White, 0.0f, new Vector2(tfTitle.GetStringRectangle("GAME OPTIONS").Width / 2,.5f), _pixelScale, SpriteEffects.None, 0.0f);
             GameBase.Instance.spriteBatch.DrawString(tfTitle, GameBase.Instance.graphics.IsFullScreen? "FULLSCREEN" : "WINDOWED", new Vector2(GameBase.Instance.ScreenWidth() * .5f, menu.getButtonAt(0, 1)._position.Y), Color.White, 0.0f, new Vector2(tfTitle.GetStringRectangle(GameBase.Instance.graphics.IsFullScreen ? "FULLSCREEN" : "WINDOWED").Width / 2, .5f), _pixelScale, SpriteEffects.None, 0.0f);
-            GameBase.Instance.spriteBatch.DrawString(tfTitle, GameBase.Instance.SamplerStateString(), new Vector2(GameBase.Instance.ScreenWidth() * .5f, menu.getButtonAt(0, 2)._position.Y), Color.White, 0.0f, new Vector2(tfTitle.GetStringRectangle(GameBase.Instance.SamplerStateString()).Width / 2, .5f), _pixelScale, SpriteEffects.None, 0.0f);
+            GameBase.Instance.spriteBatch.DrawString(tfTitle, "1024 x 768", new Vector2(GameBase.Instance.ScreenWidth() * .5f, menu.getButtonAt(0, 2)._position.Y), Color.White, 0.0f, new Vector2(tfTitle.GetStringRectangle("1024 x 768").Width / 2, .5f), _pixelScale, SpriteEffects.None, 0.0f);
+            GameBase.Instance.spriteBatch.DrawString(tfTitle, GameBase.Instance.SamplerStateString(), new Vector2(GameBase.Instance.ScreenWidth() * .5f, menu.getButtonAt(0, 3)._position.Y), Color.White, 0.0f, new Vector2(tfTitle.GetStringRectangle(GameBase.Instance.SamplerStateString()).Width / 2, .5f), _pixelScale, SpriteEffects.None, 0.0f);
 
             menu.Draw(gameTime);
 
