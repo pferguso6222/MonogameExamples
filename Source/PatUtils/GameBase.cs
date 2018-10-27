@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Screens;
@@ -26,7 +27,7 @@ namespace Source.PatUtils
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
         public ScreenManager screenManager;
-        public GameConfigData GameConfig;
+        public GameConfigUtility GameConfig;
         protected GameState gameState;
         public int SamplerStateIndex = 0;
         public SamplerState SamplerState = SamplerState.PointClamp;
@@ -35,6 +36,11 @@ namespace Source.PatUtils
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferWidth = 1920;
+            graphics.PreferredBackBufferHeight = 1080;
+            //Window.Title = "My new title";
+            //Window.AllowUserResizing = true;
+            //Window.ClientSizeChanged += OnResize;
             Instance = this;
         }
 
@@ -46,22 +52,23 @@ namespace Source.PatUtils
 
         }
 
-        public int ScreenWidth(){
-            //if (graphics.IsFullScreen){
-                //return GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-            //}
-            //return GraphicsDevice.Viewport.Bounds.Width;
-            return GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+        public int ScreenWidth()
+        {
+            if (graphics.IsFullScreen){
+                return GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            }else{
+                return GraphicsDevice.Viewport.Bounds.Width;
+            }
         }
 
         public int ScreenHeight()
         {
-            //if (graphics.IsFullScreen)
-            //{
-                //return GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-            //}
-            //return GraphicsDevice.Viewport.Bounds.Height;
-            return GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            if (graphics.IsFullScreen)
+            {
+                return GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            }else{
+                return GraphicsDevice.Viewport.Bounds.Height;
+            }
         }
 
         protected override void Initialize()
@@ -124,12 +131,23 @@ namespace Source.PatUtils
             return str;
         }
 
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Update(GameTime gameTime)
+        public string ResolutionString(){
+            return string.Concat(ScreenWidth().ToString(), "x", ScreenHeight().ToString());
+        }
+
+        public void OnResize(Object sender, EventArgs e)
+        {
+            graphics.PreferredBackBufferWidth = ScreenWidth();
+            graphics.PreferredBackBufferHeight = ScreenHeight();
+            graphics.ApplyChanges();
+        }
+
+    /// <summary>
+    /// Allows the game to run logic such as updating the world,
+    /// checking for collisions, gathering input, and playing audio.
+    /// </summary>
+    /// <param name="gameTime">Provides a snapshot of timing values.</param>
+    protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
         }

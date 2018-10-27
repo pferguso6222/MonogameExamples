@@ -20,20 +20,20 @@ namespace GameTemplate.Desktop
         {
             base.Initialize();
 
-            GameConfigUtility gameConfigUtil = new GameConfigUtility("PatsGame");
-            gameConfigUtil.LoadVars();
-            GameConfig = gameConfigUtil.data;
+            GameConfig = new GameConfigUtility("PatsGame");
+            GameConfig.LoadVars();
 
             //Parse Game Config Screen Resolution
-            graphics.PreferredBackBufferWidth = GameConfig.screenWidth;
-            graphics.PreferredBackBufferHeight = GameConfig.screenHeight;
+            graphics.PreferredBackBufferWidth = GameConfig.data.screenWidth;
+            graphics.PreferredBackBufferHeight = GameConfig.data.screenHeight;
+            graphics.ApplyChanges();
 
             //Parse Game Config Sampler State Index
-            SamplerStateIndex = GameConfig.SamplerStateIndex;
+            SamplerStateIndex = GameConfig.data.SamplerStateIndex;
             UpdateSamplerState();
 
             //Parse Game Config Fullscreen
-            if (GameConfig.isFullScreen)
+            if (GameConfig.data.isFullScreen)
             {
                 if (!graphics.IsFullScreen)
                 {

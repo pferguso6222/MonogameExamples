@@ -36,14 +36,11 @@ namespace Source.PatUtils
 
             if (!File.Exists(saveFile))
             {
-
-
-
                 GameConfigData gameConfigData = new GameConfigData();
-                gameConfigData.screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-                gameConfigData.screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+                gameConfigData.screenWidth = GameBase.Instance.GraphicsDevice.Viewport.Bounds.Width;
+                gameConfigData.screenHeight = GameBase.Instance.GraphicsDevice.Viewport.Bounds.Height;
                 gameConfigData.SamplerStateIndex = 0;
-                gameConfigData.isFullScreen = true;
+                gameConfigData.isFullScreen = false;
 
                 //Serialize the created empty entries and save them to disk.
                 System.IO.Directory.CreateDirectory(String.Concat(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "/", GameName));
@@ -59,6 +56,7 @@ namespace Source.PatUtils
                 formatter = new BinaryFormatter();
                 stream = new FileStream(saveFile, FileMode.Open, FileAccess.Read);
                 data = (GameConfigData)formatter.Deserialize(stream);
+                stream.Close();
                 return true;
             }
             else
@@ -68,7 +66,7 @@ namespace Source.PatUtils
         }
 
         public void Save(){
-            stream = new FileStream(saveFile, FileMode.Create, FileAccess.Write);
+            stream = new FileStream(saveFile, FileMode.Truncate, FileAccess.Write);
             formatter.Serialize(stream, data);
             stream.Close();
         }
