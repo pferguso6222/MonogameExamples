@@ -51,7 +51,7 @@ namespace GameTemplate.Desktop
             //do this FIRST
             base.LoadContent();
 
-            titleScreen = new TitleScreen_Base("Graphics/Bkg_Title", ".\\YosterIsland_12px_2", ".\\YosterIsland_12px_1", ".\\YosterIsland_12px", ".\\Makaimura", 2.0f);
+            titleScreen = new TitleScreen_Base("Graphics/Bkg_Title", ".\\YosterIsland_12px_2", ".\\YosterIsland_12px_1", ".\\YosterIsland_12px", ".\\Makaimura", 4.0f);
             optionsScreen = new Options_Base("Graphics/Bkg_Title", ".\\YosterIsland_12px_2", ".\\YosterIsland_12px_1", ".\\YosterIsland_12px", 4.0f);
 
             ChangeGameState(GameState.TITLE_MAIN);//Make this the program start

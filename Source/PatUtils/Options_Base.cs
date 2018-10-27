@@ -224,6 +224,10 @@ namespace Source.PatUtils
             GameBase.Instance.graphics.PreferredBackBufferWidth = supportedResolutions[currentResolutionIndex].X;
             GameBase.Instance.graphics.PreferredBackBufferHeight = supportedResolutions[currentResolutionIndex].Y;
             GameBase.Instance.graphics.ApplyChanges();
+
+            GameBase.Instance.GameConfig.data.screenWidth = supportedResolutions[currentResolutionIndex].X;
+            GameBase.Instance.GameConfig.data.screenHeight = supportedResolutions[currentResolutionIndex].Y;
+            GameBase.Instance.GameConfig.Save();
             changeResolution();
         }
 
