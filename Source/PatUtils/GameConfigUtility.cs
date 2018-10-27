@@ -37,8 +37,8 @@ namespace Source.PatUtils
             if (!File.Exists(saveFile))
             {
                 GameConfigData gameConfigData = new GameConfigData();
-                gameConfigData.screenWidth = GameBase.Instance.GraphicsDevice.Viewport.Bounds.Width;
-                gameConfigData.screenHeight = GameBase.Instance.GraphicsDevice.Viewport.Bounds.Height;
+                gameConfigData.screenWidth = 1920;
+                gameConfigData.screenHeight = 1080;
                 gameConfigData.SamplerStateIndex = 0;
                 gameConfigData.isFullScreen = false;
 
