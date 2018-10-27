@@ -82,8 +82,6 @@ namespace Source.PatUtils
             bFiltering.OnPress = toggleFiltering;
             menu.addButtonAt(bFiltering, 0, 3);
 
-
-
             menu.setActiveButton(0, 0);
 
         }
@@ -270,14 +268,7 @@ namespace Source.PatUtils
 
         public override void Draw(GameTime gameTime)
         {
-            GameBase.Instance.spriteBatch.Begin(SpriteSortMode.Deferred,
-                                                BlendState.AlphaBlend,
-                                                GameBase.Instance.SamplerState,
-                                                DepthStencilState.Default,
-                                                RasterizerState.CullNone,
-                                                null,
-                                                Matrix.CreateScale(1.0f));
-
+            GameBase.Instance.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, GameBase.Instance.SamplerState, DepthStencilState.Default, RasterizerState.CullNone, null, Matrix.CreateScale(1.0f));
             GameBase.Instance.spriteBatch.Draw(_background, new Rectangle(new Point(0, 0), new Point(GameBase.Instance.ScreenWidth(), GameBase.Instance.ScreenHeight())), Color.White);
             GameBase.Instance.spriteBatch.DrawString(font_normal, "GAME OPTIONS", new Vector2(GameBase.Instance.ScreenWidth() * .5f, GameBase.Instance.ScreenHeight() * .1f), Color.White, 0.0f, new Vector2(font_normal.GetStringRectangle("GAME OPTIONS").Width / 2,.5f), GameBase.Instance.GetCurrentPixelScale(), SpriteEffects.None, 0.0f);
             GameBase.Instance.spriteBatch.DrawString(font_normal, GameBase.Instance.graphics.IsFullScreen? "FULLSCREEN" : "WINDOWED", new Vector2(GameBase.Instance.ScreenWidth() * .65f, GameBase.Instance.ScreenHeight() * menu.getButtonAt(0, 1)._position.Y), Color.White, 0.0f, new Vector2(font_normal.GetStringRectangle(GameBase.Instance.graphics.IsFullScreen ? "FULLSCREEN" : "WINDOWED").Width / 2, .5f), GameBase.Instance.GetCurrentPixelScale(), SpriteEffects.None, 0.0f);
@@ -291,7 +282,6 @@ namespace Source.PatUtils
             GameBase.Instance.spriteBatch.DrawString(font_normal, GameBase.Instance.SamplerStateString(), new Vector2(GameBase.Instance.ScreenWidth() * .65f, GameBase.Instance.ScreenHeight() * menu.getButtonAt(0, 3)._position.Y), Color.White, 0.0f, new Vector2(font_normal.GetStringRectangle(GameBase.Instance.SamplerStateString()).Width / 2, .5f), GameBase.Instance.GetCurrentPixelScale(), SpriteEffects.None, 0.0f);
 
             menu.Draw(gameTime);
-
             GameBase.Instance.spriteBatch.End();
         }
     }

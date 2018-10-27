@@ -78,7 +78,7 @@ namespace Source.PatUtils
 
             //START GAME BUTTON
             BitmapFontButton bStartGame = new BitmapFontButton(GameBase.Instance.spriteBatch, font_normal, font_highlighted, font_pressed, "START GAME", new Vector2(.5f, .35f), Button.ButtonAlignment.CENTER);
-            bStartGame.OnPress = notifyButtonPressed;
+            //bStartGame.OnPress = notifyButtonPressed;
             menu.addButtonAt(bStartGame, 0, 0);
 
             //OPTIONS BUTTON
@@ -168,22 +168,10 @@ namespace Source.PatUtils
 
         public override void Draw(GameTime gameTime)
         {
-            //GraphicsDevice.Clear(Color.Red);
-
-            GameBase.Instance.spriteBatch.Begin(SpriteSortMode.Deferred,
-                                                BlendState.AlphaBlend,
-                                                GameBase.Instance.SamplerState,
-                                                DepthStencilState.Default,
-                                                RasterizerState.CullNone,
-                                                null,
-                                                Matrix.CreateScale(1.0f));
-
+            GameBase.Instance.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, GameBase.Instance.SamplerState, DepthStencilState.Default, RasterizerState.CullNone, null, Matrix.CreateScale(1.0f));
             GameBase.Instance.spriteBatch.Draw(_background, new Rectangle(new Point(0, 0), new Point(GameBase.Instance.ScreenWidth(), GameBase.Instance.ScreenHeight())), Color.White);
-
             menu.Draw(gameTime);
-
             GameBase.Instance.spriteBatch.DrawString(font_copyright, "Copyright 2018", new Vector2((GameBase.Instance.ScreenWidth() * .5f) - (font_copyright.GetStringRectangle("Copyright 2018").Width * .38f), (float)(GameBase.Instance.GraphicsDevice.Viewport.Height * .95)), Color.White, 0.0f, new Vector2(50, 1), 1.0f, SpriteEffects.None, 0.0f);
-
             GameBase.Instance.spriteBatch.End();
         }
     }
