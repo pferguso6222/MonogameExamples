@@ -107,13 +107,13 @@ namespace Source.PatUtils
             updatePosition();
             switch(State){
                 case BUTTON_STATE.NORMAL:
-                    _spriteBatch.DrawString(_textNormal, _buttonText, _current_position, Color.White, 0.0f, _origin, _pixelScale, SpriteEffects.None, 0.0f);
+                    _spriteBatch.DrawString(_textNormal, _buttonText, _current_position, Color.White, 0.0f, _origin, GameBase.Instance.GetCurrentPixelScale(), SpriteEffects.None, 0.0f);
                     break;
                 case BUTTON_STATE.HIGHLIGHTED:
-                    _spriteBatch.DrawString(_textHighlighted, _buttonText, _current_position, Color.White, 0.0f, _origin, _pixelScale, SpriteEffects.None, 0.0f);
+                    _spriteBatch.DrawString(_textHighlighted, _buttonText, _current_position, Color.White, 0.0f, _origin, GameBase.Instance.GetCurrentPixelScale(), SpriteEffects.None, 0.0f);
                     break;
                 case BUTTON_STATE.PRESSED:
-                    _spriteBatch.DrawString(_textPressed, _buttonText, _current_position, Color.White, 0.0f, _origin, _pixelScale, SpriteEffects.None, 0.0f);
+                    _spriteBatch.DrawString(_textPressed, _buttonText, _current_position, Color.White, 0.0f, _origin, GameBase.Instance.GetCurrentPixelScale(), SpriteEffects.None, 0.0f);
                     break;
             }
         }

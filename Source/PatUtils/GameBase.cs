@@ -23,7 +23,6 @@ namespace Source.PatUtils
             OPTIONS_MAIN,
         }
 
-
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
         public ScreenManager screenManager;
@@ -42,6 +41,10 @@ namespace Source.PatUtils
             //Window.AllowUserResizing = true;
             //Window.ClientSizeChanged += OnResize;
             Instance = this;
+        }
+
+        public virtual float GetCurrentPixelScale(){
+            return 1.0f;
         }
 
         public virtual void ChangeGameState(GameState state){

@@ -44,7 +44,7 @@ namespace Source.PatUtils
 
             for (int i = 0; i < _cols; i++){
                 for (int j = 0; j < _rows; j++){
-                    Console.Write("buttons[" + i + "][" + j + "]: " + buttons[i, j]);
+                    //Console.Write("buttons[" + i + "][" + j + "]: " + buttons[i, j]);
                 }
             }
         }
@@ -87,31 +87,30 @@ namespace Source.PatUtils
             buttons[col, row] = button;
         }
 
+        /// <summary>
+        /// This sets the active button according to a direction offset in X or Y.
+        /// </summary>
         public void setActiveOffset(int x, int y){
-            if (x != 0 && _cols <= 1)
-            {
-                return;
-            }
+
+            //if there is only one column, do not allow wrapping
+            if (x != 0 && _cols <= 1) return;
+ 
             int newX = xIndex + x;
             int newY = yIndex + y;
 
-            if (newX >= _cols){
-                newX = 0;
-            }else if (newX < 0){
-                newX = _cols - 1;
-            }
+            //Wrap around in X
+            if (newX >= _cols){ newX = 0;} else if (newX < 0){newX = _cols - 1;}
 
-            if (newY >= _rows){
-                newY = 0;
-            }else if (newY < 0){
-                newY = _rows - 1;
-            }
+            //Wrap Around in Y
+            if (newY >= _rows){newY = 0; } else if (newY < 0){newY = _rows - 1;}
 
             xIndex = newX;
             yIndex = newY;
 
             setAllNormal();
+
             Button b = buttons[xIndex, yIndex];
+
             if (b != null)
             {
                 b.State = Button.BUTTON_STATE.HIGHLIGHTED;

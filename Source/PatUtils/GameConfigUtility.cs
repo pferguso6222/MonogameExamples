@@ -26,13 +26,13 @@ namespace Source.PatUtils
             //find out where our directory for write permissions are. This is where our options and save game files will go.
             GameName = gameName;
             saveFile = String.Concat(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "/", GameName, "/GameConfig.dat");
-            Console.WriteLine("SaveFolderFath:" + saveFile);
+            //Console.WriteLine("SaveFolderFath:" + saveFile);
             formatter = new BinaryFormatter();
         }
 
         public bool LoadVars()
         {
-            Console.WriteLine(File.Exists(saveFile) ? "File exists: " + saveFile : "File does not exist: " + saveFile);
+            //Console.WriteLine(File.Exists(saveFile) ? "File exists: " + saveFile : "File does not exist: " + saveFile);
 
             if (!File.Exists(saveFile))
             {

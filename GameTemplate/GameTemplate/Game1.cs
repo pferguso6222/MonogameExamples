@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Source.PatUtils;
 using MonoGame.Extended.Screens.Transitions;
@@ -42,6 +43,11 @@ namespace GameTemplate.Desktop
             }
         }
 
+        public override float GetCurrentPixelScale()
+        {
+            return (float)Math.Ceiling(ScreenWidth() / 480.0f);//We want 4X scaling on a 1920 x 1080 display
+        }
+
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
@@ -51,8 +57,8 @@ namespace GameTemplate.Desktop
             //do this FIRST
             base.LoadContent();
 
-            titleScreen = new TitleScreen_Base("Graphics/Bkg_Title", ".\\YosterIsland_12px_2", ".\\YosterIsland_12px_1", ".\\YosterIsland_12px", ".\\Makaimura", 4.0f);
-            optionsScreen = new Options_Base("Graphics/Bkg_Title", ".\\YosterIsland_12px_2", ".\\YosterIsland_12px_1", ".\\YosterIsland_12px", 4.0f);
+            titleScreen = new TitleScreen_Base("Graphics/Bkg_Title", ".\\YosterIsland_12px_2", ".\\YosterIsland_12px_1", ".\\YosterIsland_12px", ".\\Makaimura", GetCurrentPixelScale());
+            optionsScreen = new Options_Base("Graphics/Bkg_Title", ".\\YosterIsland_12px_2", ".\\YosterIsland_12px_1", ".\\YosterIsland_12px", GetCurrentPixelScale());
 
             ChangeGameState(GameState.TITLE_MAIN);//Make this the program start
         }
