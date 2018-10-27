@@ -9,6 +9,15 @@ namespace Source.PatUtils
 
         public Action OnPress;
 
+        public ButtonAlignment _alignment;
+
+        public enum ButtonAlignment
+        {
+            LEFT,
+            CENTER,
+            RIGHT
+        }
+
         public enum BUTTON_STATE{
             NORMAL,
             HIGHLIGHTED,
@@ -38,6 +47,7 @@ namespace Source.PatUtils
 
         public Vector2 _position
         {
+            //_position X and Y should be a number from 0.0f to 1.0f, representing their percentage of CURRENT screen width or height
             get;
             set;
         }

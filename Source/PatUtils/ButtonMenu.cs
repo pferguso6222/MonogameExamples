@@ -11,7 +11,7 @@ namespace Source.PatUtils
         int _ySpacing;
         int _rows;
         int _cols;
-        Vector2 _position;
+        Vector2 _position;//Position X and Y should be a number from 0.0f to 1.0f, representing their percentage of screen width or height
 
         int xIndex;
         int yIndex;
@@ -23,15 +23,9 @@ namespace Source.PatUtils
 
         Button[,] buttons;
 
-        private ButtonAlignment alignment;
+        private Button.ButtonAlignment alignment;
 
-        public enum ButtonAlignment{
-            LEFT,
-            CENTER,
-            RIGHT
-        }
-
-        public ButtonMenu(int xSpacing, int ySpacing, int cols, int rows, Vector2 position, SoundEffect nextButtonSound = null, SoundEffect pressButtonSound = null, ButtonAlignment buttonAlignment = ButtonAlignment.CENTER)
+        public ButtonMenu(int xSpacing, int ySpacing, int cols, int rows, Vector2 position, SoundEffect nextButtonSound = null, SoundEffect pressButtonSound = null, Button.ButtonAlignment buttonAlignment = Button.ButtonAlignment.CENTER)
         {
             sound_move_to_next_button = nextButtonSound;
             sound_press_button = pressButtonSound;
@@ -91,18 +85,6 @@ namespace Source.PatUtils
 
         public void addButtonAt(Button button, int col, int row){
             buttons[col, row] = button;
-            Vector2 pos;
-
-            float offset = 0.0f;//left
-            if (alignment == ButtonAlignment.RIGHT){
-                button.GetWidth();
-            }
-            else if (alignment == ButtonAlignment.CENTER){
-                offset = button.GetWidth() * .5f;
-            }
-
-            pos = new Vector2((_position.X + (_xSpacing * col)) - (offset), _position.Y + (_ySpacing * row));
-            button._position = pos;
         }
 
         public void setActiveOffset(int x, int y){
