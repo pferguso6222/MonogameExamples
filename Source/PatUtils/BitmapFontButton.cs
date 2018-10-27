@@ -14,7 +14,6 @@ namespace Source.PatUtils
         Vector2 _origin = new Vector2();
         string _buttonText;
         protected SpriteBatch _spriteBatch;
-        float _pixelScale;
         private Vector2 _current_position = new Vector2();
 
         public BitmapFontButton(SpriteBatch spriteBatch, 
@@ -23,11 +22,9 @@ namespace Source.PatUtils
                                 BitmapFont textPressed,
                                 string buttonText, 
                                 Vector2 position, 
-                                Button.ButtonAlignment alignment, 
-                                float pixelScale)
+                                Button.ButtonAlignment alignment)
         {
             this.IsVisible = true;
-            _pixelScale = pixelScale;
             _spriteBatch = spriteBatch;
             _textNormal = textNormal;
             _textHighlighted = textHighlighted;
@@ -44,11 +41,9 @@ namespace Source.PatUtils
                                 BitmapFont textPressed,
                                 string buttonText,
                                 Point position,
-                                Button.ButtonAlignment alignment,
-                                float pixelScale)
+                                Button.ButtonAlignment alignment)
         {
             this.IsVisible = true;
-            _pixelScale = pixelScale;
             _spriteBatch = spriteBatch;
             _textNormal = textNormal;
             _textHighlighted = textHighlighted;
@@ -79,7 +74,7 @@ namespace Source.PatUtils
 
         public override float GetWidth()
         {
-            return (float)_textNormal.GetStringRectangle(_buttonText).Width * _pixelScale;
+            return (float)_textNormal.GetStringRectangle(_buttonText).Width * GameBase.Instance.GetCurrentPixelScale();
         }
 
         public override void Update(GameTime gameTime)

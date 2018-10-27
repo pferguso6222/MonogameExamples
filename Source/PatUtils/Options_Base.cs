@@ -14,8 +14,6 @@ namespace Source.PatUtils
     public class Options_Base : Screen
     {
         private Texture2D _background;
-
-        private BitmapFont tfTitle;
         private BitmapFont font_normal;
         private BitmapFont font_highlighted;
         private BitmapFont font_pressed;
@@ -71,22 +69,22 @@ namespace Source.PatUtils
             menu = new ButtonMenu(0, 100, 1, 4, new Vector2(GameBase.Instance.ScreenWidth() * .1f, GameBase.Instance.ScreenHeight() * .3f), GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonClick_1"), GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonSelected_1"), Button.ButtonAlignment.LEFT);
 
             //Return to Main Menu
-            BitmapFontButton bReturn = new BitmapFontButton(GameBase.Instance.spriteBatch, font_normal, font_highlighted, font_pressed, "RETURN", new Vector2(.1f, .25f), Button.ButtonAlignment.LEFT, _pixelScale);
+            BitmapFontButton bReturn = new BitmapFontButton(GameBase.Instance.spriteBatch, font_normal, font_highlighted, font_pressed, "RETURN", new Vector2(.1f, .25f), Button.ButtonAlignment.LEFT);
             bReturn.OnPress = returnToMain;
             menu.addButtonAt(bReturn, 0, 0);
 
             //Windowed / Fullscreen
-            BitmapFontButton bFullscreen = new BitmapFontButton(GameBase.Instance.spriteBatch, font_normal, font_highlighted, font_pressed, "DISPLAY MODE", new Vector2(.1f, .3f), Button.ButtonAlignment.LEFT, _pixelScale);
+            BitmapFontButton bFullscreen = new BitmapFontButton(GameBase.Instance.spriteBatch, font_normal, font_highlighted, font_pressed, "DISPLAY MODE", new Vector2(.1f, .3f), Button.ButtonAlignment.LEFT);
             bFullscreen.OnPress = toggleFullscreen;
             menu.addButtonAt(bFullscreen, 0, 1);
 
             //Change Resolution
-            BitmapFontButton bResolution = new BitmapFontButton(GameBase.Instance.spriteBatch, font_normal, font_highlighted, font_pressed, "RESOLUTION", new Vector2(.1f, .35f), Button.ButtonAlignment.LEFT, _pixelScale);
+            BitmapFontButton bResolution = new BitmapFontButton(GameBase.Instance.spriteBatch, font_normal, font_highlighted, font_pressed, "RESOLUTION", new Vector2(.1f, .35f), Button.ButtonAlignment.LEFT);
             bResolution.OnPress = changeResolution;
             menu.addButtonAt(bResolution, 0, 2);
 
             //Pixel Filtering
-            BitmapFontButton bFiltering = new BitmapFontButton(GameBase.Instance.spriteBatch, font_normal, font_highlighted, font_pressed, "PIXEL FILTERING", new Vector2(.1f, .4f), Button.ButtonAlignment.LEFT, _pixelScale);
+            BitmapFontButton bFiltering = new BitmapFontButton(GameBase.Instance.spriteBatch, font_normal, font_highlighted, font_pressed, "PIXEL FILTERING", new Vector2(.1f, .4f), Button.ButtonAlignment.LEFT);
             bFiltering.OnPress = toggleFiltering;
             menu.addButtonAt(bFiltering, 0, 3);
 
