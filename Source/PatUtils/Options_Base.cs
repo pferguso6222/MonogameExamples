@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
@@ -29,14 +30,16 @@ namespace Source.PatUtils
         GamePadState previousGamepadState;
 
         ButtonMenu menu;
-        ButtonMenu resolutionSwitchMenu;
-        ButtonMenu activeMenu = null;
+
         private int currentResolutionIndex = 0;
         private int lastKnownWidth = 0;
         private int lastKnownHeight = 0;
         private int desiredWidth = 0;
         private int desiredHeight = 0;
-        private string resolutionString;
+        private bool editingResolution = false;
+        private List<string> resolutionStrings = new List<string>();
+        private List<Point> supportedResolutions = new List<Point>();
+        private string currentResolutionString;
 
         public Options_Base(string backgroundImage, 
                                 string menuFontNormal,
@@ -49,6 +52,20 @@ namespace Source.PatUtils
             _menuFontPressed = menuFontPressed;
             _menuFontHighlighted = menuFontHighlighted;
             _pixelScale = pixelScale;
+
+            foreach (DisplayMode mode in GraphicsAdapter.DefaultAdapter.SupportedDisplayModes)
+            {
+                string leftArrow = (mode.Width <= 999) ? "<  " : "< ";
+                string rightArrow = (mode.Height <= 999) ? "  >" : " >";
+                string resolutionString = string.Concat(leftArrow, mode.Width, " x ", mode.Height, rightArrow);
+                resolutionStrings.Add(resolutionString);
+                if (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width == mode.Width && GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height == mode.Height){
+                    currentResolutionString = resolutionString;
+                }
+                Point resolution = new Point(mode.Width, mode.Height);
+                supportedResolutions.Add(resolution);
+                Console.WriteLine(resolutionString);
+            }
         }
 
         private void notifyButtonPressed(){
@@ -95,9 +112,10 @@ namespace Source.PatUtils
         }
 
         private void changeResolution(){
-            foreach (DisplayMode mode in GraphicsAdapter.DefaultAdapter.SupportedDisplayModes)
-            {
-                Console.WriteLine(mode.Width + " x " + mode.Height +", Aspect Ratio:" + mode.AspectRatio);
+            if (!editingResolution){
+                editingResolution = true;
+            }else{
+                editingResolution = false;
             }
         }
 
@@ -151,9 +169,70 @@ namespace Source.PatUtils
             GameBase.Instance.Exit();
         }
 
+        private void editResolution(){
+            KeyboardState state = Keyboard.GetState();
+
+            // Move our sprite based on arrow keys being pressed:
+            if (state.IsKeyDown(Keys.Right) & !previousState.IsKeyDown(
+                Keys.Right)){
+                SetResolutionSelectionOffset(1);
+            }
+            if (state.IsKeyDown(Keys.Left) & !previousState.IsKeyDown(
+                Keys.Left)){
+                SetResolutionSelectionOffset(-1);
+            }
+                
+
+            if (state.IsKeyDown(Keys.Space) & !previousState.IsKeyDown(
+                Keys.Space)){
+                SetSelectedResolution();
+            }
+                
+            if (state.IsKeyDown(Keys.Enter) & !previousState.IsKeyDown(
+                Keys.Enter)){
+                SetSelectedResolution();
+            }
+            previousState = state;
+
+            GamePadCapabilities capabilities = GamePad.GetCapabilities(PlayerIndex.One);
+
+            if (capabilities.IsConnected)
+            {
+                // Get the current state of Controller1
+                GamePadState _state = GamePad.GetState(PlayerIndex.One);
+
+                if (_state.IsButtonDown(Buttons.DPadRight) && !previousGamepadState.IsButtonDown(Buttons.DPadRight))
+                    menu.setActiveOffset(1, 0);
+                if (_state.IsButtonDown(Buttons.DPadLeft) && !previousGamepadState.IsButtonDown(Buttons.DPadLeft))
+                    menu.setActiveOffset(-1, 0);
+
+                previousGamepadState = _state;
+            }
+        }
+
+        private void SetResolutionSelectionOffset(int offset){
+            currentResolutionIndex += offset;
+            if (currentResolutionIndex <= 0){
+                currentResolutionIndex = resolutionStrings.Count - 1;
+            }else if (currentResolutionIndex >= resolutionStrings.Count){
+                currentResolutionIndex = 0;
+            }
+            currentResolutionString = resolutionStrings[currentResolutionIndex];
+        }
+
+        private void SetSelectedResolution(){
+            GameBase.Instance.graphics.PreferredBackBufferWidth = supportedResolutions[currentResolutionIndex].X;
+            GameBase.Instance.graphics.PreferredBackBufferHeight = supportedResolutions[currentResolutionIndex].Y;
+            GameBase.Instance.graphics.ApplyChanges();
+            changeResolution();
+        }
+
         public override void Update(GameTime gameTime)
         {
-           // base.Update(gameTime);
+            if (editingResolution){
+                editResolution();
+                return;
+            }
 
             KeyboardState state = Keyboard.GetState();
 
@@ -184,17 +263,11 @@ namespace Source.PatUtils
             previousState = state;
 
             GamePadCapabilities capabilities = GamePad.GetCapabilities(PlayerIndex.One);
-            GamePadCapabilities capabilities2 = GamePad.GetCapabilities(PlayerIndex.Two);
-            GamePadCapabilities capabilities3 = GamePad.GetCapabilities(PlayerIndex.Three);
-            GamePadCapabilities capabilities4 = GamePad.GetCapabilities(PlayerIndex.Four);
 
             if (capabilities.IsConnected)
             {
                 // Get the current state of Controller1
                 GamePadState _state = GamePad.GetState(PlayerIndex.One);
-                GamePadState _state2 = GamePad.GetState(PlayerIndex.Two);
-                GamePadState _state3 = GamePad.GetState(PlayerIndex.Three);
-                GamePadState _state4 = GamePad.GetState(PlayerIndex.Four);
 
                 if (_state.IsButtonDown(Buttons.DPadRight) && !previousGamepadState.IsButtonDown(Buttons.DPadRight))
                     menu.setActiveOffset(1, 0);
@@ -227,7 +300,13 @@ namespace Source.PatUtils
             GameBase.Instance.spriteBatch.Draw(_background, new Rectangle(new Point(0, 0), new Point(GameBase.Instance.ScreenWidth(), GameBase.Instance.ScreenHeight())), Color.White);
             GameBase.Instance.spriteBatch.DrawString(tfTitle, "GAME OPTIONS", new Vector2(GameBase.Instance.ScreenWidth() * .5f, GameBase.Instance.ScreenHeight() * .1f), Color.White, 0.0f, new Vector2(tfTitle.GetStringRectangle("GAME OPTIONS").Width / 2,.5f), _pixelScale, SpriteEffects.None, 0.0f);
             GameBase.Instance.spriteBatch.DrawString(tfTitle, GameBase.Instance.graphics.IsFullScreen? "FULLSCREEN" : "WINDOWED", new Vector2(GameBase.Instance.ScreenWidth() * .5f, GameBase.Instance.ScreenHeight() * menu.getButtonAt(0, 1)._position.Y), Color.White, 0.0f, new Vector2(tfTitle.GetStringRectangle(GameBase.Instance.graphics.IsFullScreen ? "FULLSCREEN" : "WINDOWED").Width / 2, .5f), _pixelScale, SpriteEffects.None, 0.0f);
-            GameBase.Instance.spriteBatch.DrawString(tfTitle, GameBase.Instance.ResolutionString(), new Vector2(GameBase.Instance.ScreenWidth() * .5f, GameBase.Instance.ScreenHeight() * menu.getButtonAt(0, 2)._position.Y), Color.White, 0.0f, new Vector2(tfTitle.GetStringRectangle(GameBase.Instance.ResolutionString()).Width / 2, .5f), _pixelScale, SpriteEffects.None, 0.0f);
+            if (editingResolution){
+                editResolution();
+                GameBase.Instance.spriteBatch.DrawString(font_pressed, currentResolutionString, new Vector2(GameBase.Instance.ScreenWidth() * .5f, GameBase.Instance.ScreenHeight() * menu.getButtonAt(0, 2)._position.Y), Color.White, 0.0f, new Vector2(font_pressed.GetStringRectangle(currentResolutionString).Width / 2, .5f), _pixelScale, SpriteEffects.None, 0.0f);
+            }
+            else{
+                GameBase.Instance.spriteBatch.DrawString(tfTitle, GameBase.Instance.ResolutionString(), new Vector2(GameBase.Instance.ScreenWidth() * .5f, GameBase.Instance.ScreenHeight() * menu.getButtonAt(0, 2)._position.Y), Color.White, 0.0f, new Vector2(tfTitle.GetStringRectangle(GameBase.Instance.ResolutionString()).Width / 2, .5f), _pixelScale, SpriteEffects.None, 0.0f);
+            }
             GameBase.Instance.spriteBatch.DrawString(tfTitle, GameBase.Instance.SamplerStateString(), new Vector2(GameBase.Instance.ScreenWidth() * .5f, GameBase.Instance.ScreenHeight() * menu.getButtonAt(0, 3)._position.Y), Color.White, 0.0f, new Vector2(tfTitle.GetStringRectangle(GameBase.Instance.SamplerStateString()).Width / 2, .5f), _pixelScale, SpriteEffects.None, 0.0f);
 
             menu.Draw(gameTime);
