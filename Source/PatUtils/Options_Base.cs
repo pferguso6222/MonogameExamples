@@ -14,10 +14,6 @@ namespace Source.PatUtils
     public class Options_Base : Screen
     {
         private Texture2D _background;
-        private string _backgroundImage;
-        private string _menuFontNormal;
-        private string _menuFontHighlighted;
-        private string _menuFontPressed;
 
         private BitmapFont tfTitle;
         private BitmapFont font_normal;
@@ -32,26 +28,20 @@ namespace Source.PatUtils
         ButtonMenu menu;
 
         private int currentResolutionIndex = 0;
-        private int lastKnownWidth = 0;
-        private int lastKnownHeight = 0;
-        private int desiredWidth = 0;
-        private int desiredHeight = 0;
         private bool editingResolution = false;
         private List<string> resolutionStrings = new List<string>();
         private List<Point> supportedResolutions = new List<Point>();
         private string currentResolutionString;
 
-        public Options_Base(string backgroundImage, 
-                                string menuFontNormal,
-                               string menuFontHighlighted,
-                               string menuFontPressed,
-                               float pixelScale)
+        public Options_Base(Texture2D backgroundImage,
+                                BitmapFont menuFontNormal,
+                               BitmapFont menuFontHighlighted,
+                               BitmapFont menuFontPressed)
         {
-            _backgroundImage = backgroundImage;
-            _menuFontNormal = menuFontNormal;
-            _menuFontPressed = menuFontPressed;
-            _menuFontHighlighted = menuFontHighlighted;
-            _pixelScale = pixelScale;
+            _background = backgroundImage;
+            font_normal = menuFontNormal;
+            font_highlighted = menuFontHighlighted;
+            font_pressed = menuFontPressed;
 
             foreach (DisplayMode mode in GraphicsAdapter.DefaultAdapter.SupportedDisplayModes)
             {
@@ -77,11 +67,6 @@ namespace Source.PatUtils
             base.LoadContent();
             previousState = Keyboard.GetState();
             previousGamepadState = GamePad.GetState(PlayerIndex.One);
-            _background = GameBase.Instance.Content.Load<Texture2D>(_backgroundImage);
-            font_normal = GameBase.Instance.Content.Load<BitmapFont>(_menuFontNormal);
-            tfTitle = GameBase.Instance.Content.Load<BitmapFont>(_menuFontNormal);
-            font_highlighted = GameBase.Instance.Content.Load<BitmapFont>(_menuFontHighlighted);
-            font_pressed = GameBase.Instance.Content.Load<BitmapFont>(_menuFontPressed);
 
             menu = new ButtonMenu(0, 100, 1, 4, new Vector2(GameBase.Instance.ScreenWidth() * .1f, GameBase.Instance.ScreenHeight() * .3f), GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonClick_1"), GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonSelected_1"), Button.ButtonAlignment.LEFT);
 
@@ -302,16 +287,16 @@ namespace Source.PatUtils
                                                 Matrix.CreateScale(1.0f));
 
             GameBase.Instance.spriteBatch.Draw(_background, new Rectangle(new Point(0, 0), new Point(GameBase.Instance.ScreenWidth(), GameBase.Instance.ScreenHeight())), Color.White);
-            GameBase.Instance.spriteBatch.DrawString(tfTitle, "GAME OPTIONS", new Vector2(GameBase.Instance.ScreenWidth() * .5f, GameBase.Instance.ScreenHeight() * .1f), Color.White, 0.0f, new Vector2(tfTitle.GetStringRectangle("GAME OPTIONS").Width / 2,.5f), GameBase.Instance.GetCurrentPixelScale(), SpriteEffects.None, 0.0f);
-            GameBase.Instance.spriteBatch.DrawString(tfTitle, GameBase.Instance.graphics.IsFullScreen? "FULLSCREEN" : "WINDOWED", new Vector2(GameBase.Instance.ScreenWidth() * .5f, GameBase.Instance.ScreenHeight() * menu.getButtonAt(0, 1)._position.Y), Color.White, 0.0f, new Vector2(tfTitle.GetStringRectangle(GameBase.Instance.graphics.IsFullScreen ? "FULLSCREEN" : "WINDOWED").Width / 2, .5f), GameBase.Instance.GetCurrentPixelScale(), SpriteEffects.None, 0.0f);
+            GameBase.Instance.spriteBatch.DrawString(font_normal, "GAME OPTIONS", new Vector2(GameBase.Instance.ScreenWidth() * .5f, GameBase.Instance.ScreenHeight() * .1f), Color.White, 0.0f, new Vector2(font_normal.GetStringRectangle("GAME OPTIONS").Width / 2,.5f), GameBase.Instance.GetCurrentPixelScale(), SpriteEffects.None, 0.0f);
+            GameBase.Instance.spriteBatch.DrawString(font_normal, GameBase.Instance.graphics.IsFullScreen? "FULLSCREEN" : "WINDOWED", new Vector2(GameBase.Instance.ScreenWidth() * .5f, GameBase.Instance.ScreenHeight() * menu.getButtonAt(0, 1)._position.Y), Color.White, 0.0f, new Vector2(font_normal.GetStringRectangle(GameBase.Instance.graphics.IsFullScreen ? "FULLSCREEN" : "WINDOWED").Width / 2, .5f), GameBase.Instance.GetCurrentPixelScale(), SpriteEffects.None, 0.0f);
             if (editingResolution){
                 editResolution();
                 GameBase.Instance.spriteBatch.DrawString(font_pressed, currentResolutionString, new Vector2(GameBase.Instance.ScreenWidth() * .5f, GameBase.Instance.ScreenHeight() * menu.getButtonAt(0, 2)._position.Y), Color.White, 0.0f, new Vector2(font_pressed.GetStringRectangle(currentResolutionString).Width / 2, .5f), GameBase.Instance.GetCurrentPixelScale(), SpriteEffects.None, 0.0f);
             }
             else{
-                GameBase.Instance.spriteBatch.DrawString(tfTitle, GameBase.Instance.ResolutionString(), new Vector2(GameBase.Instance.ScreenWidth() * .5f, GameBase.Instance.ScreenHeight() * menu.getButtonAt(0, 2)._position.Y), Color.White, 0.0f, new Vector2(tfTitle.GetStringRectangle(GameBase.Instance.ResolutionString()).Width / 2, .5f), GameBase.Instance.GetCurrentPixelScale(), SpriteEffects.None, 0.0f);
+                GameBase.Instance.spriteBatch.DrawString(font_normal, GameBase.Instance.ResolutionString(), new Vector2(GameBase.Instance.ScreenWidth() * .5f, GameBase.Instance.ScreenHeight() * menu.getButtonAt(0, 2)._position.Y), Color.White, 0.0f, new Vector2(font_normal.GetStringRectangle(GameBase.Instance.ResolutionString()).Width / 2, .5f), GameBase.Instance.GetCurrentPixelScale(), SpriteEffects.None, 0.0f);
             }
-            GameBase.Instance.spriteBatch.DrawString(tfTitle, GameBase.Instance.SamplerStateString(), new Vector2(GameBase.Instance.ScreenWidth() * .5f, GameBase.Instance.ScreenHeight() * menu.getButtonAt(0, 3)._position.Y), Color.White, 0.0f, new Vector2(tfTitle.GetStringRectangle(GameBase.Instance.SamplerStateString()).Width / 2, .5f), GameBase.Instance.GetCurrentPixelScale(), SpriteEffects.None, 0.0f);
+            GameBase.Instance.spriteBatch.DrawString(font_normal, GameBase.Instance.SamplerStateString(), new Vector2(GameBase.Instance.ScreenWidth() * .5f, GameBase.Instance.ScreenHeight() * menu.getButtonAt(0, 3)._position.Y), Color.White, 0.0f, new Vector2(font_normal.GetStringRectangle(GameBase.Instance.SamplerStateString()).Width / 2, .5f), GameBase.Instance.GetCurrentPixelScale(), SpriteEffects.None, 0.0f);
 
             menu.Draw(gameTime);
 

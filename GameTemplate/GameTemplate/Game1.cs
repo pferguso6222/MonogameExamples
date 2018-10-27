@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Source.PatUtils;
 using MonoGame.Extended.Screens.Transitions;
-using MonoGame.Extended.Content;
+using MonoGame.Extended.BitmapFonts;
 
 
 namespace GameTemplate.Desktop
@@ -48,18 +48,18 @@ namespace GameTemplate.Desktop
             return (float)Math.Ceiling(ScreenWidth() / 480.0f);//We want 4X scaling on a 1920 x 1080 display
         }
 
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
         protected override void LoadContent()
         {
-            //do this FIRST
             base.LoadContent();
 
-            titleScreen = new TitleScreen_Base("Graphics/Bkg_Title", ".\\YosterIsland_12px_2", ".\\YosterIsland_12px_1", ".\\YosterIsland_12px", ".\\Makaimura", GetCurrentPixelScale());
-            optionsScreen = new Options_Base("Graphics/Bkg_Title", ".\\YosterIsland_12px_2", ".\\YosterIsland_12px_1", ".\\YosterIsland_12px", GetCurrentPixelScale());
+            Texture2D menu_background = Content.Load<Texture2D>("Graphics/Bkg_Title");
+            BitmapFont menu_font_normal = Content.Load<BitmapFont>(".\\YosterIsland_12px_2");
+            BitmapFont menu_font_highlighted = Content.Load<BitmapFont>(".\\YosterIsland_12px_1");
+            BitmapFont menu_font_pressed = Content.Load<BitmapFont>(".\\YosterIsland_12px");
+            BitmapFont menu_font_copyright = Content.Load<BitmapFont>(".\\Makaimura");
 
+            titleScreen = new TitleScreen_Base(menu_background, menu_font_normal, menu_font_highlighted, menu_font_pressed, menu_font_copyright);
+            optionsScreen = new Options_Base(menu_background, menu_font_normal, menu_font_highlighted, menu_font_pressed);
             ChangeGameState(GameState.TITLE_MAIN);//Make this the program start
         }
 
