@@ -132,11 +132,11 @@ namespace Source.PatUtils
 
         private void onDisplayPressed(){
             toggleFullscreen();
-            Console.WriteLine("Resolutions Available:\n");
+            /*Console.WriteLine("Resolutions Available:\n");
             foreach (DisplayMode mode in GraphicsAdapter.DefaultAdapter.SupportedDisplayModes)
             {
                 Console.WriteLine(mode.Width + "X" + mode.Height +"\n");
-            }
+            }*/
         }
 
         private void toggleFiltering(){
