@@ -18,8 +18,6 @@ namespace Source.PatUtils
         private BitmapFont font_highlighted;
         private BitmapFont font_pressed;
 
-        private float _pixelScale = 1.0f;
-
         KeyboardState previousState;
         GamePadState previousGamepadState;
 
@@ -54,10 +52,6 @@ namespace Source.PatUtils
                 supportedResolutions.Add(resolution);
                 Console.WriteLine(resolutionString);
             }
-        }
-
-        private void notifyButtonPressed(){
-            Console.Write("Options_Base: Button Pressed!");
         }
 
         public override void LoadContent()

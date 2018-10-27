@@ -34,10 +34,6 @@ namespace Source.PatUtils
             font_copyright = fontCopyright;
         }
 
-        private void notifyButtonPressed(){
-            Console.Write("TitleScreen_Base: Button Pressed!");
-        }
-
         public override void LoadContent()
         {
             base.LoadContent();
