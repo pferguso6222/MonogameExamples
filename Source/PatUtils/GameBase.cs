@@ -22,9 +22,11 @@ namespace Source.PatUtils
             OPTIONS_MAIN,
         }
 
+
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
         public ScreenManager screenManager;
+        public GameConfigData GameConfig;
         protected GameState gameState;
         public int SamplerStateIndex = 0;
         public SamplerState SamplerState = SamplerState.PointClamp;
@@ -32,8 +34,6 @@ namespace Source.PatUtils
         public GameBase()
         {
             graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferWidth = 1920;  // set this value to the desired width of your window
-            graphics.PreferredBackBufferHeight = 1080;
             Content.RootDirectory = "Content";
             Instance = this;
         }
@@ -47,12 +47,21 @@ namespace Source.PatUtils
         }
 
         public int ScreenWidth(){
-            return GraphicsDevice.Viewport.Bounds.Width;
+            //if (graphics.IsFullScreen){
+                //return GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            //}
+            //return GraphicsDevice.Viewport.Bounds.Width;
+            return GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
         }
 
         public int ScreenHeight()
         {
-            return GraphicsDevice.Viewport.Bounds.Height;
+            //if (graphics.IsFullScreen)
+            //{
+                //return GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            //}
+            //return GraphicsDevice.Viewport.Bounds.Height;
+            return GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
         }
 
         protected override void Initialize()
@@ -68,7 +77,7 @@ namespace Source.PatUtils
         /// </summary>
         protected override void LoadContent()
         {
-            
+
         }
 
         /// <summary>
@@ -78,6 +87,22 @@ namespace Source.PatUtils
         protected override void UnloadContent()
         {
 
+        }
+
+        public void UpdateSamplerState(){
+
+            if (SamplerStateIndex == 0)
+            {
+                SamplerState = SamplerState.PointClamp;
+            }
+            else if (SamplerStateIndex == 1)
+            {
+                SamplerState = SamplerState.LinearClamp;
+            }
+            else
+            {
+                SamplerState = SamplerState.AnisotropicClamp;
+            }
         }
 
         public string SamplerStateString()

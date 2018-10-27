@@ -16,10 +16,30 @@ namespace GameTemplate.Desktop
         protected TitleScreen_Base titleScreen;
         protected Options_Base optionsScreen;
 
-
         protected override void Initialize()
         {
             base.Initialize();
+
+            GameConfigUtility gameConfigUtil = new GameConfigUtility("PatsGame");
+            gameConfigUtil.LoadVars();
+            GameConfig = gameConfigUtil.data;
+
+            //Parse Game Config Screen Resolution
+            graphics.PreferredBackBufferWidth = GameConfig.screenWidth;
+            graphics.PreferredBackBufferHeight = GameConfig.screenHeight;
+
+            //Parse Game Config Sampler State Index
+            SamplerStateIndex = GameConfig.SamplerStateIndex;
+            UpdateSamplerState();
+
+            //Parse Game Config Fullscreen
+            if (GameConfig.isFullScreen)
+            {
+                if (!graphics.IsFullScreen)
+                {
+                    graphics.ToggleFullScreen();
+                }
+            }
         }
 
         /// <summary>
@@ -30,9 +50,6 @@ namespace GameTemplate.Desktop
         {
             //do this FIRST
             base.LoadContent();
-
-            //ScreenGameComponent screenGameComponent = new ScreenGameComponent(this);
-            //Components.Add(screenGameComponent);
 
             titleScreen = new TitleScreen_Base("Graphics/Bkg_Title", ".\\YosterIsland_12px_2", ".\\YosterIsland_12px_1", ".\\YosterIsland_12px", ".\\Makaimura", 2.0f);
             optionsScreen = new Options_Base("Graphics/Bkg_Title", ".\\YosterIsland_12px_2", ".\\YosterIsland_12px_1", ".\\YosterIsland_12px", 4.0f);

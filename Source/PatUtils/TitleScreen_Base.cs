@@ -149,6 +149,9 @@ namespace Source.PatUtils
             if (state.IsKeyDown(Keys.Space) & !previousState.IsKeyDown(
                 Keys.Space))
                 menu.PressCurrentButton();
+            if (state.IsKeyDown(Keys.Enter) & !previousState.IsKeyDown(
+                Keys.Enter))
+                menu.PressCurrentButton();
 
             previousState = state;
 
@@ -195,11 +198,11 @@ namespace Source.PatUtils
                                                 null,
                                                 Matrix.CreateScale(1.0f));
 
-            GameBase.Instance.spriteBatch.Draw(_background, new Rectangle(new Point(0, 0), new Point(GameBase.Instance.GraphicsDevice.Viewport.Width, GameBase.Instance.GraphicsDevice.Viewport.Height)), Color.White);
+            GameBase.Instance.spriteBatch.Draw(_background, new Rectangle(new Point(0, 0), new Point(GameBase.Instance.ScreenWidth(), GameBase.Instance.ScreenHeight())), Color.White);
 
             menu.Draw(gameTime);
 
-            GameBase.Instance.spriteBatch.DrawString(tfCopyright, "Copyright 2018", new Vector2((GameBase.Instance.GraphicsDevice.Viewport.Width * .5f) - (tfCopyright.GetStringRectangle("Copyright 2018").Width * .38f), (float)(GameBase.Instance.GraphicsDevice.Viewport.Height * .95)), Color.White, 0.0f, new Vector2(50, 1), 1.0f, SpriteEffects.None, 0.0f);
+            GameBase.Instance.spriteBatch.DrawString(tfCopyright, "Copyright 2018", new Vector2((GameBase.Instance.ScreenWidth() * .5f) - (tfCopyright.GetStringRectangle("Copyright 2018").Width * .38f), (float)(GameBase.Instance.GraphicsDevice.Viewport.Height * .95)), Color.White, 0.0f, new Vector2(50, 1), 1.0f, SpriteEffects.None, 0.0f);
 
             GameBase.Instance.spriteBatch.End();
         }

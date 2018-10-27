@@ -25,6 +25,7 @@ namespace Source.PatUtils
                                 Vector2 origin, 
                                 float pixelScale)
         {
+            this.IsVisible = true;
             _pixelScale = pixelScale;
             _spriteBatch = spriteBatch;
             _textNormal = textNormal;

@@ -72,6 +72,18 @@
     <Compile Include="..\..\Source\PatUtils\Options_Base.cs">
       <Link>Content\Options_Base.cs</Link>
     </Compile>
+    <Compile Include="..\..\Source\PatUtils\SaveGameData.cs">
+      <Link>Content\SaveGameData.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\PatUtils\SaveGameUtility.cs">
+      <Link>Content\SaveGameUtility.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\PatUtils\GameConfigData.cs">
+      <Link>Content\GameConfigData.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\PatUtils\GameConfigUtility.cs">
+      <Link>Content\GameConfigUtility.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Extended, Version=3.6.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -156,6 +168,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+    <None Include="..\..\Source\PatUtils\Scanlines.fx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

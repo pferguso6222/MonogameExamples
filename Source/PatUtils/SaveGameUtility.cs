@@ -9,7 +9,7 @@ namespace Source.PatUtils
 {
     public class SaveGameUtility
     {
-
+        public string SaveFolderPath;
         public static int maxSaveEntries = 3;
         public List<SaveGameEntry> SaveGameEntries = new List<SaveGameEntry>();
         public SaveGameData data;
@@ -21,7 +21,9 @@ namespace Source.PatUtils
 
         public SaveGameUtility()
         {
-
+            //find out where our directory for write permissions are. This is where our options and save game files will go.
+            SaveFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            Console.WriteLine("SaveFolderFath:" + SaveFolderPath);
         }
 
         public bool LoadVars()

@@ -9,6 +9,7 @@ using MonoGame.Extended.Screens;
 
 namespace Source.PatUtils
 {
+
     public class Options_Base : Screen
     {
         private Texture2D _background;
@@ -117,16 +118,14 @@ namespace Source.PatUtils
 
             if (GameBase.Instance.SamplerStateIndex == 0){
                 GameBase.Instance.SamplerStateIndex = 1;
-                GameBase.Instance.SamplerState = SamplerState.LinearClamp;
             }
             else if (GameBase.Instance.SamplerStateIndex == 1){
                 GameBase.Instance.SamplerStateIndex = 2;
-                GameBase.Instance.SamplerState = SamplerState.AnisotropicClamp;
             }
             else{
                 GameBase.Instance.SamplerStateIndex = 0;
-                GameBase.Instance.SamplerState = SamplerState.PointClamp;
             }
+            GameBase.Instance.UpdateSamplerState();
         }
 
         private void returnToMain(){
@@ -166,6 +165,9 @@ namespace Source.PatUtils
                 menu.setActiveOffset(0, 1);
             if (state.IsKeyDown(Keys.Space) & !previousState.IsKeyDown(
                 Keys.Space))
+                menu.PressCurrentButton();
+            if (state.IsKeyDown(Keys.Enter) & !previousState.IsKeyDown(
+                Keys.Enter))
                 menu.PressCurrentButton();
 
             previousState = state;
