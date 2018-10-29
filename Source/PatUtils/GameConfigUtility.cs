@@ -10,6 +10,8 @@ namespace Source.PatUtils
 {
     public class GameConfigUtility
     {
+        public static GameConfigUtility Instance;
+
         public string GameName = "";
         protected string SaveFolderPath{
             get; private set;
@@ -19,8 +21,6 @@ namespace Source.PatUtils
         private IFormatter formatter;
         private Stream stream;
 
-
-
         public GameConfigUtility(string gameName)
         {
             //find out where our directory for write permissions are. This is where our options and save game files will go.
@@ -28,6 +28,7 @@ namespace Source.PatUtils
             saveFile = String.Concat(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "/", GameName, "/GameConfig.dat");
             //Console.WriteLine("SaveFolderFath:" + saveFile);
             formatter = new BinaryFormatter();
+            Instance = this;
         }
 
         public bool LoadVars()

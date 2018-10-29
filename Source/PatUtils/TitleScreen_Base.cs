@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
 using MonoGame.Extended.BitmapFonts;
 using MonoGame.Extended.Screens;
+using Source.PatUtils;
 
 namespace Source.PatUtils
 {
@@ -77,17 +78,17 @@ namespace Source.PatUtils
             menu = new ButtonMenu(0, 100, 1, 3, new Vector2(0, 0), GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonClick_1"), GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonSelected_1"));
 
             //START GAME BUTTON
-            BitmapFontButton bStartGame = new BitmapFontButton(GameBase.Instance.spriteBatch, font_normal, font_highlighted, font_pressed, "START GAME", new Vector2(.5f, .35f), Button.ButtonAlignment.CENTER);
+            BitmapFontButton bStartGame = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, "START GAME", new Vector2(.5f, .35f), Button.ButtonAlignment.CENTER);
             //bStartGame.OnPress = notifyButtonPressed;
             menu.addButtonAt(bStartGame, 0, 0);
 
             //OPTIONS BUTTON
-            BitmapFontButton bOptions = new BitmapFontButton(GameBase.Instance.spriteBatch, font_normal, font_highlighted, font_pressed, "OPTIONS", new Vector2(.5f, .45f), Button.ButtonAlignment.CENTER);
+            BitmapFontButton bOptions = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, "OPTIONS", new Vector2(.5f, .45f), Button.ButtonAlignment.CENTER);
             bOptions.OnPress = LoadOptions;
             menu.addButtonAt(bOptions, 0, 1);
 
             //QUIT GAME
-            BitmapFontButton bQuit = new BitmapFontButton(GameBase.Instance.spriteBatch, font_normal, font_highlighted, font_pressed, "EXIT GAME", new Vector2(.5f, .55f), Button.ButtonAlignment.CENTER);
+            BitmapFontButton bQuit = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, "EXIT GAME", new Vector2(.5f, .55f), Button.ButtonAlignment.CENTER);
             bQuit.OnPress = QuitGame;
             menu.addButtonAt(bQuit, 0, 2);
 
@@ -168,11 +169,11 @@ namespace Source.PatUtils
 
         public override void Draw(GameTime gameTime)
         {
-            GameBase.Instance.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, GameBase.Instance.SamplerState, DepthStencilState.Default, RasterizerState.CullNone, null, Matrix.CreateScale(1.0f));
-            GameBase.Instance.spriteBatch.Draw(_background, new Rectangle(new Point(0, 0), new Point(GameBase.Instance.ScreenWidth(), GameBase.Instance.ScreenHeight())), Color.White);
+            StaticSpriteBatch.Instance.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, GameBase.Instance.SamplerState, DepthStencilState.Default, RasterizerState.CullNone, null, Matrix.CreateScale(1.0f));
+            StaticSpriteBatch.Instance.Draw(_background, new Rectangle(new Point(0, 0), new Point(GameBase.Instance.ScreenWidth(), GameBase.Instance.ScreenHeight())), Color.White);
             menu.Draw(gameTime);
-            GameBase.Instance.spriteBatch.DrawString(font_copyright, "Copyright 2018", new Vector2((GameBase.Instance.ScreenWidth() * .5f) - (font_copyright.GetStringRectangle("Copyright 2018").Width * .38f), (float)(GameBase.Instance.GraphicsDevice.Viewport.Height * .95)), Color.White, 0.0f, new Vector2(50, 1), 1.0f, SpriteEffects.None, 0.0f);
-            GameBase.Instance.spriteBatch.End();
+            StaticSpriteBatch.Instance.DrawString(font_copyright, "Copyright 2018", new Vector2((GameBase.Instance.ScreenWidth() * .5f) - (font_copyright.GetStringRectangle("Copyright 2018").Width * .38f), (float)(GameBase.Instance.GraphicsDevice.Viewport.Height * .95)), Color.White, 0.0f, new Vector2(50, 1), 1.0f, SpriteEffects.None, 0.0f);
+            StaticSpriteBatch.Instance.End();
         }
     }
 }

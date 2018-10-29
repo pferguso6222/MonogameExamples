@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoGame.Extended.Screens;
 using MonoGame.Extended.Screens.Transitions;
 using Microsoft.Xna.Framework.Audio;
 
@@ -23,10 +22,8 @@ namespace Source.PatUtils
             OPTIONS_MAIN,
         }
 
+        public string GameName = "Game_Base";
         public GraphicsDeviceManager graphics;
-        public SpriteBatch spriteBatch;
-        public ScreenManager screenManager;
-        public GameConfigUtility GameConfig;
         protected GameState gameState;
         public int SamplerStateIndex = 0;
         public SamplerState SamplerState = SamplerState.PointClamp;
@@ -37,9 +34,6 @@ namespace Source.PatUtils
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = 1920;
             graphics.PreferredBackBufferHeight = 1080;
-            //Window.Title = "My new title";
-            //Window.AllowUserResizing = true;
-            //Window.ClientSizeChanged += OnResize;
             Instance = this;
         }
 
@@ -76,8 +70,7 @@ namespace Source.PatUtils
 
         protected override void Initialize()
         {
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-            screenManager = new ScreenManager();
+
             base.Initialize();
         }
 
@@ -113,29 +106,6 @@ namespace Source.PatUtils
             {
                 SamplerState = SamplerState.AnisotropicClamp;
             }
-        }
-
-        public string SamplerStateString()
-        {
-            string str = "";
-
-            switch (SamplerStateIndex)
-            {
-                case (0):
-                    str = "NO FILTERING";
-                    break;
-                case (1):
-                    str = "LINEAR FILTERING";
-                    break;
-                case (2):
-                    str = "ANSIOTROPIC FILTERING";
-                    break;
-            }
-            return str;
-        }
-
-        public string ResolutionString(){
-            return string.Concat(ScreenWidth().ToString(), "x", ScreenHeight().ToString());
         }
 
         public void OnResize(Object sender, EventArgs e)

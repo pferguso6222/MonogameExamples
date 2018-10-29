@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Source.PatUtils;
 using MonoGame.Extended.Screens.Transitions;
 using MonoGame.Extended.BitmapFonts;
-
+using MonoGame.Extended.Screens;
 
 namespace GameTemplate.Desktop
 {
@@ -13,15 +13,20 @@ namespace GameTemplate.Desktop
     /// </summary>
     public class Game1 : GameBase
     {
-
         protected TitleScreen_Base titleScreen;
         protected Options_Base optionsScreen;
+        public GameConfigUtility GameConfig;
+        public StaticSpriteBatch spriteBatch;
+        public ScreenManager screenManager;
 
         protected override void Initialize()
         {
-            base.Initialize();
+            GameName = "PatsGame";
 
-            GameConfig = new GameConfigUtility("PatsGame");
+            spriteBatch = new StaticSpriteBatch(GraphicsDevice);
+            screenManager = new ScreenManager();
+
+            GameConfig = new GameConfigUtility(GameName);
             GameConfig.LoadVars();
 
             //Parse Game Config Screen Resolution
@@ -41,6 +46,11 @@ namespace GameTemplate.Desktop
                     graphics.ToggleFullScreen();
                 }
             }
+
+            //Window.Title = "My new title";
+            //Window.AllowUserResizing = true;
+            //Window.ClientSizeChanged += OnResize;
+            base.Initialize();
         }
 
         public override float GetCurrentPixelScale()
