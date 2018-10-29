@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MonoGame.Extended.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Source.PatUtils;
 
 namespace Source.PatUtils
 {
@@ -15,7 +16,6 @@ namespace Source.PatUtils
         private Texture2D sourceTex;
         private Texture2D[] sourceTextures = new Texture2D[9];
         private Rectangle[] sourceRectangles = new Rectangle[9];
-        private SpriteBatch spriteBatch;
         private Rectangle[] targetRectangles = new Rectangle[9];
         private Rectangle rectangle;
         private Rectangle originalRect;
@@ -47,7 +47,7 @@ namespace Source.PatUtils
         public SlicedSprite(
             Texture2D _sourceTexture,           //the sprite to be 9-Sliced
             Rectangle _sliceRect,               //the rectangle that defines the vertical and horizontal slices within the original texture bounds
-            GraphicsDevice _graphicsDevice,     //the GraphicsDevice from which a spriteBatch can be made to construct the sliced sprite
+            GraphicsDevice _graphicsDevice,     //the GraphicsDevice from which the other Textures must be made
             float _pixelScaleFactor,            //the pixel scaling of the final render
             CenterType centerType,              //STRETCHED or TILED center slice
             alignment _alignment)               //The anchor point of the sliced sprite from which positioning and resizing will take place
@@ -65,7 +65,7 @@ namespace Source.PatUtils
             anchorPoint = _alignment;
             _centerType = centerType;
  
-            spriteBatch = new SpriteBatch(_graphicsDevice);
+            //spriteBatch = new SpriteBatch(_graphicsDevice);
 
             sourceRectangles[0] = new Rectangle(new Point(0, 0), new Point(_sliceRect.X, _sliceRect.Y));//Top Left
             sourceRectangles[1] = new Rectangle(new Point(_sliceRect.X, 0), new Point(_sliceRect.Width, _sliceRect.Y));//Top Center
@@ -177,24 +177,24 @@ namespace Source.PatUtils
 
         public virtual void Draw()
         {
-            spriteBatch.Begin(SpriteSortMode.Deferred,BlendState.AlphaBlend,SamplerState.PointClamp,DepthStencilState.Default,RasterizerState.CullNone,null,Matrix.CreateScale(pixelScaleFactor));
-            for (int i = 0; i < 8; i++){spriteBatch.Draw(sourceTextures[i], targetRectangles[i], sourceRectangles[i], Color.White);}
+            StaticSpriteBatch.Instance.Begin(SpriteSortMode.Deferred,BlendState.AlphaBlend,SamplerState.PointClamp,DepthStencilState.Default,RasterizerState.CullNone,null,Matrix.CreateScale(pixelScaleFactor));
+            for (int i = 0; i < 8; i++){StaticSpriteBatch.Instance.Draw(sourceTextures[i], targetRectangles[i], sourceRectangles[i], Color.White);}
             if (_centerType == CenterType.TILED){
-                spriteBatch.End();
-                spriteBatch.Begin(SpriteSortMode.Deferred,BlendState.AlphaBlend,SamplerState.PointWrap,DepthStencilState.Default,RasterizerState.CullNone,null,Matrix.CreateScale(pixelScaleFactor));
-                spriteBatch.Draw(sourceTextures[8], targetRectangles[8], new Rectangle(new Point(sourceRectangles[8].X, sourceRectangles[8].Y), new Point(targetRectangles[8].Width, targetRectangles[8].Height)), Color.White);
+                StaticSpriteBatch.Instance.End();
+                StaticSpriteBatch.Instance.Begin(SpriteSortMode.Deferred,BlendState.AlphaBlend,SamplerState.PointWrap,DepthStencilState.Default,RasterizerState.CullNone,null,Matrix.CreateScale(pixelScaleFactor));
+                StaticSpriteBatch.Instance.Draw(sourceTextures[8], targetRectangles[8], new Rectangle(new Point(sourceRectangles[8].X, sourceRectangles[8].Y), new Point(targetRectangles[8].Width, targetRectangles[8].Height)), Color.White);
             }
             else{
-                spriteBatch.Draw(sourceTextures[8], targetRectangles[8], sourceRectangles[8], Color.White);
+                StaticSpriteBatch.Instance.Draw(sourceTextures[8], targetRectangles[8], sourceRectangles[8], Color.White);
             }
-            spriteBatch.End();
+            StaticSpriteBatch.Instance.End();
         }
 
         public virtual void Dispose()
         {
             sourceTex = null;
             sourceTextures = null;
-            spriteBatch = null;
+            //spriteBatch = null;
             targetRectangles = null;
             sourceRectangles = null;
 

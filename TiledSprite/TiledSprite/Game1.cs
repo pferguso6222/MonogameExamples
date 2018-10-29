@@ -13,16 +13,15 @@ namespace TiledSprite
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public class Game1 : GameBase
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        StaticSpriteBatch spriteBatch;
         //ContentManager contentManager;
 
         SlicedSprite slicedSprite;
-        //SlicedSpriteAnimator animator;
+        SlicedSpriteAnimator animator;
 
-        PopupSelectionDialog popup;
+        //PopupSelectionDialog popup;
 
         BitmapFont font_normal;
         BitmapFont font_highlighted;
@@ -30,7 +29,6 @@ namespace TiledSprite
 
         public Game1()
         {
-            graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             //contentManager = new ContentManager(
         }
@@ -43,8 +41,7 @@ namespace TiledSprite
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
+            spriteBatch = new StaticSpriteBatch(GraphicsDevice);
             base.Initialize();
         }
 
@@ -54,25 +51,35 @@ namespace TiledSprite
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            font_normal = Content.Load<BitmapFont>("YosterIsland_12px");
+            font_highlighted = Content.Load<BitmapFont>("YosterIsland_12px_1");
+            font_pressed = Content.Load<BitmapFont>("YosterIsland_12px_2");
+
             slicedSprite = new SlicedSprite(Content.Load<Texture2D>(".\\TiledDialogBkg_01"), new Rectangle(new Point(8, 8), new Point(48, 48)), GraphicsDevice, 2.0f, SlicedSprite.CenterType.TILED, SlicedSprite.alignment.ALIGNMENT_TOP_CENTER);
-            //animator = new SlicedSpriteAnimator(this);
+            animator = new SlicedSpriteAnimator(this);
             Point center = new Point(GraphicsDevice.Viewport.Bounds.Width / 2, 0);
-            /*
+
             animator.AnimateSlicedSprite(slicedSprite, 
                                 new Rectangle(center, new Point(16, 16)), 
                                 new Rectangle(center, new Point((int)(GraphicsDevice.Viewport.Bounds.Width * .5f), 150)),
                                 .25f, 
-                                .0f, 
+                                1.0f, 
                                 TweenComplete);
-                                */
+
+            /*
             popup = new PopupSelectionDialog(this,
-                                             slicedSprite, new Rectangle(center, new Point(16, 16)),
+                                             slicedSprite, 
+                                             new Rectangle(center, new Point(16, 16)),
                                              new Rectangle(center, new Point((int)(GraphicsDevice.Viewport.Bounds.Width * .5f), 150)),
-                                             "PAT WAS HERE", "YES", "NO", font_normal, font_highlighted, font_pressed);
+                                             "PAT WAS HERE", 
+                                             "YES", 
+                                             "NO", 
+                                             font_normal, 
+                                             font_highlighted, 
+                                             font_pressed);
 
             popup.Open();
+            */
 
 
         }
@@ -100,9 +107,6 @@ namespace TiledSprite
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            // TODO: Add your update logic here
-            //animator.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -112,9 +116,9 @@ namespace TiledSprite
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.BlanchedAlmond);
+            GraphicsDevice.Clear(Color.Black);
 
-            //animator.Draw(gameTime);
+           animator.Draw(gameTime);
 
             base.Draw(gameTime);
         }

@@ -269,3 +269,9 @@ C:/projects/MonogameExamples/TiledSprite/TiledSprite/obj/Debug/TiledSprite.pdb
 /Users/obstacledelusions/Projects/MonogameExamples/TiledSprite/TiledSprite/obj/Debug/TiledSprite.exe
 /Users/obstacledelusions/Projects/MonogameExamples/TiledSprite/TiledSprite/obj/Debug/TiledSprite.pdb
 /Users/obstacledelusions/Projects/MonogameExamples/TiledSprite/TiledSprite/obj/Debug/TiledSprite.csprojAssemblyReference.cache
+/Users/obstacledelusions/Projects/MonogameExamples/TiledSprite/TiledSprite/bin/DesktopGL/AnyCPU/Debug/Content/YosterIsland_12px.xnb
+/Users/obstacledelusions/Projects/MonogameExamples/TiledSprite/TiledSprite/bin/DesktopGL/AnyCPU/Debug/Content/YosterIsland_12px_0.xnb
+/Users/obstacledelusions/Projects/MonogameExamples/TiledSprite/TiledSprite/bin/DesktopGL/AnyCPU/Debug/Content/YosterIsland_12px_01.xnb
+/Users/obstacledelusions/Projects/MonogameExamples/TiledSprite/TiledSprite/bin/DesktopGL/AnyCPU/Debug/Content/YosterIsland_12px_02.xnb
+/Users/obstacledelusions/Projects/MonogameExamples/TiledSprite/TiledSprite/bin/DesktopGL/AnyCPU/Debug/Content/YosterIsland_12px_1.xnb
+/Users/obstacledelusions/Projects/MonogameExamples/TiledSprite/TiledSprite/bin/DesktopGL/AnyCPU/Debug/Content/YosterIsland_12px_2.xnb

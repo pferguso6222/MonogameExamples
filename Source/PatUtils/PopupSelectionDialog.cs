@@ -9,13 +9,11 @@ namespace Source.PatUtils
 {
     class PopupSelectionDialog : DrawableGameComponent
     {
-        public static Action notifyOpenComplete;
-        public static Action notifyPressedButtonA;
-        public static Action notifyPressedButtonB;
-        public static Action notifyCloseComplete;
+        public static Action notifyOpenComplete = null;
+        public static Action notifyPressedButtonA = null;
+        public static Action notifyPressedButtonB = null;
+        public static Action notifyCloseComplete = null;
         new Game Game;
-
-        private SpriteBatch spriteBatch;
 
         private SlicedSprite _slicedSprite;
         private SlicedSpriteAnimator slicedSpriteAnimator;
@@ -28,6 +26,8 @@ namespace Source.PatUtils
         protected Rectangle _endRect;
 
         private string _dialogText;
+        private string _buttonAText;
+        private string _buttonBText;
 
         bool contentShowing = false;
 
@@ -37,14 +37,17 @@ namespace Source.PatUtils
         ) : base(game)
         {
             Game = game;
-            spriteBatch = new SpriteBatch(game.GraphicsDevice)
             _slicedSprite = slicedSprite;
             _startRect = startRect;
             _endRect = endRect;
+            _dialogText = dialogText;
+            _buttonAText = buttonAText;
+            _buttonBText = buttonBText;
             font_normal = fontNormal;
             font_highlighted = fontHighlighted;
             font_pressed = fontPressed;
             slicedSpriteAnimator = new SlicedSpriteAnimator(Game);
+            GameBase.Instance.Components.Add(this);
         }
 
         public void Open(){
@@ -100,9 +103,9 @@ namespace Source.PatUtils
         {
             base.Draw(gameTime);
             if (contentShowing){
-                spriteBatch.Begin();
-                GameBase.Instance.spriteBatch.DrawString(font_normal, _dialogText, new Vector2((GameBase.Instance.ScreenWidth() * .5f) - (font_copyright.GetStringRectangle("Copyright 2018").Width * .38f), (float)(GameBase.Instance.GraphicsDevice.Viewport.Height * .95)), Color.White, 0.0f, new Vector2(50, 1), 1.0f, SpriteEffects.None, 0.0f);
-                spriteBatch.End();
+                StaticSpriteBatch.Instance.Begin();
+                StaticSpriteBatch.Instance.DrawString(font_normal, _dialogText, new Vector2((GameBase.Instance.ScreenWidth() * .5f) - (font_normal.GetStringRectangle(_dialogText).Width * .38f), (float)(GameBase.Instance.GraphicsDevice.Viewport.Height * .95)), Color.White, 0.0f, new Vector2(50, 1), 1.0f, SpriteEffects.None, 0.0f);
+                StaticSpriteBatch.Instance.End();
             }
         }
     }
