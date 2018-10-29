@@ -1,9 +1,9 @@
 ﻿<Properties StartupConfiguration="{5F0E117B-C99A-4FDC-B811-D74C670AA0A8}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
   <MonoDevelop.Ide.Workbench ActiveDocument="TiledSprite/Game1.cs">
     <Files>
-      <File FileName="TiledSprite/Game1.cs" Line="64" Column="9" />
-      <File FileName="TiledSprite/SlicedSpriteAnimated.cs" Line="15" Column="26" />
+      <File FileName="TiledSprite/Game1.cs" Line="53" Column="55" />
       <File FileName="TiledSprite/SlicedSprite.cs" Line="1" Column="1" />
+      <File FileName="../Source/PatUtils/SlicedSpriteAnimator.cs" Line="41" Column="39" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

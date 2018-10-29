@@ -49,8 +49,12 @@
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SlicedSprite.cs" />
-    <Compile Include="SlicedSpriteAnimated.cs" />
+    <Compile Include="..\..\Source\PatUtils\SlicedSprite.cs">
+      <Link>Content\SlicedSprite.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\PatUtils\SlicedSpriteAnimator.cs">
+      <Link>Content\SlicedSpriteAnimator.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Extended, Version=3.6.0.0, Culture=neutral, processorArchitecture=MSIL">

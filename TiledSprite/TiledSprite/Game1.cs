@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
-using PatUtils;
+using Source.PatUtils;
 using MonoGame.Extended.Tweening;
 using System;
 
@@ -19,7 +19,8 @@ namespace TiledSprite
         SpriteBatch spriteBatch;
         //ContentManager contentManager;
 
-        SlicedSpriteAnimated myDialogBkg;
+        SlicedSprite slicedSprite;
+        SlicedSpriteAnimator animator;
 
         public Game1()
         {
@@ -50,16 +51,15 @@ namespace TiledSprite
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            myDialogBkg = new SlicedSpriteAnimated(Content.Load<Texture2D>(".\\TiledDialogBkg_01"), new Rectangle(new Point(8, 8), new Point(48, 48)), GraphicsDevice, 2.0f, SlicedSprite.CenterType.TILED, SlicedSprite.alignment.ALIGNMENT_TOP_CENTER);
+            slicedSprite = new SlicedSprite(Content.Load<Texture2D>(".\\TiledDialogBkg_01"), new Rectangle(new Point(8, 8), new Point(48, 48)), GraphicsDevice, 2.0f, SlicedSprite.CenterType.TILED, SlicedSprite.alignment.ALIGNMENT_TOP_CENTER);
+
+            animator = new SlicedSpriteAnimator(this);
+
 
             //Point center = new Point(GraphicsDevice.Viewport.Bounds.Width / 2, GraphicsDevice.Viewport.Bounds.Height / 2);
             Point center = new Point(GraphicsDevice.Viewport.Bounds.Width / 2, 0);
 
-            //myDialogBkg.SetRectangle(new Rectangle(new Point(0, 0), new Point(300, 150)));
-            //myDialogBkg.SetRectangle(new Rectangle(center, new Point(300, 150)));
-            // TODO: use this.Content to load your game content here
-
-            myDialogBkg.animate(new Rectangle(center, new Point(16, 16)), 
+            animator.AnimateSlicedSprite(slicedSprite, new Rectangle(center, new Point(16, 16)), 
                                 new Rectangle(center, new Point((int)(GraphicsDevice.Viewport.Bounds.Width * .5f), 150)),
                                 .25f, 
                                 1.0f, 
@@ -91,7 +91,7 @@ namespace TiledSprite
                 Exit();
 
             // TODO: Add your update logic here
-            myDialogBkg.Update(gameTime);
+            //animator.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -103,7 +103,7 @@ namespace TiledSprite
         {
             GraphicsDevice.Clear(Color.BlanchedAlmond);
 
-            myDialogBkg.Draw(spriteBatch);
+            //animator.Draw(gameTime);
 
             base.Draw(gameTime);
         }

@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Source.PatUtils
 {
-    class SlicedSprite
+    class SlicedSprite : IDisposable
     {
 
         private Texture2D sourceTex;
@@ -166,11 +166,6 @@ namespace Source.PatUtils
                     xOffset = -totalWidth;
                     yOffset = -totalHeight;
                     break;
-                case alignment.ALIGNMENT_TOP_LEFT:
-                default:
-                    //Do nothing
-                    break;
-
             }
 
             for (int i = 0; i < targetRectangles.Length; i++)
@@ -180,19 +175,29 @@ namespace Source.PatUtils
             }
         }
 
-        public virtual void Draw(SpriteBatch _spriteBatch)
+        public virtual void Draw()
         {
-            _spriteBatch.Begin(SpriteSortMode.Deferred,BlendState.AlphaBlend,SamplerState.PointClamp,DepthStencilState.Default,RasterizerState.CullNone,null,Matrix.CreateScale(pixelScaleFactor));
-            for (int i = 0; i < 8; i++){_spriteBatch.Draw(sourceTextures[i], targetRectangles[i], sourceRectangles[i], Color.White);}
+            spriteBatch.Begin(SpriteSortMode.Deferred,BlendState.AlphaBlend,SamplerState.PointClamp,DepthStencilState.Default,RasterizerState.CullNone,null,Matrix.CreateScale(pixelScaleFactor));
+            for (int i = 0; i < 8; i++){spriteBatch.Draw(sourceTextures[i], targetRectangles[i], sourceRectangles[i], Color.White);}
             if (_centerType == CenterType.TILED){
-                _spriteBatch.End();
-                _spriteBatch.Begin(SpriteSortMode.Deferred,BlendState.AlphaBlend,SamplerState.PointWrap,DepthStencilState.Default,RasterizerState.CullNone,null,Matrix.CreateScale(pixelScaleFactor));
-                _spriteBatch.Draw(sourceTextures[8], targetRectangles[8], new Rectangle(new Point(sourceRectangles[8].X, sourceRectangles[8].Y), new Point(targetRectangles[8].Width, targetRectangles[8].Height)), Color.White);
+                spriteBatch.End();
+                spriteBatch.Begin(SpriteSortMode.Deferred,BlendState.AlphaBlend,SamplerState.PointWrap,DepthStencilState.Default,RasterizerState.CullNone,null,Matrix.CreateScale(pixelScaleFactor));
+                spriteBatch.Draw(sourceTextures[8], targetRectangles[8], new Rectangle(new Point(sourceRectangles[8].X, sourceRectangles[8].Y), new Point(targetRectangles[8].Width, targetRectangles[8].Height)), Color.White);
             }
             else{
-                _spriteBatch.Draw(sourceTextures[8], targetRectangles[8], sourceRectangles[8], Color.White);
+                spriteBatch.Draw(sourceTextures[8], targetRectangles[8], sourceRectangles[8], Color.White);
             }
-            _spriteBatch.End();
+            spriteBatch.End();
+        }
+
+        public virtual void Dispose()
+        {
+            sourceTex = null;
+            sourceTextures = null;
+            spriteBatch = null;
+            targetRectangles = null;
+            sourceRectangles = null;
+
         }
     }
 }
