@@ -118,7 +118,7 @@ namespace TiledSprite
         {
             GraphicsDevice.Clear(Color.Black);
 
-           animator.Draw(gameTime);
+           //animator.Draw(gameTime);
 
             base.Draw(gameTime);
         }

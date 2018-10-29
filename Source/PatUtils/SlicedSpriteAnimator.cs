@@ -39,7 +39,6 @@ namespace Source.PatUtils
                 .OnEnd(notifyAnimationComplete); //optional
 
             Game.Components.Add(this);
-            this.Visible = true;
         }
 
         public void DismissSprite()
