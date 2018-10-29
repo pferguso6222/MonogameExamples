@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoGame.Extended;
+using MonoGame.Extended.BitmapFonts;
 using Source.PatUtils;
 using MonoGame.Extended.Tweening;
 using System;
@@ -20,7 +20,13 @@ namespace TiledSprite
         //ContentManager contentManager;
 
         SlicedSprite slicedSprite;
-        SlicedSpriteAnimator animator;
+        //SlicedSpriteAnimator animator;
+
+        PopupSelectionDialog popup;
+
+        BitmapFont font_normal;
+        BitmapFont font_highlighted;
+        BitmapFont font_pressed;
 
         public Game1()
         {
@@ -50,20 +56,25 @@ namespace TiledSprite
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
             slicedSprite = new SlicedSprite(Content.Load<Texture2D>(".\\TiledDialogBkg_01"), new Rectangle(new Point(8, 8), new Point(48, 48)), GraphicsDevice, 2.0f, SlicedSprite.CenterType.TILED, SlicedSprite.alignment.ALIGNMENT_TOP_CENTER);
-
-            animator = new SlicedSpriteAnimator(this);
-
-
-            //Point center = new Point(GraphicsDevice.Viewport.Bounds.Width / 2, GraphicsDevice.Viewport.Bounds.Height / 2);
+            //animator = new SlicedSpriteAnimator(this);
             Point center = new Point(GraphicsDevice.Viewport.Bounds.Width / 2, 0);
-
-            animator.AnimateSlicedSprite(slicedSprite, new Rectangle(center, new Point(16, 16)), 
+            /*
+            animator.AnimateSlicedSprite(slicedSprite, 
+                                new Rectangle(center, new Point(16, 16)), 
                                 new Rectangle(center, new Point((int)(GraphicsDevice.Viewport.Bounds.Width * .5f), 150)),
                                 .25f, 
-                                1.0f, 
+                                .0f, 
                                 TweenComplete);
+                                */
+            popup = new PopupSelectionDialog(this,
+                                             slicedSprite, new Rectangle(center, new Point(16, 16)),
+                                             new Rectangle(center, new Point((int)(GraphicsDevice.Viewport.Bounds.Width * .5f), 150)),
+                                             "PAT WAS HERE", "YES", "NO", font_normal, font_highlighted, font_pressed);
+
+            popup.Open();
+
+
         }
 
         public void TweenComplete(Tween tween)

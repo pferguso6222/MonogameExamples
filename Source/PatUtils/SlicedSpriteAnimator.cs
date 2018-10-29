@@ -33,8 +33,8 @@ namespace Source.PatUtils
             myPoint.Y = _tweenRect.Height;
 
             tween = _tweener.TweenTo(this, a => a.myPoint, new Vector2(endRect.Width, endRect.Height), duration: duration, delay: delay)
-                .RepeatForever(repeatDelay: delay) //optional
-                .AutoReverse() //optional
+                //.RepeatForever(repeatDelay: delay) //optional
+                //.AutoReverse() //optional
                 .Easing(EasingFunctions.SineOut) //optional
                 .OnEnd(notifyAnimationComplete); //optional
 
