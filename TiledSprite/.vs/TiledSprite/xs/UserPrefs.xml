@@ -1,9 +1,9 @@
 ﻿<Properties StartupConfiguration="{5F0E117B-C99A-4FDC-B811-D74C670AA0A8}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
   <MonoDevelop.Ide.Workbench ActiveDocument="../Source/PatUtils/PopupSelectionDialog.cs">
     <Files>
-      <File FileName="TiledSprite/Game1.cs" Line="24" Column="9" />
+      <File FileName="TiledSprite/Game1.cs" Line="25" Column="36" />
       <File FileName="../Source/PatUtils/SlicedSpriteAnimator.cs" Line="37" Column="19" />
-      <File FileName="../Source/PatUtils/PopupSelectionDialog.cs" Line="17" Column="9" />
+      <File FileName="../Source/PatUtils/PopupSelectionDialog.cs" Line="98" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

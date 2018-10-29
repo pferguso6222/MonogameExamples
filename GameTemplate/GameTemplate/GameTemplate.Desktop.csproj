@@ -62,9 +62,6 @@
     <Compile Include="..\..\Source\PatUtils\SlicedSprite.cs">
       <Link>Content\SlicedSprite.cs</Link>
     </Compile>
-    <Compile Include="..\..\Source\PatUtils\SlicedSpriteAnimated.cs">
-      <Link>Content\SlicedSpriteAnimated.cs</Link>
-    </Compile>
     <Compile Include="Game1.cs" />
     <Compile Include="..\..\Source\PatUtils\TitleScreen_Base.cs">
       <Link>Content\TitleScreen_Base.cs</Link>
