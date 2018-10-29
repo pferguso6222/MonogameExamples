@@ -21,7 +21,7 @@ namespace TiledSprite
         SlicedSprite slicedSprite;
         SlicedSpriteAnimator animator;
 
-        //PopupSelectionDialog popup;
+        PopupSelectionDialog popup;
 
         BitmapFont font_normal;
         BitmapFont font_highlighted;
@@ -59,6 +59,7 @@ namespace TiledSprite
             animator = new SlicedSpriteAnimator(this);
             Point center = new Point(GraphicsDevice.Viewport.Bounds.Width / 2, 0);
 
+            /*
             animator.AnimateSlicedSprite(slicedSprite, 
                                 new Rectangle(center, new Point(16, 16)), 
                                 new Rectangle(center, new Point((int)(GraphicsDevice.Viewport.Bounds.Width * .5f), 150)),
@@ -66,7 +67,7 @@ namespace TiledSprite
                                 1.0f, 
                                 TweenComplete);
 
-            /*
+            */
             popup = new PopupSelectionDialog(this,
                                              slicedSprite, 
                                              new Rectangle(center, new Point(16, 16)),
@@ -79,7 +80,7 @@ namespace TiledSprite
                                              font_pressed);
 
             popup.Open();
-            */
+
 
 
         }
