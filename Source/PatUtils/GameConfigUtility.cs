@@ -12,7 +12,7 @@ namespace Source.PatUtils
     {
         public static GameConfigUtility Instance;
 
-        public string GameName = "";
+        private string GameName = "";
         protected string SaveFolderPath{
             get; private set;
         }
