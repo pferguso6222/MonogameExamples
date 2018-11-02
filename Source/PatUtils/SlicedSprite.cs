@@ -120,10 +120,10 @@ namespace Source.PatUtils
             targetRectangles[3].Height = targetRectangles[4].Height = targetRectangles[8].Height = rectangle.Height - (targetRectangles[0].Height + targetRectangles[5].Height);
             targetRectangles[5].Y = targetRectangles[6].Y = targetRectangles[7].Y = targetRectangles[3].Y + targetRectangles[3].Height;
 
-            for (int i = 0; i < targetRectangles.Length; i++){
-                Rectangle rect = targetRectangles[i];
+            //for (int i = 0; i < targetRectangles.Length; i++){
+                //Rectangle rect = targetRectangles[i];
                 //Console.WriteLine("targetRectangle[" + i + "].Origin: " + rect.X + ", " + rect.Y + ", Width: " + rect.Width + ", Height: " + rect.Height);
-            }
+            //}
 
             UpdateAlignment();
         }

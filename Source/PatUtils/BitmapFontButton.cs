@@ -16,6 +16,10 @@ namespace Source.PatUtils
         protected SpriteBatch _spriteBatch;
         private Vector2 _current_position = new Vector2();
 
+        public float pixelScaleFactor = 1.0f;
+
+        public Action DynamicPixelScaleFunction;
+
         public BitmapFontButton(SpriteBatch spriteBatch, 
                                 BitmapFont textNormal, 
                                 BitmapFont textHighlighted,
