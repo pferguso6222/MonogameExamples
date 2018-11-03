@@ -29,12 +29,14 @@ namespace Source.PatUtils
             _sprite = sprite;
             notifyAnimationComplete = OnCompleteFunc;
             _tweenRect = startRect;
+            _tweenRect.Width = (int)Math.Ceiling(_tweenRect.Width / _sprite.pixelScaleFactor);
+            _tweenRect.Height = (int)Math.Ceiling(_tweenRect.Height / _sprite.pixelScaleFactor);
             myPoint.X = _tweenRect.Width;
             myPoint.Y = _tweenRect.Height;
 
-            tween = _tweener.TweenTo(this, a => a.myPoint, new Vector2(endRect.Width, endRect.Height), duration: duration, delay: delay)
-                .RepeatForever(repeatDelay: delay) //optional
-                .AutoReverse() //optional
+            tween = _tweener.TweenTo(this, a => a.myPoint, new Vector2(endRect.Width / _sprite.pixelScaleFactor, endRect.Height / _sprite.pixelScaleFactor), duration: duration, delay: delay)
+                //.RepeatForever(repeatDelay: delay) //optional
+                //.AutoReverse() //optional
                 .Easing(EasingFunctions.SineOut) //optional
                 .OnEnd(notifyAnimationComplete); //optional
 

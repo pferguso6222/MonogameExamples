@@ -1,21 +1,18 @@
 ﻿<Properties StartupConfiguration="{5F0E117B-C99A-4FDC-B811-D74C670AA0A8}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
-  <MonoDevelop.Ide.Workbench ActiveDocument="../Source/PatUtils/GameBase.cs">
+  <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="TiledSprite/Game1.cs" Line="23" Column="9" />
-      <File FileName="../Source/PatUtils/SlicedSpriteAnimator.cs" Line="21" Column="62" />
-      <File FileName="../Source/PatUtils/PopupSelectionDialog.cs" Line="11" Column="6" />
+      <File FileName="TiledSprite/Game1.cs" Line="61" Column="13" />
+      <File FileName="../Source/PatUtils/PopupSelectionDialog.cs" Line="50" Column="36" />
+      <File FileName="../Source/PatUtils/SlicedSpriteAnimator.cs" Line="33" Column="96" />
       <File FileName="../Source/PatUtils/StaticSpriteBatch.cs" Line="10" Column="1" />
-      <File FileName="../Source/PatUtils/SlicedSprite.cs" Line="177" Column="9" />
+      <File FileName="../Source/PatUtils/SlicedSprite.cs" Line="22" Column="15" />
       <File FileName="TiledSprite/Program.cs" Line="17" Column="1" />
-      <File FileName="../Source/PatUtils/GameBase.cs" Line="1" Column="1" />
+      <File FileName="../Source/PatUtils/GameBase.cs" Line="134" Column="33" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/obstacledelusions/Projects/MonogameExamples/Source/PatUtils/SlicedSprite.cs" line="180" column="1" />
-      <Breakpoint file="/Users/obstacledelusions/Projects/MonogameExamples/Source/PatUtils/SlicedSpriteAnimator.cs" line="59" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.TiledSprite PreferredExecutionTarget="MonoDevelop.Default" />

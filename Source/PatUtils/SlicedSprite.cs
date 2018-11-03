@@ -19,8 +19,8 @@ namespace Source.PatUtils
         private Rectangle[] targetRectangles = new Rectangle[9];
         private Rectangle rectangle;
         private Rectangle originalRect;
-        private float pixelScaleFactor;
-        private alignment anchorPoint = alignment.ALIGNMENT_TOP_LEFT;
+        public float pixelScaleFactor;
+        public alignment anchorPoint = alignment.ALIGNMENT_TOP_LEFT;
         private CenterType _centerType;
 
         public enum alignment

@@ -7,7 +7,7 @@ using MonoGame.Extended.Tweening;
 
 namespace Source.PatUtils
 {
-    class PopupSelectionDialog : DrawableGameComponent
+    class PopupSelectionDialog : DrawableGameComponent, IDisposable
     {
         public static Action notifyOpenComplete = null;
         public static Action notifyPressedButtonA = null;
@@ -29,17 +29,31 @@ namespace Source.PatUtils
         private string _buttonAText;
         private string _buttonBText;
 
+        public float pixelScaleFactor;
+
         bool contentShowing = false;
 
         public PopupSelectionDialog
         (
-            Game game,SlicedSprite slicedSprite,Rectangle startRect,Rectangle endRect,string dialogText,string buttonAText, string buttonBText, BitmapFont fontNormal,BitmapFont fontHighlighted,BitmapFont fontPressed
+            Game game,
+            SlicedSprite slicedSprite,
+            Vector2 location,
+            Vector2 size,
+            float pixelScaleFactor,
+            SlicedSprite.alignment alignment,
+            string dialogText,
+            string buttonAText, 
+            string buttonBText, 
+            BitmapFont fontNormal,
+            BitmapFont fontHighlighted,
+            BitmapFont fontPressed
         ) : base(game)
         {
             Game = game;
             _slicedSprite = slicedSprite;
-            _startRect = startRect;
-            _endRect = endRect;
+            _startRect = new Rectangle((int)(GameBase.Instance.ScreenWidth() * location.X), (int)(GameBase.Instance.ScreenHeight() * location.Y), 0, 0);
+            _endRect = new Rectangle((int)(GameBase.Instance.ScreenWidth() * location.X), (int)(GameBase.Instance.ScreenHeight() * location.Y), (int)(GameBase.Instance.ScreenWidth() * size.X), (int)(GameBase.Instance.ScreenHeight() * size.Y));
+            this.pixelScaleFactor = pixelScaleFactor;
             _dialogText = dialogText;
             _buttonAText = buttonAText;
             _buttonBText = buttonBText;
@@ -48,10 +62,12 @@ namespace Source.PatUtils
             font_pressed = fontPressed;
             slicedSpriteAnimator = new SlicedSpriteAnimator(Game);
             GameBase.Instance.Components.Add(this);
+            this.DrawOrder = 1;
+            Open();
         }
 
         public void Open(){
-            slicedSpriteAnimator.AnimateSlicedSprite(_slicedSprite, _startRect, _endRect, .25f, 1.0f, openComplete);
+            slicedSpriteAnimator.AnimateSlicedSprite(_slicedSprite, _startRect, _endRect, .25f, 0f, openComplete);
         }
 
         private void openComplete(Tween tween){
@@ -86,8 +102,19 @@ namespace Source.PatUtils
         public new void Dispose()
         {
             _slicedSprite = null;
-            //_slicedSpriteAnimated = null;
-        }
+            notifyOpenComplete = null;
+            notifyPressedButtonA = null;
+            notifyPressedButtonB = null;
+            notifyCloseComplete = null;
+            Game = null;
+            slicedSpriteAnimator = null;
+            font_normal = null;
+            font_highlighted = null;
+            font_pressed = null;
+            _dialogText = null;
+            _buttonAText = null;
+            _buttonBText = null;
+    }
 
         public override void Update(GameTime gameTime)
         {
@@ -103,8 +130,8 @@ namespace Source.PatUtils
         {
             base.Draw(gameTime);
             if (contentShowing){
-                StaticSpriteBatch.Instance.Begin();
-                StaticSpriteBatch.Instance.DrawString(font_normal, _dialogText, new Vector2((GameBase.Instance.ScreenWidth() * .5f) - (font_normal.GetStringRectangle(_dialogText).Width * .38f), (float)(GameBase.Instance.GraphicsDevice.Viewport.Height * .95)), Color.White, 0.0f, new Vector2(50, 1), 1.0f, SpriteEffects.None, 0.0f);
+                StaticSpriteBatch.Instance.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, null, Matrix.CreateScale(1.0f));
+                StaticSpriteBatch.Instance.DrawString(font_normal, _dialogText, new Vector2(_endRect.X, _endRect.Y), Color.White, 0.0f, new Vector2(50, 1), pixelScaleFactor, SpriteEffects.None, 0.0f);
                 StaticSpriteBatch.Instance.End();
             }
         }

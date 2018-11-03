@@ -55,7 +55,7 @@ namespace TiledSprite
             font_highlighted = Content.Load<BitmapFont>("YosterIsland_12px_1");
             font_pressed = Content.Load<BitmapFont>("YosterIsland_12px_2");
 
-            slicedSprite = new SlicedSprite(Content.Load<Texture2D>(".\\TiledDialogBkg_01"), new Rectangle(new Point(8, 8), new Point(48, 48)), GraphicsDevice, 2.0f, SlicedSprite.CenterType.TILED, SlicedSprite.alignment.ALIGNMENT_TOP_CENTER);
+            slicedSprite = new SlicedSprite(Content.Load<Texture2D>(".\\TiledDialogBkg_01"), new Rectangle(new Point(8, 8), new Point(48, 48)), GraphicsDevice, 4.0f, SlicedSprite.CenterType.TILED, SlicedSprite.alignment.ALIGNMENT_TOP_CENTER);
             animator = new SlicedSpriteAnimator(this);
             Point center = new Point(GraphicsDevice.Viewport.Bounds.Width / 2, 0);
 
@@ -70,8 +70,10 @@ namespace TiledSprite
             */
             popup = new PopupSelectionDialog(this,
                                              slicedSprite, 
-                                             new Rectangle(center, new Point(16, 16)),
-                                             new Rectangle(center, new Point((int)(GraphicsDevice.Viewport.Bounds.Width * .5f), 150)),
+                                             new Vector2(.5f, 0.0f),
+                                             new Vector2(.5f, .3f),
+                                             4.0f,
+                                             SlicedSprite.alignment.ALIGNMENT_TOP_CENTER,
                                              "PAT WAS HERE", 
                                              "YES", 
                                              "NO", 
@@ -79,10 +81,7 @@ namespace TiledSprite
                                              font_highlighted, 
                                              font_pressed);
 
-            popup.Open();
-
-
-
+            //popup.Open();
         }
 
         public void TweenComplete(Tween tween)
