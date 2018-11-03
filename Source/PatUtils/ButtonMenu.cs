@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace Source.PatUtils
 {
-    public class ButtonMenu
+    public class ButtonMenu : IDisposable
     {
         int _xSpacing;
         int _ySpacing;
@@ -164,6 +164,11 @@ namespace Source.PatUtils
                     }
                 }
             }
+        }
+
+        public void Dispose()
+        {
+            buttons = null;
         }
     }
 }

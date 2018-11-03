@@ -33,6 +33,8 @@ namespace Source.PatUtils
 
         bool contentShowing = false;
 
+        //ButtonMenu menu = new ButtonMenu();
+
         public PopupSelectionDialog
         (
             Game game,
