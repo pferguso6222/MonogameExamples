@@ -57,7 +57,9 @@ namespace Source.PatUtils
         }
 
         public virtual void Press(){
-            OnPress();
+            if (OnPress != null){
+                OnPress();
+            }
         }
 
         public virtual void Dispose() { }

@@ -23,6 +23,9 @@ namespace Source.PatUtils
         public alignment anchorPoint = alignment.ALIGNMENT_TOP_LEFT;
         private CenterType _centerType;
 
+        public int BorderWidth;
+        public int BorderHeight;
+
         public enum alignment
         {
             ALIGNMENT_TOP_LEFT,
@@ -40,7 +43,6 @@ namespace Source.PatUtils
             STRETCHED,
             TILED
         }
-
 
         //SLICED SPRITE 1.0 by Pat Ferguson
 
@@ -100,6 +102,9 @@ namespace Source.PatUtils
                 sourceRectangles[i].X = 0;//our origins will be reset for the new textures
                 sourceRectangles[i].Y = 0;//our origins will be reset for the new textures
             }
+
+            BorderHeight = (int)(sourceRectangles[1].Height * pixelScaleFactor);
+            BorderWidth = (int)(sourceRectangles[3].Width * pixelScaleFactor);
         }
 
         public void SetRectangle(Rectangle _rect)

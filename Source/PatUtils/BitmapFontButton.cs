@@ -16,7 +16,7 @@ namespace Source.PatUtils
         protected SpriteBatch _spriteBatch;
         private Vector2 _current_position = new Vector2();
 
-        public float pixelScaleFactor = 1.0f;
+        public float pixelScaleFactor = 4.0f;
 
         public Action DynamicPixelScaleFunction;
 

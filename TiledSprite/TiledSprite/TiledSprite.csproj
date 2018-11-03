@@ -73,6 +73,9 @@
     <Compile Include="..\..\Source\PatUtils\ButtonMenu.cs">
       <Link>Content\ButtonMenu.cs</Link>
     </Compile>
+    <Compile Include="..\..\Source\PatUtils\TitleScreen_Base.cs">
+      <Link>Content\TitleScreen_Base.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Extended, Version=3.6.0.0, Culture=neutral, processorArchitecture=MSIL">
