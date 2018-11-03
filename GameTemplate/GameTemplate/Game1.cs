@@ -55,7 +55,7 @@ namespace GameTemplate.Desktop
 
         public override float GetCurrentPixelScale()
         {
-            return (float)Math.Ceiling(ScreenWidth() / 480.0f);//We want 4X scaling on a 1920 x 1080 display
+            return (float)Math.Ceiling(ScreenWidth / 480.0f);//We want 4X scaling on a 1920 x 1080 display
         }
 
         protected override void LoadContent()

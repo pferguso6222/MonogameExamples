@@ -49,22 +49,40 @@ namespace Source.PatUtils
 
         }
 
-        public int ScreenWidth()
-        {
-            if (graphics.IsFullScreen){
-                return GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-            }else{
-                return GraphicsDevice.Viewport.Bounds.Width;
+        public int ScreenWidth{
+            get
+            {
+                if (graphics.IsFullScreen)
+                {
+                    return GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+                }
+                else
+                {
+                    return GraphicsDevice.Viewport.Bounds.Width;
+                }
+            }
+            private set
+            {
+                ScreenWidth = value;
             }
         }
 
-        public int ScreenHeight()
+        public int ScreenHeight
         {
-            if (graphics.IsFullScreen)
+            get
             {
-                return GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-            }else{
-                return GraphicsDevice.Viewport.Bounds.Height;
+                if (graphics.IsFullScreen)
+                {
+                    return GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+                }
+                else
+                {
+                    return GraphicsDevice.Viewport.Bounds.Height;
+                }
+            }
+            private set
+            {
+                ScreenHeight = value;
             }
         }
 
@@ -110,8 +128,8 @@ namespace Source.PatUtils
 
         public void OnResize(Object sender, EventArgs e)
         {
-            graphics.PreferredBackBufferWidth = ScreenWidth();
-            graphics.PreferredBackBufferHeight = ScreenHeight();
+            graphics.PreferredBackBufferWidth = ScreenWidth;
+            graphics.PreferredBackBufferHeight = ScreenHeight;
             graphics.ApplyChanges();
         }
 

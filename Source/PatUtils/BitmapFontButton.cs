@@ -54,7 +54,7 @@ namespace Source.PatUtils
             _textPressed = textPressed;
             _buttonText = buttonText;
             _alignment = alignment;
-            _position = new Vector2(GameBase.Instance.ScreenWidth() / position.X, GameBase.Instance.ScreenHeight() / position.Y);
+            _position = new Vector2(GameBase.Instance.ScreenWidth / position.X, GameBase.Instance.ScreenHeight / position.Y);
             _origin = GetOrigin(_buttonText);
         }
 
@@ -96,8 +96,8 @@ namespace Source.PatUtils
         }
 
         private void updatePosition(){
-            _current_position.X = GameBase.Instance.ScreenWidth() * _position.X;
-            _current_position.Y = GameBase.Instance.ScreenHeight() * _position.Y;
+            _current_position.X = GameBase.Instance.ScreenWidth * _position.X;
+            _current_position.Y = GameBase.Instance.ScreenHeight * _position.Y;
         }
 
         public override void Draw(GameTime gameTime) 

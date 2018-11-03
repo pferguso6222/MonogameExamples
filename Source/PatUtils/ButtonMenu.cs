@@ -7,8 +7,8 @@ namespace Source.PatUtils
 {
     public class ButtonMenu : IDisposable
     {
-        int _xSpacing;
-        int _ySpacing;
+        public float xSpacing;
+        public float ySpacing;
         int _rows;
         int _cols;
         Vector2 _position;//Position X and Y should be a number from 0.0f to 1.0f, representing their percentage of screen width or height
@@ -25,28 +25,26 @@ namespace Source.PatUtils
 
         private Button.ButtonAlignment alignment;
 
-        public ButtonMenu(int xSpacing, int ySpacing, int cols, int rows, Vector2 position, SoundEffect nextButtonSound = null, SoundEffect pressButtonSound = null, Button.ButtonAlignment buttonAlignment = Button.ButtonAlignment.CENTER)
+        public ButtonMenu(float xSpacing, float ySpacing, int cols, int rows, Vector2 position, SoundEffect nextButtonSound = null, SoundEffect pressButtonSound = null, Button.ButtonAlignment buttonAlignment = Button.ButtonAlignment.CENTER)
         {
             sound_move_to_next_button = nextButtonSound;
             sound_press_button = pressButtonSound;
             alignment = buttonAlignment;
-            _xSpacing = xSpacing;
-            _ySpacing = ySpacing;
+            this.xSpacing = xSpacing;
+            this.ySpacing = ySpacing;
             _cols = cols;
             _rows = rows;
             _position = position;
-           // xIndex = 0;
-            //yIndex = 0;
 
             //int[,] array2Da = new int[4, 2] { { 1, 2 }, { 3, 4 }, { 5, 6 }, { 7, 8 } };
 
             buttons = new Button[cols, rows];
 
-            for (int i = 0; i < _cols; i++){
-                for (int j = 0; j < _rows; j++){
+            //for (int i = 0; i < _cols; i++){
+              //  for (int j = 0; j < _rows; j++){
                     //Console.Write("buttons[" + i + "][" + j + "]: " + buttons[i, j]);
-                }
-            }
+                //}
+            //}
         }
 
         public void PressCurrentButton(){
@@ -65,26 +63,40 @@ namespace Source.PatUtils
 
         }
 
-        public int xSpacing{
-            get{
-                return _xSpacing;
-            }
-        }
-
-        public int ySpacing
-        {
-            get
-            {
-                return _ySpacing;
-            }
-        }
-
         public Button getButtonAt(int col, int row){
             return buttons[col, row];
         }
 
         public void addButtonAt(Button button, int col, int row){
             buttons[col, row] = button;
+            updateButtonPositions();
+        }
+
+        private void updateButtonPositions(){
+            float startX = GameBase.Instance.ScreenWidth * _position.X;
+            float startY = GameBase.Instance.ScreenWidth * _position.Y;
+
+            float currentX = startX;
+            float currentY = startY;
+
+            float xSpc = GameBase.Instance.ScreenWidth * xSpacing;
+            float ySpc = GameBase.Instance.ScreenHeight * ySpacing;
+
+            for (int i = 0; i < _cols; i++)
+            {
+                for (int j = 0; j < _rows; j++)
+                {
+                    Button b = buttons[i, j];
+                    if (b != null)
+                    {
+                        b._position = new Vector2(currentX / GameBase.Instance.ScreenWidth, currentY / GameBase.Instance.ScreenHeight);
+                    }
+                    currentY += ySpc;
+                }
+                currentY = startY;
+                currentX += xSpc;
+
+            }
         }
 
         /// <summary>
