@@ -169,7 +169,7 @@ namespace Source.PatUtils
                 for (int j = 0; j < _rows; j++)
                 {
                     Button b = buttons[i, j];
-                    Console.Write("buttons[" + i + "][" + j + "]: " + buttons[i, j]);
+                    //Console.Write("buttons[" + i + "][" + j + "]: " + buttons[i, j]);
 
                     if (b != null){
                         b.Draw(gameTime);

@@ -35,6 +35,7 @@ namespace TiledSprite
 
         public override float GetCurrentPixelScale()
         {
+            //return 2.0f;
             return (float)Math.Ceiling(ScreenWidth / 480.0f);//We want 4X scaling on a 1920 x 1080 display
         }
 
@@ -60,7 +61,7 @@ namespace TiledSprite
             font_highlighted = Content.Load<BitmapFont>("YosterIsland_12px_1");
             font_pressed = Content.Load<BitmapFont>("YosterIsland_12px");
 
-            slicedSprite = new SlicedSprite(Content.Load<Texture2D>(".\\TiledDialogBkg_01"), new Rectangle(new Point(8, 8), new Point(48, 48)), GraphicsDevice, 4.0f, SlicedSprite.CenterType.TILED, SlicedSprite.alignment.ALIGNMENT_TOP_CENTER);
+            slicedSprite = new SlicedSprite(Content.Load<Texture2D>(".\\TiledDialogBkg_01"), new Rectangle(new Point(8, 8), new Point(48, 48)), GraphicsDevice, GetCurrentPixelScale(), SlicedSprite.CenterType.TILED, SlicedSprite.alignment.ALIGNMENT_TOP_CENTER);
             animator = new SlicedSpriteAnimator(this);
             Point center = new Point(GraphicsDevice.Viewport.Bounds.Width / 2, 0);
 
@@ -75,13 +76,13 @@ namespace TiledSprite
             */
             popup = new PopupSelectionDialog(this,
                                              slicedSprite, 
-                                             new Vector2(.5f, 0.0f),
-                                             new Vector2(.4f, .2f),
-                                             4.0f,
+                                             new Vector2(0.5f, 0.0f),
+                                             new Vector2(.5f, .2f),
+                                             GetCurrentPixelScale(),
                                              SlicedSprite.alignment.ALIGNMENT_TOP_CENTER,
-                                             "PAT WAS HERE AND NOW", 
-                                             "OKAY", 
-                                             "PISS OFF", 
+                                             "THIS IS THE LABEL THAT PAYS ME", 
+                                             "BUTTON A", 
+                                             "BUTTON B", 
                                              font_normal, 
                                              font_highlighted, 
                                              font_pressed);

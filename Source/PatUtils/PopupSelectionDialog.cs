@@ -65,29 +65,6 @@ namespace Source.PatUtils
             _startRect = new Rectangle((int)(GameBase.Instance.ScreenWidth * location.X), (int)(GameBase.Instance.ScreenHeight * location.Y), 0, 0);
             _endRect = new Rectangle((int)(GameBase.Instance.ScreenWidth * location.X), (int)(GameBase.Instance.ScreenHeight * location.Y), (int)(GameBase.Instance.ScreenWidth * size.X), (int)(GameBase.Instance.ScreenHeight * size.Y));
             this.pixelScaleFactor = pixelScaleFactor;
-
-            RectangleF dialogRect = fontNormal.GetStringRectangle(dialogText);
-            RectangleF buttonARect = fontNormal.GetStringRectangle(buttonAText);
-            RectangleF buttonBRect = fontNormal.GetStringRectangle(buttonBText);
-
-            float contentWidth;
-            float contentHeight = dialogRect.Height + buttonARect.Height;
-            float buttonsBothWidth = buttonARect.Width + buttonBRect.Width;
-            float contentAreaHeight = _endRect.Height - (slicedSprite.BorderHeight * 2);
-            float contentAreaWidth = _endRect.Width - (slicedSprite.BorderWidth * 2);
-
-            if (buttonsBothWidth >= dialogRect.Width){
-                contentWidth = buttonsBothWidth;
-            }else{
-                contentWidth = dialogRect.Width;
-            }
-            float contentPaddingY = contentAreaHeight / 3;
-            float contentPaddingX = contentAreaWidth / 3;
-            float dialogY = location.Y + slicedSprite.BorderHeight + contentPaddingY;
-            float buttonsY = (dialogY + dialogRect.Height + contentPaddingY + buttonARect.Height) / GameBase.Instance.ScreenHeight;
-            float menuPositionX = location.X - size.X / 2.0f + (contentPaddingX / GameBase.Instance.ScreenWidth);
-            float menuPaddingX = (buttonARect.Width + contentPaddingX) / GameBase.Instance.ScreenWidth;
-
             _dialogText = dialogText;
             _buttonAText = buttonAText;
             _buttonBText = buttonBText;
@@ -95,9 +72,64 @@ namespace Source.PatUtils
             font_highlighted = fontHighlighted;
             font_pressed = fontPressed;
 
-            _dialogTextPosition = new Vector2(location.X - ((dialogRect.Width / 2.0f) / GameBase.Instance.ScreenWidth), location.Y + (slicedSprite.BorderHeight + contentHeight) / GameBase.Instance.ScreenHeight);
 
-            menu = new ButtonMenu(menuPaddingX, 0.0f, 2, 1, new Vector2(menuPositionX, _dialogTextPosition.Y));
+
+            Console.Write("_endRect:X:" + _endRect.X + ", Y:" + _endRect.Y +", WIDTH:" + _endRect.Width + ", HEIGHT:" + _endRect.Height +"\n");
+
+            Rectangle contentRect = slicedSprite.GetContentAreaRectFromRect(_endRect);
+
+            Console.WriteLine("contentRect: X:" + contentRect.X +", Y:" + contentRect.Y +", Width:" + contentRect.Width +", Height:" + contentRect.Height);
+
+            RectangleF dialogRect = fontNormal.GetStringRectangle(dialogText);
+
+            dialogRect.Width *= pixelScaleFactor;
+            dialogRect.Height *= pixelScaleFactor;
+
+            Console.Write("_dialogRect:X:" + dialogRect.X + ", Y:" + dialogRect.Y + ", WIDTH:" + dialogRect.Width + ", HEIGHT:" + dialogRect.Height + "\n");
+
+            RectangleF buttonARect = fontNormal.GetStringRectangle(buttonAText);
+
+            buttonARect.Width *= pixelScaleFactor;
+            buttonARect.Height *= pixelScaleFactor;
+
+            Console.Write("buttonARect:X:" + buttonARect.X + ", Y:" + buttonARect.Y + ", WIDTH:" + buttonARect.Width + ", HEIGHT:" + buttonARect.Height + "\n");
+
+            RectangleF buttonBRect = fontNormal.GetStringRectangle(buttonBText);
+
+            buttonBRect.Width *= pixelScaleFactor;
+            buttonBRect.Height *= pixelScaleFactor;
+
+            Console.Write("buttonBRect:X:" + buttonBRect.X + ", Y:" + buttonBRect.Y + ", WIDTH:" + buttonBRect.Width + ", HEIGHT:" + buttonBRect.Height + "\n");
+            float borderWidth = slicedSprite.BorderWidth;
+            float borderHeight = slicedSprite.BorderHeight;
+
+            float contentHeight = dialogRect.Height + buttonARect.Height;
+            float buttonsBothWidth = buttonARect.Width + buttonBRect.Width;
+            float contentAreaWidth = _endRect.Width - (borderWidth * 2);
+            float contentAreaHeight = _endRect.Height - (borderHeight * 2);
+
+            float contentPaddingY = contentAreaHeight / 3.0f;
+            float contentPaddingX = contentAreaWidth / 3.0f;
+            float dialogY = location.Y + (slicedSprite.BorderHeight * pixelScaleFactor) + contentPaddingY;
+            float buttonsY = (dialogY + dialogRect.Height + contentPaddingY + buttonARect.Height);
+
+            float menuPaddingX = (contentRect.Width / 3.0f) / GameBase.Instance.ScreenWidth;
+
+            int dtX = (int)(_endRect.Width - fontNormal.GetStringRectangle(dialogText).Width) / 2;
+            Console.WriteLine("dtX:" + dtX);
+
+            float newX = (float)contentRect.X / (float)GameBase.Instance.ScreenWidth;
+            Console.WriteLine("newX:" + newX);
+
+            //the X .24f is compensation for wonky transform matrix on BitmapFont. It won't scale from far left!!! ARG!
+            _dialogTextPosition = new Vector2((contentRect.X + ((contentRect.Width - dialogRect.Width) / 2) + dialogRect.Width * .24f) / GameBase.Instance.ScreenWidth, (_endRect.Y + contentRect.Height / 3.0f) / GameBase.Instance.ScreenHeight);
+
+            Console.WriteLine("_dialogTextPosition: X:" + _dialogTextPosition.X +" Y:" + _dialogTextPosition.Y);
+
+            float menuPositionX = ((contentRect.X + contentPaddingX) / GameBase.Instance.ScreenWidth);
+            float menuPositionY = ((_dialogTextPosition.Y / GameBase.Instance.ScreenWidth) + (float)((float)contentPaddingY + (float)dialogRect.Height / 3.0f)) / GameBase.Instance.ScreenHeight;
+
+            menu = new ButtonMenu(menuPaddingX, 0.0f, 2, 1, new Vector2(menuPositionX, menuPositionY));
 
             buttonA = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, _buttonAText, new Vector2(.0f, .0f), Button.ButtonAlignment.CENTER);
             buttonB = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, _buttonBText, new Vector2(.0f, .0f), Button.ButtonAlignment.CENTER);

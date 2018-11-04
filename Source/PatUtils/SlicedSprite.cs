@@ -114,6 +114,50 @@ namespace Source.PatUtils
             UpdateRectangles(new Point((int)(_rect.X / pixelScaleFactor), (int)(_rect.Y / pixelScaleFactor)));
         }
 
+        public Rectangle GetContentAreaRectFromRect(Rectangle rect){
+            Rectangle innerRect = rect;
+            int xOffset = 0;
+            int yOffset = 0;
+            switch (anchorPoint){
+                case alignment.ALIGNMENT_TOP_CENTER:
+                    xOffset = -(rect.Width / 2);
+                    break;
+                case alignment.ALIGNMENT_TOP_RIGHT:
+                    xOffset = -rect.Width;
+                    break;
+                case alignment.ALIGNMENT_MID_LEFT:
+                    yOffset = -(rect.Height / 2);
+                    break;
+                case alignment.ALIGNMENT_MID_CENTER:
+                    xOffset = -(rect.Width / 2);
+                    yOffset = -(rect.Height / 2);
+                    break;
+                case alignment.ALIGNMENT_MID_RIGHT:
+                    xOffset = -rect.Width;
+                    yOffset = -(rect.Height / 2);
+                    break;
+                case alignment.ALIGNMENT_BOTTOM_LEFT:
+                    yOffset = -rect.Height;
+                    break;
+                case alignment.ALIGNMENT_BOTTOM_CENTER:
+                    xOffset = -rect.Width;
+                    yOffset = -rect.Height;
+                    break;
+                case alignment.ALIGNMENT_BOTTOM_RIGHT:
+                    xOffset = -rect.Width;
+                    yOffset = -rect.Height;
+                    break;
+            }
+            innerRect.X += xOffset;
+            innerRect.Y += yOffset;
+            innerRect.Width -= BorderWidth * 2;
+            innerRect.Height -= BorderHeight * 2;
+            innerRect.X += BorderWidth;
+            innerRect.Y += BorderHeight;
+            return innerRect;
+        }
+
+
         private void UpdateRectangles(Point Origin)
         {
             targetRectangles[0].X = targetRectangles[3].X = targetRectangles[5].X = Origin.X;
