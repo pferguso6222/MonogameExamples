@@ -1,16 +1,16 @@
 ﻿<Properties StartupConfiguration="{5F0E117B-C99A-4FDC-B811-D74C670AA0A8}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="TiledSprite/Game1.cs">
     <Files>
-      <File FileName="TiledSprite/Game1.cs" Line="64" Column="257" />
-      <File FileName="../Source/PatUtils/PopupSelectionDialog.cs" Line="132" Column="86" />
-      <File FileName="../Source/PatUtils/SlicedSpriteAnimator.cs" Line="26" Column="1" />
+      <File FileName="TiledSprite/Game1.cs" Line="53" Column="9" />
+      <File FileName="../Source/PatUtils/PopupSelectionDialog.cs" Line="83" Column="52" />
+      <File FileName="../Source/PatUtils/SlicedSpriteAnimator.cs" Line="42" Column="13" />
       <File FileName="../Source/PatUtils/StaticSpriteBatch.cs" Line="10" Column="1" />
-      <File FileName="../Source/PatUtils/SlicedSprite.cs" Line="116" Column="9" />
+      <File FileName="../Source/PatUtils/SlicedSprite.cs" Line="120" Column="29" />
       <File FileName="TiledSprite/Program.cs" Line="17" Column="1" />
-      <File FileName="../Source/PatUtils/GameBase.cs" Line="39" Column="9" />
-      <File FileName="../Source/PatUtils/ButtonMenu.cs" Line="18" Column="9" />
-      <File FileName="../Source/PatUtils/BitmapFontButton.cs" Line="24" Column="36" />
-      <File FileName="../Source/PatUtils/TitleScreen_Base.cs" Line="5" Column="1" />
+      <File FileName="../Source/PatUtils/GameBase.cs" Line="37" Column="29" />
+      <File FileName="../Source/PatUtils/ButtonMenu.cs" Line="17" Column="16" />
+      <File FileName="../Source/PatUtils/BitmapFontButton.cs" Line="16" Column="44" />
+      <File FileName="../Source/PatUtils/TitleScreen_Base.cs" Line="92" Column="38" />
       <File FileName="../Source/PatUtils/Button.cs" Line="62" Column="14" />
     </Files>
   </MonoDevelop.Ide.Workbench>

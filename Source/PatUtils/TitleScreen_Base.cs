@@ -17,18 +17,21 @@ namespace Source.PatUtils
         private BitmapFont font_highlighted;
         private BitmapFont font_pressed;
         private BitmapFont font_copyright;
+        private SlicedSprite slicedSprite;
 
         KeyboardState previousState;
         GamePadState previousGamepadState;
         ButtonMenu menu;
 
         public TitleScreen_Base(Texture2D backgroundImage,
+                                SlicedSprite slicedSprite,
                                 BitmapFont menuFontNormal,
                                BitmapFont menuFontHighlighted,
                                BitmapFont menuFontPressed,
                                BitmapFont fontCopyright)
         {
             _background = backgroundImage;
+            this.slicedSprite = slicedSprite;
             font_normal = menuFontNormal;
             font_highlighted = menuFontHighlighted;
             font_pressed = menuFontPressed;
@@ -89,7 +92,7 @@ namespace Source.PatUtils
 
             //QUIT GAME
             BitmapFontButton bQuit = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, "EXIT GAME", new Vector2(.0f, .0f), Button.ButtonAlignment.CENTER);
-            bQuit.OnPress = QuitGame;
+            bQuit.OnPress = QuitVerify;
             menu.addButtonAt(bQuit, 0, 2);
 
             menu.setActiveButton(0, 0);
@@ -98,6 +101,30 @@ namespace Source.PatUtils
 
         private void LoadOptions(){
             GameBase.Instance.ChangeGameState(GameBase.GameState.OPTIONS_MAIN);
+        }
+
+        private void QuitVerify(){
+            menu.SetAllButtonsEnabled(false);
+            PopupSelectionDialog popup = new PopupSelectionDialog(GameBase.Instance,
+                                             slicedSprite,
+                                             new Vector2(0.5f, 0.5f),
+                                             new Vector2(.65f, .3f),
+                                             GameBase.Instance.GetCurrentPixelScale(),
+                                             SlicedSprite.alignment.ALIGNMENT_MID_CENTER,
+                                             "ARE YOU SURE YOU WANT TO QUIT?",
+                                             "YES",
+                                             "NO",
+                                             font_normal,
+                                             font_highlighted,
+                                             font_pressed)
+            {
+                notifyPressedButtonA = QuitGame,
+                notifyPressedButtonB = CancelQuit
+            };
+        }
+
+        private void CancelQuit(){
+            menu.SetAllButtonsEnabled(true);
         }
 
         private void QuitGame(){

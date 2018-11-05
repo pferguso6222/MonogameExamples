@@ -10,7 +10,7 @@ using Source.PatUtils;
 
 namespace Source.PatUtils
 {
-    class SlicedSprite : IDisposable
+    public class SlicedSprite : IDisposable
     {
 
         private Texture2D sourceTex;

@@ -18,6 +18,7 @@ namespace GameTemplate.Desktop
         public GameConfigUtility GameConfig;
         public StaticSpriteBatch spriteBatch;
         public ScreenManager screenManager;
+        public SlicedSprite slicedSprite;
 
         protected override void Initialize()
         {
@@ -62,13 +63,14 @@ namespace GameTemplate.Desktop
         {
             base.LoadContent();
 
+            slicedSprite = new SlicedSprite(Content.Load<Texture2D>("Graphics/TiledDialogBkg_01"), new Rectangle(new Point(8, 8), new Point(48, 48)), GraphicsDevice, GetCurrentPixelScale(), SlicedSprite.CenterType.TILED, SlicedSprite.alignment.ALIGNMENT_TOP_CENTER);
             Texture2D menu_background = Content.Load<Texture2D>("Graphics/Bkg_Title");
             BitmapFont menu_font_normal = Content.Load<BitmapFont>(".\\YosterIsland_12px_2");
             BitmapFont menu_font_highlighted = Content.Load<BitmapFont>(".\\YosterIsland_12px_1");
             BitmapFont menu_font_pressed = Content.Load<BitmapFont>(".\\YosterIsland_12px");
             BitmapFont menu_font_copyright = Content.Load<BitmapFont>(".\\Makaimura");
 
-            titleScreen = new TitleScreen_Base(menu_background, menu_font_normal, menu_font_highlighted, menu_font_pressed, menu_font_copyright);
+            titleScreen = new TitleScreen_Base(menu_background, slicedSprite, menu_font_normal, menu_font_highlighted, menu_font_pressed, menu_font_copyright);
             optionsScreen = new Options_Base(menu_background, menu_font_normal, menu_font_highlighted, menu_font_pressed);
             ChangeGameState(GameState.TITLE_MAIN);//Make this the program start
         }
@@ -112,13 +114,14 @@ namespace GameTemplate.Desktop
 
             screenManager.Update(gameTime);
 
-            //base.Update(gameTime);
+            base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
             screenManager.Draw(gameTime);
+            base.Draw(gameTime);
         }
     }
 }

@@ -59,6 +59,21 @@ namespace Source.PatUtils
             }
         }
 
+        public void SetAllButtonsEnabled(bool enable){
+            for (int i = 0; i < _cols; i++)
+            {
+                for (int j = 0; j < _rows; j++)
+                {
+                    Button b = buttons[i, j];
+                    if (b != null)
+                    {
+                        b.Enabled = enable;
+                    }
+                   
+                }
+            }
+        }
+
         private void notifyButtonPressed(){
 
         }

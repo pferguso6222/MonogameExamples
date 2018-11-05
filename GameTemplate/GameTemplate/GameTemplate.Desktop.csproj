@@ -84,6 +84,12 @@
     <Compile Include="..\..\Source\PatUtils\StaticSpriteBatch.cs">
       <Link>Content\StaticSpriteBatch.cs</Link>
     </Compile>
+    <Compile Include="..\..\Source\PatUtils\PopupSelectionDialog.cs">
+      <Link>Content\PatUtils\PopupSelectionDialog.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\PatUtils\SlicedSpriteAnimator.cs">
+      <Link>Content\PatUtils\SlicedSpriteAnimator.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Extended, Version=3.6.0.0, Culture=neutral, processorArchitecture=MSIL">
