@@ -9,7 +9,7 @@ using MonoGame.Extended;
 namespace Source.PatUtils
 {
 
-    class SlicedSpriteAnimator : DrawableGameComponent
+    public class SlicedSpriteAnimator : DrawableGameComponent
     {
         private Tween tween;
         private Tweener _tweener = new Tweener();

@@ -167,7 +167,7 @@ namespace Source.PatUtils
                 if (b != null)
                 {
                     b.State = Button.BUTTON_STATE.HIGHLIGHTED;
-                   // b.Enabled = true;
+                    b.Enabled = true;
                 }
             }
         }

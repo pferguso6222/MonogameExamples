@@ -121,8 +121,6 @@ namespace Source.PatUtils
             menu.addButtonAt(buttonA, 0, 0);
             menu.addButtonAt(buttonB, 1, 0);
 
-            menu.setActiveButton(0, 0);
-
             //buttonA._position = new Vector2(locatio);
 
             slicedSpriteAnimator = new SlicedSpriteAnimator(GameBase.Instance);
