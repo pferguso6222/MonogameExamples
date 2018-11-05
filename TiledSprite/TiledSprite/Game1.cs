@@ -62,9 +62,6 @@ namespace TiledSprite
             font_pressed = Content.Load<BitmapFont>("YosterIsland_12px");
 
             slicedSprite = new SlicedSprite(Content.Load<Texture2D>(".\\TiledDialogBkg_01"), new Rectangle(new Point(8, 8), new Point(48, 48)), GraphicsDevice, GetCurrentPixelScale(), SlicedSprite.CenterType.TILED, SlicedSprite.alignment.ALIGNMENT_TOP_CENTER);
-            animator = new SlicedSpriteAnimator(this);
-            Point center = new Point(GraphicsDevice.Viewport.Bounds.Width / 2, 0);
-
             popup = new PopupSelectionDialog(this,
                                              slicedSprite,
                                              new Vector2(0.5f, 0.0f),
@@ -89,11 +86,6 @@ namespace TiledSprite
         private void PressedB()
         {
             Console.WriteLine("PRESSED BUTTON B");
-        }
-
-        public void TweenComplete(Tween tween)
-        {
-            Console.Write("Tween Complete\n");
         }
 
         /// <summary>
