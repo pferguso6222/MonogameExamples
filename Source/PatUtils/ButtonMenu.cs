@@ -25,6 +25,8 @@ namespace Source.PatUtils
 
         private Button.ButtonAlignment alignment;
 
+        public bool Enabled = true;
+
         public ButtonMenu(float xSpacing, float ySpacing, int cols, int rows, Vector2 position, SoundEffect nextButtonSound = null, SoundEffect pressButtonSound = null, Button.ButtonAlignment buttonAlignment = Button.ButtonAlignment.CENTER)
         {
             sound_move_to_next_button = nextButtonSound;
@@ -48,13 +50,17 @@ namespace Source.PatUtils
         }
 
         public void PressCurrentButton(){
-            Button b = buttons[xIndex, yIndex];
-            if (b.Enabled){
-                b.Press();
-                b.State = Button.BUTTON_STATE.PRESSED;
-                if (sound_press_button != null)
+            if (Enabled)
+            {
+                Button b = buttons[xIndex, yIndex];
+                if (b.Enabled)
                 {
-                    sound_press_button.Play();
+                    b.Press();
+                    b.State = Button.BUTTON_STATE.PRESSED;
+                    if (sound_press_button != null)
+                    {
+                        sound_press_button.Play();
+                    }
                 }
             }
         }
@@ -118,47 +124,51 @@ namespace Source.PatUtils
         /// This sets the active button according to a direction offset in X or Y.
         /// </summary>
         public void setActiveOffset(int x, int y){
+            if  (Enabled){
+                //if there is only one column, do not allow wrapping
+                if (x != 0 && _cols <= 1) return;
 
-            //if there is only one column, do not allow wrapping
-            if (x != 0 && _cols <= 1) return;
- 
-            int newX = xIndex + x;
-            int newY = yIndex + y;
+                int newX = xIndex + x;
+                int newY = yIndex + y;
 
-            //Wrap around in X
-            if (newX >= _cols){ newX = 0;} else if (newX < 0){newX = _cols - 1;}
+                //Wrap around in X
+                if (newX >= _cols) { newX = 0; } else if (newX < 0) { newX = _cols - 1; }
 
-            //Wrap Around in Y
-            if (newY >= _rows){newY = 0; } else if (newY < 0){newY = _rows - 1;}
+                //Wrap Around in Y
+                if (newY >= _rows) { newY = 0; } else if (newY < 0) { newY = _rows - 1; }
 
-            xIndex = newX;
-            yIndex = newY;
+                xIndex = newX;
+                yIndex = newY;
 
-            setAllNormal();
+                setAllNormal();
 
-            Button b = buttons[xIndex, yIndex];
+                Button b = buttons[xIndex, yIndex];
 
-            if (b != null)
-            {
-                b.State = Button.BUTTON_STATE.HIGHLIGHTED;
-                b.Enabled = true;
-                if (sound_move_to_next_button != null)
+                if (b != null)
                 {
-                    sound_move_to_next_button.Play();
+                    b.State = Button.BUTTON_STATE.HIGHLIGHTED;
+                    b.Enabled = true;
+                    if (sound_move_to_next_button != null)
+                    {
+                        sound_move_to_next_button.Play();
+                    }
                 }
             }
         }
 
         public void setActiveButton(int col, int row){
-            if (row < 0 || row >= _rows) return;
-            if (col < 0 || col >= _cols) return;
-            xIndex = col;
-            yIndex = row;
-            setAllNormal();
-            Button b = buttons[col, row];
-            if (b != null)
-            {
-                b.State = Button.BUTTON_STATE.HIGHLIGHTED;
+            if (Enabled){
+                if (row < 0 || row >= _rows) return;
+                if (col < 0 || col >= _cols) return;
+                xIndex = col;
+                yIndex = row;
+                setAllNormal();
+                Button b = buttons[col, row];
+                if (b != null)
+                {
+                    b.State = Button.BUTTON_STATE.HIGHLIGHTED;
+                   // b.Enabled = true;
+                }
             }
         }
 

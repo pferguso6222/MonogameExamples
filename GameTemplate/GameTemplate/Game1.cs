@@ -63,7 +63,7 @@ namespace GameTemplate.Desktop
         {
             base.LoadContent();
 
-            slicedSprite = new SlicedSprite(Content.Load<Texture2D>("Graphics/TiledDialogBkg_01"), new Rectangle(new Point(8, 8), new Point(48, 48)), GraphicsDevice, GetCurrentPixelScale(), SlicedSprite.CenterType.TILED, SlicedSprite.alignment.ALIGNMENT_TOP_CENTER);
+            slicedSprite = new SlicedSprite(Content.Load<Texture2D>("Graphics/TiledDialogBkg_01"), new Rectangle(new Point(8, 8), new Point(48, 48)), GraphicsDevice, GetCurrentPixelScale(), SlicedSprite.CenterType.TILED, SlicedSprite.alignment.ALIGNMENT_MID_CENTER);
             Texture2D menu_background = Content.Load<Texture2D>("Graphics/Bkg_Title");
             BitmapFont menu_font_normal = Content.Load<BitmapFont>(".\\YosterIsland_12px_2");
             BitmapFont menu_font_highlighted = Content.Load<BitmapFont>(".\\YosterIsland_12px_1");

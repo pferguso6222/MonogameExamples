@@ -104,10 +104,10 @@ namespace Source.PatUtils
         }
 
         private void QuitVerify(){
-            menu.SetAllButtonsEnabled(false);
+            menu.Enabled = false;
             PopupSelectionDialog popup = new PopupSelectionDialog(GameBase.Instance,
                                              slicedSprite,
-                                             new Vector2(0.5f, 0.5f),
+                                             new Vector2(0.5f, 0.25f),
                                              new Vector2(.65f, .3f),
                                              GameBase.Instance.GetCurrentPixelScale(),
                                              SlicedSprite.alignment.ALIGNMENT_MID_CENTER,
@@ -115,7 +115,7 @@ namespace Source.PatUtils
                                              "YES",
                                              "NO",
                                              font_normal,
-                                             font_highlighted,
+                                             font_pressed,
                                              font_pressed)
             {
                 notifyPressedButtonA = QuitGame,
@@ -124,7 +124,7 @@ namespace Source.PatUtils
         }
 
         private void CancelQuit(){
-            menu.SetAllButtonsEnabled(true);
+            menu.Enabled = true;
         }
 
         private void QuitGame(){
