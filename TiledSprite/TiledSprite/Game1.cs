@@ -19,7 +19,6 @@ namespace TiledSprite
         //ContentManager contentManager;
 
         SlicedSprite slicedSprite;
-        SlicedSpriteAnimator animator;
 
         PopupSelectionDialog popup;
 
@@ -61,10 +60,10 @@ namespace TiledSprite
             font_highlighted = Content.Load<BitmapFont>("YosterIsland_12px_1");
             font_pressed = Content.Load<BitmapFont>("YosterIsland_12px");
 
-            slicedSprite = new SlicedSprite(Content.Load<Texture2D>(".\\TiledDialogBkg_01"), new Rectangle(new Point(8, 8), new Point(48, 48)), GraphicsDevice, GetCurrentPixelScale(), SlicedSprite.CenterType.TILED, SlicedSprite.alignment.ALIGNMENT_TOP_CENTER);
+            slicedSprite = new SlicedSprite(Content.Load<Texture2D>(".\\TiledDialogBkg_01"), new Rectangle(new Point(8, 8), new Point(48, 48)), GraphicsDevice, GetCurrentPixelScale(), SlicedSprite.CenterType.TILED, SlicedSprite.alignment.ALIGNMENT_MID_CENTER);
             popup = new PopupSelectionDialog(this,
                                              slicedSprite,
-                                             new Vector2(0.5f, 0.0f),
+                                             new Vector2(0.5f, 0.5f),
                                              new Vector2(.5f, .2f),
                                              GetCurrentPixelScale(),
                                              SlicedSprite.alignment.ALIGNMENT_TOP_CENTER,
