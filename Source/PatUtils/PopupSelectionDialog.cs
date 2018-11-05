@@ -11,10 +11,10 @@ namespace Source.PatUtils
 {
     class PopupSelectionDialog : DrawableGameComponent, IDisposable
     {
-        public static Action notifyOpenComplete = null;
-        public static Action notifyPressedButtonA = null;
-        public static Action notifyPressedButtonB = null;
-        public static Action notifyCloseComplete = null;
+        public Action notifyOpenComplete;
+        public Action notifyPressedButtonA;
+        public Action notifyPressedButtonB;
+        public Action notifyCloseComplete;
         new Game Game;
 
         private SlicedSprite _slicedSprite;
@@ -71,38 +71,18 @@ namespace Source.PatUtils
             font_normal = fontNormal;
             font_highlighted = fontHighlighted;
             font_pressed = fontPressed;
-
-
-
-            Console.Write("_endRect:X:" + _endRect.X + ", Y:" + _endRect.Y +", WIDTH:" + _endRect.Width + ", HEIGHT:" + _endRect.Height +"\n");
-
             Rectangle contentRect = slicedSprite.GetContentAreaRectFromRect(_endRect);
-
-            Console.WriteLine("contentRect: X:" + contentRect.X +", Y:" + contentRect.Y +", Width:" + contentRect.Width +", Height:" + contentRect.Height);
-
             RectangleF dialogRect = fontNormal.GetStringRectangle(dialogText);
-
             dialogRect.Width *= pixelScaleFactor;
             dialogRect.Height *= pixelScaleFactor;
-
-            Console.Write("_dialogRect:X:" + dialogRect.X + ", Y:" + dialogRect.Y + ", WIDTH:" + dialogRect.Width + ", HEIGHT:" + dialogRect.Height + "\n");
-
             RectangleF buttonARect = fontNormal.GetStringRectangle(buttonAText);
-
             buttonARect.Width *= pixelScaleFactor;
             buttonARect.Height *= pixelScaleFactor;
-
-            Console.Write("buttonARect:X:" + buttonARect.X + ", Y:" + buttonARect.Y + ", WIDTH:" + buttonARect.Width + ", HEIGHT:" + buttonARect.Height + "\n");
-
             RectangleF buttonBRect = fontNormal.GetStringRectangle(buttonBText);
-
             buttonBRect.Width *= pixelScaleFactor;
             buttonBRect.Height *= pixelScaleFactor;
-
-            Console.Write("buttonBRect:X:" + buttonBRect.X + ", Y:" + buttonBRect.Y + ", WIDTH:" + buttonBRect.Width + ", HEIGHT:" + buttonBRect.Height + "\n");
             float borderWidth = slicedSprite.BorderWidth;
             float borderHeight = slicedSprite.BorderHeight;
-
             float contentHeight = dialogRect.Height + buttonARect.Height;
             float buttonsBothWidth = buttonARect.Width + buttonBRect.Width;
             float contentAreaWidth = _endRect.Width - (borderWidth * 2);
@@ -134,6 +114,9 @@ namespace Source.PatUtils
             buttonA = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, _buttonAText, new Vector2(.0f, .0f), Button.ButtonAlignment.CENTER);
             buttonB = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, _buttonBText, new Vector2(.0f, .0f), Button.ButtonAlignment.CENTER);
 
+            buttonA.OnPress = CloseA;
+            buttonB.OnPress = CloseB;
+
             menu.addButtonAt(buttonA, 0, 0);
             menu.addButtonAt(buttonB, 1, 0);
 
@@ -151,20 +134,37 @@ namespace Source.PatUtils
             slicedSpriteAnimator.AnimateSlicedSprite(_slicedSprite, _startRect, _endRect, .25f, 0f, openComplete);
         }
 
+        private void CloseA()
+        {
+            contentShowing = false;
+            slicedSpriteAnimator.AnimateSlicedSprite(_slicedSprite, _endRect, _startRect, .25f, 0f, closeCompleteA);
+        }
+        private void CloseB(){
+            contentShowing = false;
+            slicedSpriteAnimator.AnimateSlicedSprite(_slicedSprite, _endRect, _startRect, .25f, 0f, closeCompleteB);
+        }
+
         private void openComplete(Tween tween){
             contentShowing = true;
+            menu.setActiveButton(0, 0);
             notifyOpenComplete?.Invoke();
         }
 
         private void closeCompleteA(Tween tween){
             notifyPressedButtonA?.Invoke();
             notifyCloseComplete?.Invoke();
+            GameBase.Instance.Components.Remove(this);
+            slicedSpriteAnimator.DismissSprite();
+            Dispose();
         }
 
         private void closeCompleteB(Tween tween)
         {
             notifyPressedButtonB?.Invoke();
             notifyCloseComplete?.Invoke();
+            GameBase.Instance.Components.Remove(this);
+            slicedSpriteAnimator.DismissSprite();
+            Dispose();
         }
 
         private void buttonAPressed(){
@@ -215,8 +215,15 @@ namespace Source.PatUtils
                 Keys.Left))
                 menu.setActiveOffset(-1, 0);
             if (state.IsKeyDown(Keys.Space) & !previousState.IsKeyDown(
-                Keys.Space))
+                Keys.Space)){
                 menu.PressCurrentButton();
+                if (menu.yIndex == 0){
+                    CloseA();
+                }else{
+                    CloseB();
+                }
+            }
+                
             if (state.IsKeyDown(Keys.Enter) & !previousState.IsKeyDown(
                 Keys.Enter))
                 menu.PressCurrentButton();

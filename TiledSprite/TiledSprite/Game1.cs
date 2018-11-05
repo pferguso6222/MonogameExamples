@@ -35,8 +35,8 @@ namespace TiledSprite
 
         public override float GetCurrentPixelScale()
         {
-            //return 2.0f;
-            return (float)Math.Ceiling(ScreenWidth / 480.0f);//We want 4X scaling on a 1920 x 1080 display
+            return 4.0f;
+            //return (float)Math.Ceiling(ScreenWidth / 480.0f);//We want 4X scaling on a 1920 x 1080 display
         }
 
         /// <summary>
@@ -65,29 +65,30 @@ namespace TiledSprite
             animator = new SlicedSpriteAnimator(this);
             Point center = new Point(GraphicsDevice.Viewport.Bounds.Width / 2, 0);
 
-            /*
-            animator.AnimateSlicedSprite(slicedSprite, 
-                                new Rectangle(center, new Point(16, 16)), 
-                                new Rectangle(center, new Point((int)(GraphicsDevice.Viewport.Bounds.Width * .5f), 150)),
-                                .25f, 
-                                1.0f, 
-                                TweenComplete);
-
-            */
             popup = new PopupSelectionDialog(this,
-                                             slicedSprite, 
+                                             slicedSprite,
                                              new Vector2(0.5f, 0.0f),
                                              new Vector2(.5f, .2f),
                                              GetCurrentPixelScale(),
                                              SlicedSprite.alignment.ALIGNMENT_TOP_CENTER,
-                                             "THIS IS THE LABEL THAT PAYS ME", 
-                                             "BUTTON A", 
-                                             "BUTTON B", 
-                                             font_normal, 
-                                             font_highlighted, 
-                                             font_pressed);
+                                             "THIS IS THE LABEL THAT PAYS ME",
+                                             "BUTTON A",
+                                             "BUTTON B",
+                                             font_normal,
+                                             font_highlighted,
+                                             font_pressed)
+            {
+                notifyPressedButtonA = PressedA,
+                notifyPressedButtonB = PressedB
+            };
+        }
 
-            //popup.Open();
+        private void PressedA(){
+            Console.WriteLine("PRESSED BUTTON A");
+        }
+        private void PressedB()
+        {
+            Console.WriteLine("PRESSED BUTTON B");
         }
 
         public void TweenComplete(Tween tween)

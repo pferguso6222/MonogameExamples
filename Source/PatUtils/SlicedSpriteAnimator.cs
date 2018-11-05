@@ -40,7 +40,10 @@ namespace Source.PatUtils
                 .Easing(EasingFunctions.SineOut) //optional
                 .OnEnd(notifyAnimationComplete); //optional
 
-            Game.Components.Add(this);
+            if (!Game.Components.Contains(this)){
+                Game.Components.Add(this);
+            }
+           
         }
 
         public void DismissSprite()

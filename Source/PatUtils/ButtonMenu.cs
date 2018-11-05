@@ -13,8 +13,8 @@ namespace Source.PatUtils
         int _cols;
         Vector2 _position;//Position X and Y should be a number from 0.0f to 1.0f, representing their percentage of screen width or height
 
-        int xIndex;
-        int yIndex;
+        public int xIndex;
+        public int yIndex;
 
         SoundEffect sound_move_to_next_button;
         SoundEffect sound_press_button;
