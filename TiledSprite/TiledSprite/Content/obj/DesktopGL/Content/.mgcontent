@@ -4,13 +4,13 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>/Users/obstacledelusions/Projects/MonogameExamples/TiledSprite/TiledSprite/Content/../../../Fonts/YosterIsland_12px.fnt</File>
-    <File>/Users/obstacledelusions/Projects/MonogameExamples/TiledSprite/TiledSprite/Content/../../../Fonts/YosterIsland_12px_0.png</File>
-    <File>/Users/obstacledelusions/Projects/MonogameExamples/TiledSprite/TiledSprite/Content/../../../Fonts/YosterIsland_12px_01.png</File>
-    <File>/Users/obstacledelusions/Projects/MonogameExamples/TiledSprite/TiledSprite/Content/../../../Fonts/YosterIsland_12px_02.png</File>
-    <File>/Users/obstacledelusions/Projects/MonogameExamples/TiledSprite/TiledSprite/Content/../../../Fonts/YosterIsland_12px_1.fnt</File>
-    <File>/Users/obstacledelusions/Projects/MonogameExamples/TiledSprite/TiledSprite/Content/../../../Fonts/YosterIsland_12px_2.fnt</File>
-    <File>/Users/obstacledelusions/Projects/MonogameExamples/TiledSprite/TiledSprite/Content/TiledDialogBkg_01.png</File>
+    <File>C:/projects/MonogameExamples/TiledSprite/TiledSprite/Content/../../../Fonts/YosterIsland_12px.fnt</File>
+    <File>C:/projects/MonogameExamples/TiledSprite/TiledSprite/Content/../../../Fonts/YosterIsland_12px_0.png</File>
+    <File>C:/projects/MonogameExamples/TiledSprite/TiledSprite/Content/../../../Fonts/YosterIsland_12px_01.png</File>
+    <File>C:/projects/MonogameExamples/TiledSprite/TiledSprite/Content/../../../Fonts/YosterIsland_12px_02.png</File>
+    <File>C:/projects/MonogameExamples/TiledSprite/TiledSprite/Content/../../../Fonts/YosterIsland_12px_1.fnt</File>
+    <File>C:/projects/MonogameExamples/TiledSprite/TiledSprite/Content/../../../Fonts/YosterIsland_12px_2.fnt</File>
+    <File>C:/projects/MonogameExamples/TiledSprite/TiledSprite/Content/TiledDialogBkg_01.png</File>
   </SourceFiles>
   <DestFiles>
     <File>YosterIsland_12px.fnt</File>

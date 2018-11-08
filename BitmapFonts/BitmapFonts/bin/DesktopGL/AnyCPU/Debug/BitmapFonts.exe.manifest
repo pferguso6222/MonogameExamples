@@ -31,14 +31,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BitmapFonts.exe" size="568792">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BitmapFonts.exe" size="569304">
       <assemblyIdentity name="BitmapFonts" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>DAbcxvxRcNGfAN7RbrSfqMAr+1wAM9GSMuZsbCNo80I=</dsig:DigestValue>
+        <dsig:DigestValue>W6/MUSrl4PR22VcmDwj7w+kx5OsvR3QFbNC8x6YIr2U=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -135,15 +135,6 @@
       <dsig:DigestValue>4YlyhFKWCZXKrJiI3VNtpe4VcNfCBY/Z77B+OgI8gzg=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Content\ArcadeClassic_0.png" size="7814">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>EguNI6FMsdbKt4ymDYLRZwcUm4BgDHSqtia6sRFqmzw=</dsig:DigestValue>
-    </hash>
-  </file>
   <file name="Content\ArcadeClassic_0.xnb" size="65621">
     <hash>
       <dsig:Transforms>
@@ -160,15 +151,6 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>7ZUVlfTNQ2O2esq5p1wJBf3hdm0sT2RbddN2YP90wkY=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Content\G7SilkWorm_0.png" size="9947">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>2gqicunI8o+t5uGjBgvvCtxHmou/pxfDbPhlooox1kg=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\G7SilkWorm_0.xnb" size="131157">
@@ -189,15 +171,6 @@
       <dsig:DigestValue>qzRG0Ft1+ao6JVikgdlI/pVH6vgauEQKLKdo4UhsbI8=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Content\YosterIsland_12px_0.png" size="8503">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>t30diL76kO2gyGu+sER3JO2t15+Bw0TTnw1IvWq6GMg=</dsig:DigestValue>
-    </hash>
-  </file>
   <file name="Content\YosterIsland_12px_0.xnb" size="65621">
     <hash>
       <dsig:Transforms>
@@ -205,6 +178,42 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>YbigkLpi1Tq7CEatGgZ63PnUr/yGbMHonta+DYFtt4I=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\YosterIsland_12px_01.xnb" size="65621">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Ogk/MASLHGUytHopvAM529kzZgx6UracebcztUh9s2g=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\YosterIsland_12px_02.xnb" size="65621">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>YcHYPxgEpsxlNI58hyi0db/d+5/lQ9bBqjSvAkJBRJQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\YosterIsland_12px_1.xnb" size="3180">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>3UgLYeq9KK3Jk2aK+tmIwEXEB9X2IkVIZSFuhLe9YSg=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\YosterIsland_12px_2.xnb" size="3180">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>NT3ItSs4vDcK0Q1q67PTpyz40Tzuvf3U8jco4ecc6/8=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Icon.ico" size="147541">

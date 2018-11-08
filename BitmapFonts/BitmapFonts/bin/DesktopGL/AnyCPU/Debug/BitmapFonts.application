@@ -7,14 +7,14 @@
     <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="BitmapFonts.exe.manifest" size="12366">
+    <dependentAssembly dependencyType="install" codebase="BitmapFonts.exe.manifest" size="12790">
       <assemblyIdentity name="BitmapFonts.exe" version="1.0.0.1" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>EcjC3jZ4RfUig8h9MbJsBK38+Bc15Dd10522WEiUFY8=</dsig:DigestValue>
+        <dsig:DigestValue>EcUEFui6jH3GXXjjWpXSH+8X9hl6p/dDZpGCvF0Stxw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>/Users/obstacledelusions/Projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/../../../Fonts/G7SilkWorm_0.png</SourceFile>
-  <SourceTime>2018-10-03T18:03:05.505133-07:00</SourceTime>
-  <DestFile>/Users/obstacledelusions/Projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/bin/DesktopGL/Content/G7SilkWorm_0.xnb</DestFile>
-  <DestTime>2018-10-10T20:13:46.807609-07:00</DestTime>
+  <SourceFile>C:/projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/../../../Fonts/G7SilkWorm_0.png</SourceFile>
+  <SourceTime>2018-10-11T08:22:53.576821-07:00</SourceTime>
+  <DestFile>C:/projects/MonogameExamples/BitmapFonts/BitmapFonts/Content/bin/DesktopGL/Content/G7SilkWorm_0.xnb</DestFile>
+  <DestTime>2018-11-07T12:02:39.3886271-08:00</DestTime>
   <Importer>TextureImporter</Importer>
-  <ImporterTime>2018-09-06T06:51:48-07:00</ImporterTime>
+  <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
-  <ProcessorTime>2018-09-06T06:51:48-07:00</ProcessorTime>
+  <ProcessorTime>2018-09-23T14:55:52-07:00</ProcessorTime>
   <Parameters>
     <Key>ColorKeyColor</Key>
     <Value>255,0,255,255</Value>

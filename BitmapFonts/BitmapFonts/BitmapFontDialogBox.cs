@@ -234,15 +234,18 @@ namespace BitmapFonts
             _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, null, null); //ensures we use PointClamp rendering to eliminatepixel smoothing
 
             //Draw our rectangle
-            Texture2D rect = new Texture2D(_graphicsDevice, _rect.Width, _rect.Height);
-            Color[] data = new Color[rect.Width * _rect.Height];
+            RectangleF textRect = _bitmapFont.GetStringRectangle(_currentText);
+            textRect.Width *= _pixelScale;
+            textRect.Height *= _pixelScale;
+            Texture2D rect = new Texture2D(_graphicsDevice, (int)textRect.Width + 1, (int)textRect.Height + 1);
+            Color[] data = new Color[rect.Width * rect.Height];
             for (int i = 0; i < data.Length; ++i) data[i] = Color.Chocolate;
             rect.SetData(data);
             Vector2 coor = new Vector2(_rect.X, _rect.Y);
-            _spriteBatch.Draw(rect, coor, Color.Black);
+            _spriteBatch.Draw(rect, coor, Color.Red);
 
             //draw our text
-            _spriteBatch.DrawString(_bitmapFont, _currentText, new Vector2(_rect.X, _rect.Y), Color.White, 0.0f, new Vector2(0, 0), _pixelScale, SpriteEffects.None, 0.0f);
+            _spriteBatch.DrawString(_bitmapFont, _currentText, new Vector2(_rect.X, _rect.Y), Color.White, 0.0f, new Vector2(.0f, 0), _pixelScale, SpriteEffects.None, 0.0f);
 
             _spriteBatch.End();
         }
