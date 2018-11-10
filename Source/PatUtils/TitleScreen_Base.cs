@@ -116,8 +116,8 @@ namespace Source.PatUtils
             menu.Enabled = false;
             PopupSelectionDialog popup = new PopupSelectionDialog(GameBase.Instance,
                                              slicedSprite,
-                                                                  GameBase.Instance.ScreenPointFromScreenVector(new Vector2(0.5f, 0.25f)),
-                                                                  GameBase.Instance.ScreenPointFromScreenVector(new Vector2(.65f, .3f)),
+                                                                  GameBase.Instance.ScreenPointFromScreenVector(new Vector2(0.5f, 0.5f)),
+                                                                  GameBase.Instance.ScreenPointFromScreenVector(new Vector2(.5f, .25f)),
                                              GameBase.Instance.GetCurrentPixelScale(),
                                              SlicedSprite.alignment.ALIGNMENT_MID_CENTER,
                                              "ARE YOU SURE YOU WANT TO QUIT?",
