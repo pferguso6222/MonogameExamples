@@ -120,7 +120,7 @@ namespace GameTemplate.Desktop
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
+            //GraphicsDevice.Clear(Color.Black);
             screenManager.Draw(gameTime);
             base.Draw(gameTime);
         }
