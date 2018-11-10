@@ -7,11 +7,11 @@ namespace Source.PatUtils
 {
     public class ButtonMenu : IDisposable
     {
-        public float xSpacing;
-        public float ySpacing;
+        public int xSpacing;
+        public int ySpacing;
         int _rows;
         int _cols;
-        Vector2 _position;//Position X and Y should be a number from 0.0f to 1.0f, representing their percentage of screen width or height
+        Point _position;
 
         public int xIndex;
         public int yIndex;
@@ -27,16 +27,16 @@ namespace Source.PatUtils
 
         public bool Enabled = true;
 
-        public ButtonMenu(float xSpacing, float ySpacing, int cols, int rows, Vector2 position, SoundEffect nextButtonSound = null, SoundEffect pressButtonSound = null, Button.ButtonAlignment buttonAlignment = Button.ButtonAlignment.CENTER)
+        public ButtonMenu(Point position, int cols, int rows, int xSpacing, int ySpacing, SoundEffect nextButtonSound = null, SoundEffect pressButtonSound = null, Button.ButtonAlignment buttonAlignment = Button.ButtonAlignment.CENTER)
         {
+            _position = position;
+            _cols = cols;
+            _rows = rows;
+            this.xSpacing = xSpacing;
+            this.ySpacing = ySpacing;
             sound_move_to_next_button = nextButtonSound;
             sound_press_button = pressButtonSound;
             alignment = buttonAlignment;
-            this.xSpacing = xSpacing;
-            this.ySpacing = ySpacing;
-            _cols = cols;
-            _rows = rows;
-            _position = position;
 
             //int[,] array2Da = new int[4, 2] { { 1, 2 }, { 3, 4 }, { 5, 6 }, { 7, 8 } };
 
@@ -94,14 +94,8 @@ namespace Source.PatUtils
         }
 
         private void updateButtonPositions(){
-            float startX = GameBase.Instance.ScreenWidth * _position.X;
-            float startY = GameBase.Instance.ScreenWidth * _position.Y;
-
-            float currentX = startX;
-            float currentY = startY;
-
-            float xSpc = GameBase.Instance.ScreenWidth * xSpacing;
-            float ySpc = GameBase.Instance.ScreenHeight * ySpacing;
+            int currentX = _position.X;
+            int currentY = _position.Y;
 
             for (int i = 0; i < _cols; i++)
             {
@@ -110,12 +104,42 @@ namespace Source.PatUtils
                     Button b = buttons[i, j];
                     if (b != null)
                     {
-                        b._position = new Vector2(currentX / GameBase.Instance.ScreenWidth, currentY / GameBase.Instance.ScreenHeight);
+                        b._position = new Point(currentX, currentY);
                     }
-                    currentY += ySpc;
+                    currentY += ySpacing;
                 }
-                currentY = startY;
-                currentX += xSpc;
+                currentY = _position.Y;
+                currentX += xSpacing;
+            }
+
+            int xOffset = 0;
+
+            switch (alignment)
+            {
+                case Button.ButtonAlignment.CENTER:
+                    xOffset = -((xSpacing * (_cols -1)) / 2);
+                    break;
+                case Button.ButtonAlignment.RIGHT:
+                    xOffset = -(xSpacing * (_cols -1));
+                    break;
+                default:
+                    break;
+            }
+
+            for (int i = 0; i < _cols; i++)
+            {
+                for (int j = 0; j < _rows; j++)
+                {
+                    Button b = buttons[i, j];
+                    if (b != null)
+                    {
+                        Point newPos = b._position;
+                        newPos.X += xOffset;
+                        b._position = newPos;
+                        b.UpdatePosition();
+                    }
+
+                }
 
             }
         }

@@ -77,21 +77,30 @@ namespace Source.PatUtils
             menu.setActiveButton(2, 2);
 
             */
+            Point position = GameBase.Instance.ScreenPointFromScreenVector(new Vector2(0.5f, 0.5f));
+            Point spacing = GameBase.Instance.ScreenPointFromScreenVector(new Vector2(0.0f, .1f));
 
-            menu = new ButtonMenu(.0f, .1f, 1, 3, new Vector2(.5f, .3f), GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonClick_1"), GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonSelected_1"));
+            menu = new ButtonMenu(position:position, 
+                                  cols:1, 
+                                  rows:3, 
+                                  xSpacing:spacing.X, 
+                                  ySpacing:spacing.Y, 
+                                  nextButtonSound:GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonClick_1"), 
+                                  pressButtonSound:GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonSelected_1"), 
+                                  buttonAlignment:Button.ButtonAlignment.CENTER);
 
             //START GAME BUTTON
-            BitmapFontButton bStartGame = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, "START GAME", new Vector2(.0f, .0f), Button.ButtonAlignment.CENTER);
+            BitmapFontButton bStartGame = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, "START GAME", new Point(0, 0), Button.ButtonAlignment.CENTER);
             //bStartGame.OnPress = notifyButtonPressed;
             menu.addButtonAt(bStartGame, 0, 0);
 
             //OPTIONS BUTTON
-            BitmapFontButton bOptions = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, "OPTIONS", new Vector2(.0f, .0f), Button.ButtonAlignment.CENTER);
+            BitmapFontButton bOptions = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, "OPTIONS", new Point(0, 0), Button.ButtonAlignment.CENTER);
             bOptions.OnPress = LoadOptions;
             menu.addButtonAt(bOptions, 0, 1);
 
             //QUIT GAME
-            BitmapFontButton bQuit = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, "EXIT GAME", new Vector2(.0f, .0f), Button.ButtonAlignment.CENTER);
+            BitmapFontButton bQuit = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, "EXIT GAME", new Point(0, 0), Button.ButtonAlignment.CENTER);
             bQuit.OnPress = QuitVerify;
             menu.addButtonAt(bQuit, 0, 2);
 
@@ -107,8 +116,8 @@ namespace Source.PatUtils
             menu.Enabled = false;
             PopupSelectionDialog popup = new PopupSelectionDialog(GameBase.Instance,
                                              slicedSprite,
-                                             new Vector2(0.5f, 0.25f),
-                                             new Vector2(.65f, .3f),
+                                                                  GameBase.Instance.ScreenPointFromScreenVector(new Vector2(0.5f, 0.25f)),
+                                                                  GameBase.Instance.ScreenPointFromScreenVector(new Vector2(.65f, .3f)),
                                              GameBase.Instance.GetCurrentPixelScale(),
                                              SlicedSprite.alignment.ALIGNMENT_MID_CENTER,
                                              "ARE YOU SURE YOU WANT TO QUIT?",

@@ -11,6 +11,7 @@ namespace Source.PatUtils
 
         public ButtonAlignment _alignment;
 
+
         public enum ButtonAlignment
         {
             LEFT,
@@ -45,15 +46,19 @@ namespace Source.PatUtils
             set;
         }
 
-        public Vector2 _position
+        public Point _position
         {
             //_position X and Y should be a number from 0.0f to 1.0f, representing their percentage of CURRENT screen width or height
             get;
             set;
         }
 
-        public virtual float GetWidth(){
-            return 0.0f;
+        protected virtual void UpdateOrigin(){}
+
+        public virtual void UpdatePosition(){}
+
+        public virtual int GetWidth(){
+            return 0;
         }
 
         public virtual void Press(){

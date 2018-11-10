@@ -110,6 +110,15 @@ namespace Source.PatUtils
 
         }
 
+        public Point ScreenPointFromScreenVector(Vector2 pos){
+            return new Point((int)(ScreenWidth * pos.X), (int)(ScreenHeight * pos.Y));
+        }
+
+        public Vector2 ScreenVectorFromScreenPoint(Point pos)
+        {
+            return new Vector2((float)(pos.X / ScreenWidth), (float)(pos.Y / ScreenHeight));
+        }
+
         public void UpdateSamplerState(){
 
             if (SamplerStateIndex == 0)
