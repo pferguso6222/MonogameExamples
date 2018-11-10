@@ -206,9 +206,9 @@ namespace Source.PatUtils
         public override void Draw(GameTime gameTime)
         {
             StaticSpriteBatch.Instance.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, GameBase.Instance.SamplerState, DepthStencilState.Default, RasterizerState.CullNone, null, Matrix.CreateScale(1.0f));
-            StaticSpriteBatch.Instance.Draw(_background, new Rectangle(new Point(0, 0), new Point(GameBase.Instance.ScreenWidth, GameBase.Instance.ScreenHeight)), Color.White);
+            StaticSpriteBatch.Instance.Draw(_background, new Rectangle(new Point(0, 0), new Point(GameBase.Instance.VirtualWidth, GameBase.Instance.VirtualHeight)), Color.White);
             menu.Draw(gameTime);
-            StaticSpriteBatch.Instance.DrawString(font_copyright, "Copyright 2018", new Vector2((GameBase.Instance.ScreenWidth * .5f) - (font_copyright.GetStringRectangle("Copyright 2018").Width * .38f), (float)(GameBase.Instance.ScreenHeight * .95)), Color.White, 0.0f, new Vector2(50, 1), 1.0f, SpriteEffects.None, 0.0f);
+            StaticSpriteBatch.Instance.DrawString(font_copyright, "Copyright 2018", new Vector2((GameBase.Instance.VirtualWidth * .5f) - (font_copyright.GetStringRectangle("Copyright 2018").Width / 2), (float)(GameBase.Instance.VirtualHeight * .90f)), Color.White, 0.0f, new Vector2(0, 0), GameBase.Instance.GetCurrentPixelScale(), SpriteEffects.None, 0.0f);
             StaticSpriteBatch.Instance.End();
         }
     }

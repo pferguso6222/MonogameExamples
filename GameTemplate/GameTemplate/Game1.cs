@@ -20,8 +20,17 @@ namespace GameTemplate.Desktop
         public ScreenManager screenManager;
         public SlicedSprite slicedSprite;
 
+        RenderTarget2D RenderTarget;
+
+        public Game1(int VirtualWidth, int VirtualHeight) : base(VirtualWidth, VirtualHeight){
+            this.VirtualWidth = VirtualWidth;
+            this.VirtualHeight = VirtualHeight;
+        }
+
         protected override void Initialize()
         {
+            RenderTarget = new RenderTarget2D(GraphicsDevice, VirtualWidth, VirtualHeight);
+
             GameName = "PatsGame";
 
             spriteBatch = new StaticSpriteBatch(GraphicsDevice);
@@ -48,16 +57,14 @@ namespace GameTemplate.Desktop
                 }
             }
 
-            //Window.Title = "My new title";
-            //Window.AllowUserResizing = true;
-            //Window.ClientSizeChanged += OnResize;
             base.Initialize();
+
         }
 
         public override float GetCurrentPixelScale()
         {
-            //return 1.0f;
-            return (float)Math.Ceiling(ScreenWidth / 480.0f);//We want 4X scaling on a 1920 x 1080 display
+            return 1.0f;
+            //return (float)Math.Ceiling(ScreenWidth / 480.0f);//We want 4X scaling on a 1920 x 1080 display
         }
 
         protected override void LoadContent()
@@ -69,7 +76,7 @@ namespace GameTemplate.Desktop
             BitmapFont menu_font_normal = Content.Load<BitmapFont>(".\\YosterIsland_12px_2");
             BitmapFont menu_font_highlighted = Content.Load<BitmapFont>(".\\YosterIsland_12px_1");
             BitmapFont menu_font_pressed = Content.Load<BitmapFont>(".\\YosterIsland_12px");
-            BitmapFont menu_font_copyright = Content.Load<BitmapFont>(".\\Makaimura");
+            BitmapFont menu_font_copyright = menu_font_normal;
 
             titleScreen = new TitleScreen_Base(menu_background, slicedSprite, menu_font_normal, menu_font_highlighted, menu_font_pressed, menu_font_copyright);
             optionsScreen = new Options_Base(menu_background, menu_font_normal, menu_font_highlighted, menu_font_pressed);
@@ -114,15 +121,21 @@ namespace GameTemplate.Desktop
               //  Exit();
 
             screenManager.Update(gameTime);
-
             base.Update(gameTime);
+
+            //GraphicsDevice.GetRenderTargets()[0].GetData(0, ScreenRect, ScreenPixelData, 0, ScreenPixelData.Length);
+            //RenderTarget.SetData(ScreenPixelData);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            //GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.SetRenderTarget(RenderTarget);
             screenManager.Draw(gameTime);
             base.Draw(gameTime);
+            GraphicsDevice.SetRenderTarget(null);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, GameBase.Instance.SamplerState, DepthStencilState.Default, RasterizerState.CullNone, null, Matrix.CreateScale(1.0f));
+            spriteBatch.Draw(RenderTarget, new Rectangle(0, 0, ScreenWidth, ScreenHeight), ScreenRect, Color.White);
+            spriteBatch.End();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -28,9 +28,18 @@ namespace Source.PatUtils
         public int SamplerStateIndex = 0;
         public SamplerState SamplerState = SamplerState.PointClamp;
 
-        public GameBase()
+        public int VirtualWidth;
+        public int VirtualHeight;
+
+        public Rectangle ScreenRect;
+        public Color[] ScreenPixelData; 
+
+        public GameBase(int VirtualWidth, int VirtualHeight) : base()
         {
             graphics = new GraphicsDeviceManager(this);
+            this.VirtualWidth = VirtualWidth;
+            this.VirtualHeight = VirtualHeight;
+            ScreenRect = new Rectangle(0, 0, VirtualWidth, VirtualHeight);
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = 1920;
             graphics.PreferredBackBufferHeight = 1080;
@@ -49,7 +58,32 @@ namespace Source.PatUtils
 
         }
 
-        public int ScreenWidth{
+        protected override void Initialize()
+        {
+
+            base.Initialize();
+        }
+
+        /// <summary>
+        /// LoadContent will be called once per game and is the place to load
+        /// all of your content.
+        /// </summary>
+        protected override void LoadContent()
+        {
+
+        }
+
+        /// <summary>
+        /// UnloadContent will be called once per game and is the place to unload
+        /// game-specific content.
+        /// </summary>
+        protected override void UnloadContent()
+        {
+
+        }
+
+        public int ScreenWidth
+        {
             get
             {
                 if (graphics.IsFullScreen)
@@ -86,37 +120,13 @@ namespace Source.PatUtils
             }
         }
 
-        protected override void Initialize()
-        {
-
-            base.Initialize();
-        }
-
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
-        protected override void LoadContent()
-        {
-
-        }
-
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// game-specific content.
-        /// </summary>
-        protected override void UnloadContent()
-        {
-
-        }
-
         public Point ScreenPointFromScreenVector(Vector2 pos){
-            return new Point((int)(ScreenWidth * pos.X), (int)(ScreenHeight * pos.Y));
+            return new Point((int)(VirtualWidth * pos.X), (int)(VirtualHeight * pos.Y));
         }
 
         public Vector2 ScreenVectorFromScreenPoint(Point pos)
         {
-            return new Vector2((float)(pos.X / ScreenWidth), (float)(pos.Y / ScreenHeight));
+            return new Vector2((float)(pos.X / VirtualWidth), (float)(pos.Y / VirtualHeight));
         }
 
         public void UpdateSamplerState(){
@@ -135,18 +145,6 @@ namespace Source.PatUtils
             }
         }
 
-        public void OnResize(Object sender, EventArgs e)
-        {
-            graphics.PreferredBackBufferWidth = ScreenWidth;
-            graphics.PreferredBackBufferHeight = ScreenHeight;
-            graphics.ApplyChanges();
-        }
-
-    /// <summary>
-    /// Allows the game to run logic such as updating the world,
-    /// checking for collisions, gathering input, and playing audio.
-    /// </summary>
-    /// <param name="gameTime">Provides a snapshot of timing values.</param>
     protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
@@ -159,6 +157,7 @@ namespace Source.PatUtils
         protected override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
+
         }
     }
 }

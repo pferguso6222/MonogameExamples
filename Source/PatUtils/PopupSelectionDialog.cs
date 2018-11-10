@@ -63,7 +63,7 @@ namespace Source.PatUtils
             Game = game;
             _slicedSprite = slicedSprite;
             _endRect = new Rectangle(location.X, location.Y, size.X, size.Y);
-            _startRect = new Rectangle(location.X, location.Y, 48, 48);
+            _startRect = new Rectangle(location.X, location.Y, 16, 16);
             this.pixelScaleFactor = pixelScaleFactor;
             _dialogText = dialogText;
             _buttonAText = buttonAText;
@@ -130,10 +130,12 @@ namespace Source.PatUtils
 
         private void CloseA()
         {
+            this.DrawOrder = -100;
             contentShowing = false;
             slicedSpriteAnimator.AnimateSlicedSprite(_slicedSprite, _endRect, _startRect, .25f, 0f, closeCompleteA);
         }
         private void CloseB(){
+            this.DrawOrder = -100;
             contentShowing = false;
             slicedSpriteAnimator.AnimateSlicedSprite(_slicedSprite, _endRect, _startRect, .25f, 0f, closeCompleteB);
         }

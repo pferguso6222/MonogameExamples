@@ -13,7 +13,7 @@ namespace GameTemplate.Desktop
         [STAThread]
         static void Main()
         {
-            using (var game = new Game1())
+            using (var game = new Game1(480, 270))
                 game.Run();
         }
     }
