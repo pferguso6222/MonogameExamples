@@ -90,6 +90,7 @@
     <Compile Include="..\..\Source\PatUtils\SlicedSpriteAnimator.cs">
       <Link>Content\PatUtils\SlicedSpriteAnimator.cs</Link>
     </Compile>
+    <Compile Include="..\..\Source\PatUtils\SaveGameSelect_Base.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Extended, Version=3.6.0.0, Culture=neutral, processorArchitecture=MSIL">

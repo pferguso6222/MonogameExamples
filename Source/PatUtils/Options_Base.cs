@@ -172,7 +172,6 @@ namespace Source.PatUtils
                 SetResolutionSelectionOffset(-1);
             }
                 
-
             if (state.IsKeyDown(Keys.Space) & !previousState.IsKeyDown(
                 Keys.Space)){
                 SetSelectedResolution();
@@ -239,8 +238,11 @@ namespace Source.PatUtils
             KeyboardState state = Keyboard.GetState();
 
             // If they hit esc, exit
-            if (state.IsKeyDown(Keys.Escape))
-                GameBase.Instance.Exit();
+            if (state.IsKeyDown(Keys.Escape)){
+                menu.Enabled = false;
+                returnToMain();
+            }
+                
 
             // Move our sprite based on arrow keys being pressed:
             if (state.IsKeyDown(Keys.Right) & !previousState.IsKeyDown(

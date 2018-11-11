@@ -13,9 +13,10 @@ namespace GameTemplate.Desktop
     /// </summary>
     public class Game1 : GameBase
     {
-        protected TitleScreen_Base titleScreen;
-        protected Options_Base optionsScreen;
+        protected TitleScreen_Base TitleScreen;
+        protected Options_Base OptionsScreen;
         public GameConfigUtility GameConfig;
+        public SaveGameSelect_Base SaveGameSelectScreen;
         public StaticSpriteBatch spriteBatch;
         public ScreenManager screenManager;
         public SlicedSprite slicedSprite;
@@ -78,8 +79,9 @@ namespace GameTemplate.Desktop
             BitmapFont menu_font_pressed = Content.Load<BitmapFont>(".\\YosterIsland_12px");
             BitmapFont menu_font_copyright = menu_font_normal;
 
-            titleScreen = new TitleScreen_Base(menu_background, slicedSprite, menu_font_normal, menu_font_highlighted, menu_font_pressed, menu_font_copyright);
-            optionsScreen = new Options_Base(menu_background, menu_font_normal, menu_font_highlighted, menu_font_pressed);
+            TitleScreen = new TitleScreen_Base(menu_background, slicedSprite, menu_font_normal, menu_font_highlighted, menu_font_pressed, menu_font_copyright);
+            OptionsScreen = new Options_Base(menu_background, menu_font_normal, menu_font_highlighted, menu_font_pressed);
+            SaveGameSelectScreen = new SaveGameSelect_Base(menu_background, slicedSprite, menu_font_normal, menu_font_highlighted, menu_font_pressed, menu_font_copyright);
             ChangeGameState(GameState.TITLE_MAIN);//Make this the program start
         }
 
@@ -100,17 +102,17 @@ namespace GameTemplate.Desktop
                     break;
                 case GameState.TITLE_MAIN:
                     //screenManager.LoadScreen(titleScreen);
-                    screenManager.LoadScreen(titleScreen, new FadeTransition(GraphicsDevice, Color.Black, 1.0f));//not working when switch to different screen
+                    screenManager.LoadScreen(TitleScreen, new FadeTransition(GraphicsDevice, Color.Black, 1.0f));
                     break;
                 case GameState.PLAYER_SELECTION_MAIN:
-
+                    screenManager.LoadScreen(SaveGameSelectScreen, new FadeTransition(GraphicsDevice, Color.Black, 1.0f));
                     break;
                 case GameState.PLAYER_ENTRY_MAIN:
 
                     break;
                 case GameState.OPTIONS_MAIN:
                     //screenManager.LoadScreen(optionsScreen);
-                    screenManager.LoadScreen(optionsScreen, new FadeTransition(GraphicsDevice, Color.Black, 1.0f));//not working when switch to different screen
+                    screenManager.LoadScreen(OptionsScreen, new FadeTransition(GraphicsDevice, Color.Black, 1.0f));
                     break;
             }
         }
