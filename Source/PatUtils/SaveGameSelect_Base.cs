@@ -24,6 +24,12 @@ namespace Source.PatUtils
         GamePadState previousGamepadState;
         ButtonMenu menu;
 
+        Rectangle bkgRect;
+        Rectangle player1Rect;
+        Rectangle player2Rect;
+        Rectangle player3Rect;
+
+
         public SaveGameSelect_Base(
                                 Texture2D backgroundImage,
                                 SlicedSprite slicedSprite,
@@ -79,8 +85,14 @@ namespace Source.PatUtils
             menu.setActiveButton(2, 2);
 
             */
-            Point position = GameBase.Instance.ScreenPointFromScreenVector(new Vector2(0.5f, 0.5f));
-            Point spacing = GameBase.Instance.ScreenPointFromScreenVector(new Vector2(0.0f, .1f));
+            bkgRect = new Rectangle(new Point(0,0), new Point(GameBase.Instance.VirtualWidth, GameBase.Instance.VirtualHeight));
+
+            player1Rect = new Rectangle(GameBase.Instance.ScreenPointFromScreenVector(new Vector2(0.2f, 0.2f)), GameBase.Instance.ScreenPointFromScreenVector(new Vector2(.75f, 0.2f)));
+            player2Rect = new Rectangle(GameBase.Instance.ScreenPointFromScreenVector(new Vector2(0.2f, 0.45f)), GameBase.Instance.ScreenPointFromScreenVector(new Vector2(.75f, 0.2f)));
+            player3Rect = new Rectangle(GameBase.Instance.ScreenPointFromScreenVector(new Vector2(0.2f, 0.7f)), GameBase.Instance.ScreenPointFromScreenVector(new Vector2(.75f, 0.2f)));
+
+            Point position = GameBase.Instance.ScreenPointFromScreenVector(new Vector2(0.15f, 0.28f));
+            Point spacing = GameBase.Instance.ScreenPointFromScreenVector(new Vector2(0.0f, .25f));
 
             menu = new ButtonMenu(position: position,
                                   cols: 1,
@@ -92,17 +104,17 @@ namespace Source.PatUtils
                                   buttonAlignment: Button.ButtonAlignment.LEFT);
 
             //START GAME BUTTON
-            BitmapFontButton bPlayer0 = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, "PLAYER 1\tPLAY TIME", new Point(0, 0), Button.ButtonAlignment.LEFT);
+            BitmapFontButton bPlayer0 = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, ">", new Point(0, 0), Button.ButtonAlignment.LEFT);
             //bStartGame.OnPress = notifyButtonPressed;
             menu.addButtonAt(bPlayer0, 0, 0);
 
             //OPTIONS BUTTON
-            BitmapFontButton bPlayer1 = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, "PLAYER 2\tPLAY TIME", new Point(0, 0), Button.ButtonAlignment.LEFT);
+            BitmapFontButton bPlayer1 = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, ">", new Point(0, 0), Button.ButtonAlignment.LEFT);
             //bOptions.OnPress = LoadOptions;
             menu.addButtonAt(bPlayer1, 0, 1);
 
             //QUIT GAME
-            BitmapFontButton bPlayer2 = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, "PLAYER 3\tPLAY TIME", new Point(0, 0), Button.ButtonAlignment.LEFT);
+            BitmapFontButton bPlayer2 = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, ">", new Point(0, 0), Button.ButtonAlignment.LEFT);
             //bQuit.OnPress = QuitVerify;
             menu.addButtonAt(bPlayer2, 0, 2);
 
@@ -212,8 +224,33 @@ namespace Source.PatUtils
         {
             StaticSpriteBatch.Instance.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, null, Matrix.CreateScale(1.0f));
             StaticSpriteBatch.Instance.Draw(_background, new Rectangle(new Point(0, 0), new Point(GameBase.Instance.VirtualWidth, GameBase.Instance.VirtualHeight)), Color.White);
-            StaticSpriteBatch.Instance.DrawString(font_normal, "SELECT SAVE GAME", new Vector2(GameBase.Instance.VirtualWidth * .5f, GameBase.Instance.VirtualHeight * .1f), Color.White, 0.0f, new Vector2(font_normal.GetStringRectangle("SELECT SAVE GAME").Width / 2, .5f), GameBase.Instance.GetCurrentPixelScale(), SpriteEffects.None, 0.0f);
+
+
+            StaticSpriteBatch.Instance.End();
+
+            //slicedSprite.SetRectangle(bkgRect);
+            //slicedSprite.anchorPoint = SlicedSprite.alignment.ALIGNMENT_TOP_LEFT;
+            //slicedSprite.Draw();
+
+            slicedSprite.SetRectangle(player1Rect);
+            slicedSprite.anchorPoint = SlicedSprite.alignment.ALIGNMENT_TOP_LEFT;
+            slicedSprite.Draw();
+
+            slicedSprite.SetRectangle(player2Rect);
+            slicedSprite.anchorPoint = SlicedSprite.alignment.ALIGNMENT_TOP_LEFT;
+            slicedSprite.Draw();
+
+            slicedSprite.SetRectangle(player3Rect);
+            slicedSprite.anchorPoint = SlicedSprite.alignment.ALIGNMENT_TOP_LEFT;
+            slicedSprite.Draw();
+
+            StaticSpriteBatch.Instance.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, null, Matrix.CreateScale(1.0f));
             menu.Draw(gameTime);
+
+            StaticSpriteBatch.Instance.DrawString(font_normal, "SELECT SAVE GAME", new Vector2(GameBase.Instance.VirtualWidth * .5f, GameBase.Instance.VirtualHeight * .1f), Color.White, 0.0f, new Vector2(font_normal.GetStringRectangle("SELECT SAVE GAME").Width / 2, .5f), GameBase.Instance.GetCurrentPixelScale(), SpriteEffects.None, 0.0f);
+            StaticSpriteBatch.Instance.DrawString(font_normal, SaveGameUtility.Instance.SaveGameEntries[0].Name, new Vector2(GameBase.Instance.VirtualWidth * .3f, GameBase.Instance.VirtualHeight * 0.28f), Color.White, 0.0f, new Vector2(font_normal.GetStringRectangle(SaveGameUtility.Instance.SaveGameEntries[0].Name).Width / 2, .5f), GameBase.Instance.GetCurrentPixelScale(), SpriteEffects.None, 0.0f);
+            StaticSpriteBatch.Instance.DrawString(font_normal, SaveGameUtility.Instance.SaveGameEntries[0].Name, new Vector2(GameBase.Instance.VirtualWidth * .3f, GameBase.Instance.VirtualHeight * 0.53f), Color.White, 0.0f, new Vector2(font_normal.GetStringRectangle(SaveGameUtility.Instance.SaveGameEntries[1].Name).Width / 2, .5f), GameBase.Instance.GetCurrentPixelScale(), SpriteEffects.None, 0.0f);
+            StaticSpriteBatch.Instance.DrawString(font_normal, SaveGameUtility.Instance.SaveGameEntries[0].Name, new Vector2(GameBase.Instance.VirtualWidth * .3f, GameBase.Instance.VirtualHeight * 0.78f), Color.White, 0.0f, new Vector2(font_normal.GetStringRectangle(SaveGameUtility.Instance.SaveGameEntries[2].Name).Width / 2, .5f), GameBase.Instance.GetCurrentPixelScale(), SpriteEffects.None, 0.0f);
             StaticSpriteBatch.Instance.End();
         }
     }

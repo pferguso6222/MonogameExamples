@@ -16,6 +16,7 @@ namespace GameTemplate.Desktop
         protected TitleScreen_Base TitleScreen;
         protected Options_Base OptionsScreen;
         public GameConfigUtility GameConfig;
+        public SaveGameUtility SaveConfig;
         public SaveGameSelect_Base SaveGameSelectScreen;
         public StaticSpriteBatch spriteBatch;
         public ScreenManager screenManager;
@@ -39,6 +40,9 @@ namespace GameTemplate.Desktop
 
             GameConfig = new GameConfigUtility(GameName);
             GameConfig.LoadVars();
+
+            SaveConfig = new SaveGameUtility(GameName);
+            SaveConfig.LoadVars();
 
             //Parse Game Config Screen Resolution
             graphics.PreferredBackBufferWidth = GameConfig.data.screenWidth;

@@ -226,12 +226,12 @@ namespace Source.PatUtils
 
         public virtual void Draw()
         {
-            StaticSpriteBatch.Instance.Begin(SpriteSortMode.Deferred,BlendState.AlphaBlend,SamplerState.PointClamp,DepthStencilState.Default,RasterizerState.CullNone,null,Matrix.CreateScale(pixelScaleFactor));
+            StaticSpriteBatch.Instance.Begin(SpriteSortMode.Immediate,BlendState.AlphaBlend,SamplerState.PointClamp,DepthStencilState.Default,RasterizerState.CullNone,null,Matrix.CreateScale(pixelScaleFactor));
             for (int i = 0; i < 8; i++){StaticSpriteBatch.Instance.Draw(sourceTextures[i], targetRectangles[i], sourceRectangles[i], Color.White);}
             if (_centerType == CenterType.TILED){
-                StaticSpriteBatch.Instance.End();
-                StaticSpriteBatch.Instance.Begin(SpriteSortMode.Deferred,BlendState.AlphaBlend,SamplerState.PointWrap,DepthStencilState.Default,RasterizerState.CullNone,null,Matrix.CreateScale(pixelScaleFactor));
+                GameBase.Instance.graphics.GraphicsDevice.SamplerStates[0] = SamplerState.PointWrap;
                 StaticSpriteBatch.Instance.Draw(sourceTextures[8], targetRectangles[8], new Rectangle(new Point(sourceRectangles[8].X, sourceRectangles[8].Y), new Point(targetRectangles[8].Width, targetRectangles[8].Height)), Color.White);
+                GameBase.Instance.graphics.GraphicsDevice.SamplerStates[0] = SamplerState.PointClamp;
             }
             else{
                 StaticSpriteBatch.Instance.Draw(sourceTextures[8], targetRectangles[8], sourceRectangles[8], Color.White);

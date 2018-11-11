@@ -9,28 +9,35 @@ namespace Source.PatUtils
 {
     public class SaveGameUtility
     {
+        public static SaveGameUtility Instance;
+
+        private string GameName = "";
         public string SaveFolderPath;
         public static int maxSaveEntries = 3;
         public List<SaveGameEntry> SaveGameEntries = new List<SaveGameEntry>();
         public SaveGameData data;
+        string saveFile = "";
         public int currentSaveDataIndex = 0;
-        public string saveFile = "Save.dat";
         private IFormatter formatter;
         private Stream stream;
 
 
-        public SaveGameUtility()
+        public SaveGameUtility(string gameName)
         {
             //find out where our directory for write permissions are. This is where our options and save game files will go.
-            SaveFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            // SaveFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            GameName = gameName;
+            saveFile = String.Concat(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "/", GameName, "/Save.dat");
             Console.WriteLine("SaveFolderFath:" + SaveFolderPath);
+            formatter = new BinaryFormatter();
+            Instance = this;
         }
 
         public bool LoadVars()
         {
             Console.WriteLine(File.Exists(saveFile) ? "File exists." : "File does not exist.");
 
-            List<string> sampleNames = new List<string> { "Pat", "Brian", "Shawn" };
+            List<string> sampleNames = new List<string> { "EMPTY", "EMPTY", "EMPTY" };
 
             if (!File.Exists(saveFile))
             {
@@ -47,10 +54,11 @@ namespace Source.PatUtils
 
                 data = new SaveGameData();
                 data.SaveEntries = SaveGameEntries;
-               
+
                 //Serialize the created empty entries and save them to disk.
-                formatter = new BinaryFormatter();
-                stream = new FileStream("Save.dat", FileMode.Create, FileAccess.Write);
+                System.IO.Directory.CreateDirectory(String.Concat(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "/", GameName));
+
+                stream = new FileStream(saveFile, FileMode.Create, FileAccess.Write);
                 formatter.Serialize(stream, data);
                 stream.Close();
             }
@@ -58,8 +66,7 @@ namespace Source.PatUtils
             if (File.Exists(saveFile))
             {
                 //Load Entries
-                formatter = new BinaryFormatter();
-                stream = new FileStream("Save.dat", FileMode.Open, FileAccess.Read);
+                stream = new FileStream(saveFile, FileMode.Open, FileAccess.Read);
                 data = (SaveGameData)formatter.Deserialize(stream);
                 SaveGameEntries = data.SaveEntries;
                 return true;
@@ -68,6 +75,12 @@ namespace Source.PatUtils
             {
                 return false;
             }
+        }
+        public void Save()
+        {
+            stream = new FileStream(saveFile, FileMode.Truncate, FileAccess.Write);
+            formatter.Serialize(stream, data);
+            stream.Close();
         }
     }
 }

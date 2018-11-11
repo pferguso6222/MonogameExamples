@@ -17,7 +17,7 @@ namespace Source.PatUtils
             get; private set;
         }
         public GameConfigData data;
-        public string saveFile = "";
+        string saveFile = "";
         private IFormatter formatter;
         private Stream stream;
 
