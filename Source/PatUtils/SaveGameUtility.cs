@@ -20,6 +20,7 @@ namespace Source.PatUtils
         public int currentSaveDataIndex = 0;
         private IFormatter formatter;
         private Stream stream;
+        public int CurrentPlayer = 0;
 
 
         public SaveGameUtility(string gameName)
