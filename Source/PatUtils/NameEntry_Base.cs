@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
@@ -6,36 +7,40 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
 using MonoGame.Extended.BitmapFonts;
 using MonoGame.Extended.Screens;
-using Source.PatUtils;
 
 namespace Source.PatUtils
 {
-    public class TitleScreen_Base : Screen
+    public class NameEntry_Base : Screen
     {
+
         private Texture2D _background;
         private BitmapFont font_normal;
         private BitmapFont font_highlighted;
         private BitmapFont font_pressed;
-        private BitmapFont font_copyright;
         private SlicedSprite slicedSprite;
 
         KeyboardState previousState;
         GamePadState previousGamepadState;
         ButtonMenu menu;
 
-        public TitleScreen_Base(Texture2D backgroundImage,
+        Rectangle bkgRect;
+        Rectangle player1Rect;
+        Rectangle player2Rect;
+        Rectangle player3Rect;
+
+
+        public NameEntry_Base(
+                                Texture2D backgroundImage,
                                 SlicedSprite slicedSprite,
                                 BitmapFont menuFontNormal,
-                               BitmapFont menuFontHighlighted,
-                               BitmapFont menuFontPressed,
-                               BitmapFont fontCopyright)
+                                BitmapFont menuFontHighlighted,
+                                BitmapFont menuFontPressed)
         {
             _background = backgroundImage;
             this.slicedSprite = slicedSprite;
             font_normal = menuFontNormal;
             font_highlighted = menuFontHighlighted;
             font_pressed = menuFontPressed;
-            font_copyright = fontCopyright;
         }
 
         public override void LoadContent()
@@ -44,47 +49,59 @@ namespace Source.PatUtils
             previousState = Keyboard.GetState();
             previousGamepadState = GamePad.GetState(PlayerIndex.One);
 
-            Point position = GameBase.Instance.ScreenPointFromScreenVector(new Vector2(0.5f, 0.5f));
-            Point spacing = GameBase.Instance.ScreenPointFromScreenVector(new Vector2(0.0f, .1f));
 
-            menu = new ButtonMenu(position:position, 
-                                  cols:1, 
-                                  rows:3, 
-                                  xSpacing:spacing.X, 
-                                  ySpacing:spacing.Y, 
-                                  nextButtonSound:GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonClick_1"), 
-                                  pressButtonSound:GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonSelected_1"), 
-                                  buttonAlignment:Button.ButtonAlignment.CENTER);
+            //THE FOLLOWING IS THE LAYOUT FOR NAME ENTRY BUTTONS. SAVE THIS FOR NAME ENTRY SCREEN
+            int rows = 5;
+            int cols = 6;
 
-            //START GAME BUTTON
-            BitmapFontButton bStartGame = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, "START GAME", new Point(0, 0), Button.ButtonAlignment.CENTER);
-            bStartGame.OnPress = StartGame;
-            menu.addButtonAt(bStartGame, 0, 0);
+            Point menuSpacing = GameBase.Instance.ScreenPointFromScreenVector(new Vector2(.1f, .1f));
 
-            //OPTIONS BUTTON
-            BitmapFontButton bOptions = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, "OPTIONS", new Point(0, 0), Button.ButtonAlignment.CENTER);
-            bOptions.OnPress = LoadOptions;
-            menu.addButtonAt(bOptions, 0, 1);
+            menu = new ButtonMenu(GameBase.Instance.ScreenPointFromScreenVector(new Vector2(.25f, .25f)), 6, 5, menuSpacing.X, menuSpacing.Y, GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonClick_1"), GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonSelected_1"));
 
-            //QUIT GAME
-            BitmapFontButton bQuit = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, "EXIT GAME", new Point(0, 0), Button.ButtonAlignment.CENTER);
-            bQuit.OnPress = QuitVerify;
-            menu.addButtonAt(bQuit, 0, 2);
+            string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ,.!?";
 
-            menu.setActiveButton(0, 0);
+            int row = 0;
+            int col = 0;
+
+            for (int i = 0; i < chars.Length; i++)
+            {
+                char c = chars[i];
+                BitmapFontButton charButton = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, c.ToString(), new Point(0, 0), Button.ButtonAlignment.CENTER);
+                //charButton.OnPress = notifyButtonPressed;
+                menu.addButtonAt(charButton, col, row);
+                col++;
+                if (col >= cols)
+                {
+                    col = 0;
+                    row++;
+                    if (row >= rows)
+                    {
+                        row = rows - 1;
+                    }
+                }
+            }
+
+            menu.setActiveButton(2, 2);
+
+            bkgRect = new Rectangle(new Point(0, 0), new Point(GameBase.Instance.VirtualWidth, GameBase.Instance.VirtualHeight));
+
+            player1Rect = new Rectangle(GameBase.Instance.ScreenPointFromScreenVector(new Vector2(0.2f, 0.2f)), GameBase.Instance.ScreenPointFromScreenVector(new Vector2(.75f, 0.2f)));
+            player2Rect = new Rectangle(GameBase.Instance.ScreenPointFromScreenVector(new Vector2(0.2f, 0.45f)), GameBase.Instance.ScreenPointFromScreenVector(new Vector2(.75f, 0.2f)));
+            player3Rect = new Rectangle(GameBase.Instance.ScreenPointFromScreenVector(new Vector2(0.2f, 0.7f)), GameBase.Instance.ScreenPointFromScreenVector(new Vector2(.75f, 0.2f)));
+
+            Point position = GameBase.Instance.ScreenPointFromScreenVector(new Vector2(0.15f, 0.28f));
+            Point spacing = GameBase.Instance.ScreenPointFromScreenVector(new Vector2(0.0f, .25f));
 
         }
 
-        private void StartGame()
+        private void returnToMain()
         {
-            GameBase.Instance.ChangeGameState(GameBase.GameState.PLAYER_SELECTION_MAIN);
+            GameBase.Instance.ChangeGameState(GameBase.GameState.TITLE_MAIN);
         }
 
-        private void LoadOptions(){
-            GameBase.Instance.ChangeGameState(GameBase.GameState.OPTIONS_MAIN);
-        }
 
-        private void QuitVerify(){
+        private void QuitVerify()
+        {
             menu.Enabled = false;
             PopupSelectionDialog popup = new PopupSelectionDialog(GameBase.Instance,
                                              slicedSprite,
@@ -104,31 +121,30 @@ namespace Source.PatUtils
             };
         }
 
-        private void CancelQuit(){
+        private void CancelQuit()
+        {
             menu.Enabled = true;
         }
 
-        private void QuitGame(){
+        private void QuitGame()
+        {
             GameBase.Instance.Exit();
         }
 
         public override void Update(GameTime gameTime)
         {
-           // base.Update(gameTime);
+            // base.Update(gameTime);
 
             KeyboardState state = Keyboard.GetState();
 
             // If they hit esc, exit
             if (state.IsKeyDown(Keys.Escape))
-                GameBase.Instance.Exit();
+            {
+                menu.Enabled = false;
+                returnToMain();
+            }
 
             // Move our sprite based on arrow keys being pressed:
-            if (state.IsKeyDown(Keys.Right) & !previousState.IsKeyDown(
-                Keys.Right))
-                menu.setActiveOffset(1, 0);
-            if (state.IsKeyDown(Keys.Left) & !previousState.IsKeyDown(
-                Keys.Left))
-                menu.setActiveOffset(-1, 0);
             if (state.IsKeyDown(Keys.Up) & !previousState.IsKeyDown(
                 Keys.Up))
                 menu.setActiveOffset(0, -1);
@@ -141,6 +157,7 @@ namespace Source.PatUtils
             if (state.IsKeyDown(Keys.Enter) & !previousState.IsKeyDown(
                 Keys.Enter))
                 menu.PressCurrentButton();
+
 
             previousState = state;
 
@@ -179,9 +196,21 @@ namespace Source.PatUtils
         {
             StaticSpriteBatch.Instance.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, null, Matrix.CreateScale(1.0f));
             StaticSpriteBatch.Instance.Draw(_background, new Rectangle(new Point(0, 0), new Point(GameBase.Instance.VirtualWidth, GameBase.Instance.VirtualHeight)), Color.White);
+
+
+            StaticSpriteBatch.Instance.End();
+
+            slicedSprite.SetRectangle(bkgRect);
+            slicedSprite.anchorPoint = SlicedSprite.alignment.ALIGNMENT_TOP_LEFT;
+            slicedSprite.Draw();
+
+            StaticSpriteBatch.Instance.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, null, Matrix.CreateScale(1.0f));
             menu.Draw(gameTime);
-            StaticSpriteBatch.Instance.DrawString(font_copyright, "Copyright 2018", new Vector2((GameBase.Instance.VirtualWidth * .5f) - (font_copyright.GetStringRectangle("Copyright 2018").Width / 2), (float)(GameBase.Instance.VirtualHeight * .90f)), Color.White, 0.0f, new Vector2(0, 0), GameBase.Instance.GetCurrentPixelScale(), SpriteEffects.None, 0.0f);
+
+            StaticSpriteBatch.Instance.DrawString(font_normal, "PLAYER NAME", new Vector2(GameBase.Instance.VirtualWidth * .5f, GameBase.Instance.VirtualHeight * .1f), Color.White, 0.0f, new Vector2(font_normal.GetStringRectangle("PLAYER NAME").Width / 2, .5f), GameBase.Instance.GetCurrentPixelScale(), SpriteEffects.None, 0.0f);
+
             StaticSpriteBatch.Instance.End();
         }
     }
 }
+

@@ -52,39 +52,6 @@ namespace Source.PatUtils
             previousState = Keyboard.GetState();
             previousGamepadState = GamePad.GetState(PlayerIndex.One);
 
-            /*
-            //THE FOLLOWING IS THE LAYOUT FOR NAME ENTRY BUTTONS. SAVE THIS FOR NAME ENTRY SCREEN
-            int rows = 5;
-            int cols = 6;
-
-            menu = new ButtonMenu(120, 120, 6, 5, new Vector2(400, 200), GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonClick_1"), GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonSelected_1"));
-
-            string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ,.!?";
-
-            int row = 0;
-            int col = 0;
-
-            for (int i = 0; i < chars.Length; i++)
-            {
-                char c = chars[i];
-                BitmapFontButton charButton = new BitmapFontButton(GameBase.Instance.spriteBatch, font_normal, font_highlighted, font_pressed, c.ToString(), new Vector2(0, 0), new Vector2(0, 0), 4.0f);
-                charButton.OnPress = notifyButtonPressed;
-                menu.addButtonAt(charButton, col, row);
-                col++;
-                if (col >= cols)
-                {
-                    col = 0;
-                    row++;
-                    if (row >= rows)
-                    {
-                        row = rows - 1;
-                    }
-                }
-            }
-
-            menu.setActiveButton(2, 2);
-
-            */
             bkgRect = new Rectangle(new Point(0,0), new Point(GameBase.Instance.VirtualWidth, GameBase.Instance.VirtualHeight));
 
             player1Rect = new Rectangle(GameBase.Instance.ScreenPointFromScreenVector(new Vector2(0.2f, 0.2f)), GameBase.Instance.ScreenPointFromScreenVector(new Vector2(.75f, 0.2f)));
@@ -105,23 +72,50 @@ namespace Source.PatUtils
 
             //START GAME BUTTON
             BitmapFontButton bPlayer0 = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, ">", new Point(0, 0), Button.ButtonAlignment.LEFT);
-            //bStartGame.OnPress = notifyButtonPressed;
+            bPlayer0.OnPress = pressedPlayer1;
             menu.addButtonAt(bPlayer0, 0, 0);
 
             //OPTIONS BUTTON
             BitmapFontButton bPlayer1 = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, ">", new Point(0, 0), Button.ButtonAlignment.LEFT);
-            //bOptions.OnPress = LoadOptions;
+            bPlayer1.OnPress = pressedPlayer2;
             menu.addButtonAt(bPlayer1, 0, 1);
 
             //QUIT GAME
             BitmapFontButton bPlayer2 = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, ">", new Point(0, 0), Button.ButtonAlignment.LEFT);
-            //bQuit.OnPress = QuitVerify;
+            bPlayer2.OnPress = pressedPlayer3;
             menu.addButtonAt(bPlayer2, 0, 2);
 
             menu.setActiveButton(0, 0);
         }
 
-        
+        private void pressedPlayer1()
+        {
+            SaveGameUtility.Instance.CurrentPlayer = 0;
+            if (SaveGameUtility.Instance.SaveGameEntries[SaveGameUtility.Instance.CurrentPlayer].Name == "EMPTY")
+            {
+                GameBase.Instance.ChangeGameState(GameBase.GameState.PLAYER_ENTRY_MAIN);
+            }
+        }
+
+        private void pressedPlayer2()
+        {
+            SaveGameUtility.Instance.CurrentPlayer = 1;
+            if (SaveGameUtility.Instance.SaveGameEntries[SaveGameUtility.Instance.CurrentPlayer].Name == "EMPTY")
+            {
+                GameBase.Instance.ChangeGameState(GameBase.GameState.PLAYER_ENTRY_MAIN);
+            }
+        }
+
+        private void pressedPlayer3()
+        {
+            SaveGameUtility.Instance.CurrentPlayer = 2;
+            if (SaveGameUtility.Instance.SaveGameEntries[SaveGameUtility.Instance.CurrentPlayer].Name == "EMPTY")
+            {
+                GameBase.Instance.ChangeGameState(GameBase.GameState.PLAYER_ENTRY_MAIN);
+            }
+        }
+
+
         private void returnToMain()
         {
             GameBase.Instance.ChangeGameState(GameBase.GameState.TITLE_MAIN);
