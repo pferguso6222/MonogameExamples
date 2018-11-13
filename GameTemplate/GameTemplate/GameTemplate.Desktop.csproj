@@ -90,8 +90,12 @@
     <Compile Include="..\..\Source\PatUtils\SlicedSpriteAnimator.cs">
       <Link>Content\PatUtils\SlicedSpriteAnimator.cs</Link>
     </Compile>
-    <Compile Include="..\..\Source\PatUtils\SaveGameSelect_Base.cs" />
-    <Compile Include="..\..\Source\PatUtils\NameEntry_Base.cs" />
+    <Compile Include="..\..\Source\PatUtils\SaveGameSelect_Base.cs">
+      <Link>Content\SaveGameSelect_Base.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Source\PatUtils\NameEntry_Base.cs">
+      <Link>Content\NameEntry_Base.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Extended, Version=3.6.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -176,7 +180,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
-    <None Include="..\..\Source\PatUtils\Scanlines.fx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

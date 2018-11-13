@@ -24,6 +24,7 @@ namespace GameTemplate.Desktop
         public SlicedSprite slicedSprite;
 
         RenderTarget2D RenderTarget;
+        Effect scanlines;
 
         public Game1(int VirtualWidth, int VirtualHeight) : base(VirtualWidth, VirtualHeight){
             this.VirtualWidth = VirtualWidth;
@@ -89,6 +90,11 @@ namespace GameTemplate.Desktop
             SaveGameSelectScreen = new SaveGameSelect_Base(menu_background, slicedSprite, menu_font_normal, menu_font_highlighted, menu_font_pressed, menu_font_copyright);
             NameEntryScreen = new NameEntry_Base(menu_background, slicedSprite, menu_font_normal, menu_font_highlighted, menu_font_pressed);
             ChangeGameState(GameState.TITLE_MAIN);//Make this the program start
+
+            scanlines = Content.Load<Effect>("Shaders/Scanlines");
+            scanlines.CurrentTechnique = scanlines.Techniques["BasicColorDrawing"];
+            Console.WriteLine("SHADER:" + scanlines.ToString());
+
         }
 
         protected override void UnloadContent()
@@ -107,7 +113,6 @@ namespace GameTemplate.Desktop
 
                     break;
                 case GameState.TITLE_MAIN:
-                    //screenManager.LoadScreen(titleScreen);
                     screenManager.LoadScreen(TitleScreen, new FadeTransition(GraphicsDevice, Color.Black, 1.0f));
                     break;
                 case GameState.PLAYER_SELECTION_MAIN:
@@ -117,7 +122,6 @@ namespace GameTemplate.Desktop
                     screenManager.LoadScreen(NameEntryScreen, new FadeTransition(GraphicsDevice, Color.Black, 1.0f));
                     break;
                 case GameState.OPTIONS_MAIN:
-                    //screenManager.LoadScreen(optionsScreen);
                     screenManager.LoadScreen(OptionsScreen, new FadeTransition(GraphicsDevice, Color.Black, 1.0f));
                     break;
             }
@@ -141,7 +145,8 @@ namespace GameTemplate.Desktop
             screenManager.Draw(gameTime);
             base.Draw(gameTime);
             GraphicsDevice.SetRenderTarget(null);
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, GameBase.Instance.SamplerState, DepthStencilState.Default, RasterizerState.CullNone, null, Matrix.CreateScale(1.0f));
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, GameBase.Instance.SamplerState, DepthStencilState.Default, RasterizerState.CullNone, null, Matrix.CreateScale(1.0f));
+            scanlines.CurrentTechnique.Passes[0].Apply();
             spriteBatch.Draw(RenderTarget, new Rectangle(0, 0, ScreenWidth, ScreenHeight), ScreenRect, Color.White);
             spriteBatch.End();
         }

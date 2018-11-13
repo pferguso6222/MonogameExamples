@@ -28,6 +28,13 @@ namespace Source.PatUtils
         Rectangle player2Rect;
         Rectangle player3Rect;
 
+        string chars;
+        string chars_caps = "ABCDEFGHIJKLMNOPQRSTUVWXYZ,.!?";
+        string chars_lowercase = "abcdefghijklmnopqrstuvwxyz,.!?";
+        string char_spc = "SPC";
+        string char_del = "DEL";
+        string char_left = "<";
+        string char_right = ">";
 
         public NameEntry_Base(
                                 Texture2D backgroundImage,
@@ -58,7 +65,7 @@ namespace Source.PatUtils
 
             menu = new ButtonMenu(GameBase.Instance.ScreenPointFromScreenVector(new Vector2(.25f, .25f)), 6, 5, menuSpacing.X, menuSpacing.Y, GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonClick_1"), GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonSelected_1"));
 
-            string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ,.!?";
+            chars = chars_caps;
 
             int row = 0;
             int col = 0;
