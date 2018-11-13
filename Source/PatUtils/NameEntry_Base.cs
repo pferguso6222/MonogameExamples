@@ -28,13 +28,18 @@ namespace Source.PatUtils
         Rectangle player2Rect;
         Rectangle player3Rect;
 
+        private int rows = 6;
+        private int cols = 6;
         string chars;
         string chars_caps = "ABCDEFGHIJKLMNOPQRSTUVWXYZ,.!?";
         string chars_lowercase = "abcdefghijklmnopqrstuvwxyz,.!?";
+        string char_shft = "SHFT";
         string char_spc = "SPC";
         string char_del = "DEL";
+        string char_end = "END";
         string char_left = "<";
         string char_right = ">";
+        bool caps;
 
         public NameEntry_Base(
                                 Texture2D backgroundImage,
@@ -56,16 +61,11 @@ namespace Source.PatUtils
             previousState = Keyboard.GetState();
             previousGamepadState = GamePad.GetState(PlayerIndex.One);
 
-
-            //THE FOLLOWING IS THE LAYOUT FOR NAME ENTRY BUTTONS. SAVE THIS FOR NAME ENTRY SCREEN
-            int rows = 5;
-            int cols = 6;
-
             Point menuSpacing = GameBase.Instance.ScreenPointFromScreenVector(new Vector2(.1f, .1f));
 
-            menu = new ButtonMenu(GameBase.Instance.ScreenPointFromScreenVector(new Vector2(.25f, .25f)), 6, 5, menuSpacing.X, menuSpacing.Y, GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonClick_1"), GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonSelected_1"));
+            menu = new ButtonMenu(GameBase.Instance.ScreenPointFromScreenVector(new Vector2(.5f, .25f)), 6, 6, menuSpacing.X, menuSpacing.Y, GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonClick_1"), GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonSelected_1"), Button.ButtonAlignment.CENTER);
 
-            chars = chars_caps;
+            chars = chars_lowercase;
 
             int row = 0;
             int col = 0;
@@ -74,19 +74,30 @@ namespace Source.PatUtils
             {
                 char c = chars[i];
                 BitmapFontButton charButton = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, c.ToString(), new Point(0, 0), Button.ButtonAlignment.CENTER);
-                //charButton.OnPress = notifyButtonPressed;
+                charButton.OnPress = notifyButtonPressed;
                 menu.addButtonAt(charButton, col, row);
                 col++;
                 if (col >= cols)
                 {
                     col = 0;
                     row++;
-                    if (row >= rows)
-                    {
-                        row = rows - 1;
-                    }
                 }
             }
+            BitmapFontButton button_shft = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, char_shft, new Point(0, 0), Button.ButtonAlignment.CENTER);
+            BitmapFontButton button_spc = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, char_spc, new Point(0, 0), Button.ButtonAlignment.CENTER);
+            BitmapFontButton button_del = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, char_del, new Point(0, 0), Button.ButtonAlignment.CENTER);
+            BitmapFontButton button_end = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, char_end, new Point(0, 0), Button.ButtonAlignment.CENTER);
+            BitmapFontButton button_left = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, char_left, new Point(0, 0), Button.ButtonAlignment.CENTER);
+            BitmapFontButton button_right = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, char_right, new Point(0, 0), Button.ButtonAlignment.CENTER);
+
+            button_shft.OnPress = button_spc.OnPress = button_del.OnPress = button_end.OnPress = button_right.OnPress = button_left.OnPress = notifyButtonPressed;
+
+            menu.addButtonAt(button_shft, 0, 5);
+            menu.addButtonAt(button_spc, 1, 5);
+            menu.addButtonAt(button_del, 2, 5);
+            menu.addButtonAt(button_left, 3, 5);
+            menu.addButtonAt(button_right, 4, 5);
+            menu.addButtonAt(button_end, 5, 5);
 
             menu.setActiveButton(2, 2);
 
@@ -99,6 +110,47 @@ namespace Source.PatUtils
             Point position = GameBase.Instance.ScreenPointFromScreenVector(new Vector2(0.15f, 0.28f));
             Point spacing = GameBase.Instance.ScreenPointFromScreenVector(new Vector2(0.0f, .25f));
 
+        }
+
+        private void notifyButtonPressed()
+        {
+            BitmapFontButton b = (BitmapFontButton)menu.getButtonAt(menu.xIndex, menu.yIndex);
+            string buttonString = b._buttonText;
+
+            Console.WriteLine(buttonString + " pressed.");
+
+            if (buttonString == char_shft)
+            {
+                toggleCaps();
+            }
+        }
+
+        private void toggleCaps()
+        {
+
+            caps = !caps;
+            if (caps)
+            {
+                chars = chars_caps;
+            }
+            else
+            {
+                chars = chars_lowercase;
+            }
+            int row = 0;
+            int col = 0;
+
+            for (int i = 0; i < chars.Length; i++)
+            {
+                BitmapFontButton charButton = (BitmapFontButton)menu.getButtonAt(col, row);
+                charButton._buttonText = chars[i].ToString();
+                    col++;
+                if (col >= cols)
+                {
+                    col = 0;
+                    row++;
+                }
+            }
         }
 
         private void returnToMain()
@@ -158,6 +210,12 @@ namespace Source.PatUtils
             if (state.IsKeyDown(Keys.Down) & !previousState.IsKeyDown(
                 Keys.Down))
                 menu.setActiveOffset(0, 1);
+            if (state.IsKeyDown(Keys.Right) & !previousState.IsKeyDown(
+                Keys.Right))
+                menu.setActiveOffset(1, 0);
+            if (state.IsKeyDown(Keys.Left) & !previousState.IsKeyDown(
+                Keys.Left))
+                menu.setActiveOffset(-1, 0);
             if (state.IsKeyDown(Keys.Space) & !previousState.IsKeyDown(
                 Keys.Space))
                 menu.PressCurrentButton();

@@ -146,7 +146,7 @@ namespace GameTemplate.Desktop
             base.Draw(gameTime);
             GraphicsDevice.SetRenderTarget(null);
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, GameBase.Instance.SamplerState, DepthStencilState.Default, RasterizerState.CullNone, null, Matrix.CreateScale(1.0f));
-            scanlines.CurrentTechnique.Passes[0].Apply();
+            //scanlines.CurrentTechnique.Passes[0].Apply();
             spriteBatch.Draw(RenderTarget, new Rectangle(0, 0, ScreenWidth, ScreenHeight), ScreenRect, Color.White);
             spriteBatch.End();
         }

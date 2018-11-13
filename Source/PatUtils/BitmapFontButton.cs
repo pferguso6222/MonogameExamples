@@ -12,7 +12,7 @@ namespace Source.PatUtils
         BitmapFont _textPressed;
 
         public Point _origin = new Point();
-        string _buttonText;
+        public string _buttonText;
         protected SpriteBatch _spriteBatch;
         private Point _current_position = new Point();
 
