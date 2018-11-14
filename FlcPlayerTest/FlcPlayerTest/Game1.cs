@@ -43,6 +43,14 @@ namespace FlcPlayerTest.Desktop
 
         private void OnPlaybackFinished(FLCFile file, bool didFinishNormally)
         {
+            Color black = new Color(0, 0, 0, 1);
+            data = new Color[128 * 128];
+            for (int i = 0; i < data.Length; i++)
+            {
+                data[i] = black;
+            }
+            
+            tex.SetData(data);
             file.Dispose();
             file = null;
         }

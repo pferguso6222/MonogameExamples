@@ -10,6 +10,12 @@
 
 #-------------------------------- References --------------------------------#
 
+/reference:..\..\lib\FLCLib.MonoGame\FLCLib.MonoGame.dll
 
 #---------------------------------- Content ---------------------------------#
+
+#begin MrTesty_Sample.flc
+/importer:OpenAssetImporter
+/processor:PassThroughProcessor
+/build:MrTesty_Sample.flc
 
