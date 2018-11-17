@@ -91,8 +91,8 @@ namespace GameTemplate.Desktop
             NameEntryScreen = new NameEntry_Base(menu_background, slicedSprite, menu_font_normal, menu_font_highlighted, menu_font_pressed);
             ChangeGameState(GameState.TITLE_MAIN);//Make this the program start
 
-            scanlines = Content.Load<Effect>("Shaders/Scanlines");
-            scanlines.CurrentTechnique = scanlines.Techniques["BasicColorDrawing"];
+            scanlines = Content.Load<Effect>("Shaders/CRT");
+            scanlines.CurrentTechnique = scanlines.Techniques[0];
             Console.WriteLine("SHADER:" + scanlines.ToString());
 
         }
