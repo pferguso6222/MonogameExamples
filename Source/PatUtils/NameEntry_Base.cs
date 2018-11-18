@@ -39,13 +39,14 @@ namespace Source.PatUtils
         string char_end = "END";
         string char_left = "<";
         string char_right = ">";
-        string char_underscore = "_";
-        bool caps;
+        string char_underscore = "<";
+        bool caps = true;
 
         string currentName = "";
-        string currentNameString = "";
+        string currentNameString = "ENTER NAME";
 
         int charIndex = 0;
+        int maxChars = 8;
 
         public NameEntry_Base(
                                 Texture2D backgroundImage,
@@ -71,7 +72,7 @@ namespace Source.PatUtils
 
             menu = new ButtonMenu(GameBase.Instance.ScreenPointFromScreenVector(new Vector2(.5f, .25f)), 6, 6, menuSpacing.X, menuSpacing.Y, GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonClick_1"), GameBase.Instance.Content.Load<SoundEffect>(".\\ButtonSelected_1"), Button.ButtonAlignment.CENTER);
 
-            chars = chars_lowercase;
+            chars = chars_caps;
 
             int row = 0;
             int col = 0;
@@ -125,10 +126,53 @@ namespace Source.PatUtils
 
             Console.WriteLine(buttonString + " pressed.");
 
-            if (buttonString == char_shft)
+            if (buttonString == char_shft)//toggle caps
             {
                 toggleCaps();
+            }else if (buttonString == char_left)//make cursor go left
+            {
+                charIndex--;
+                if (charIndex <= 0) charIndex = 0;
             }
+            else if (buttonString == char_right)//make cursor go right
+            {
+                charIndex++;
+                if (charIndex >= currentName.Length) charIndex = currentName.Length;
+            }
+            else if (buttonString == char_spc)//make space
+            {
+                if (currentName.Length < maxChars)
+                {
+                    currentName = currentName.Insert(charIndex, " ");
+                    charIndex++;
+                    if (charIndex >= currentName.Length) charIndex = currentName.Length;
+                }
+            }
+            else if (buttonString == char_del)//remove char at charIndex
+            {
+                if (currentName.Length > 0)
+                {
+                    currentName = currentName.Remove(charIndex - 1, 1);
+                    charIndex--;
+                    if (charIndex <= 0) charIndex = 0;
+                }
+            }
+
+            else //Add Character to Name String
+            {
+                if (currentName.Length < maxChars)
+                {
+                    currentName = currentName.Insert(charIndex, buttonString);
+                    charIndex++;
+                    if (charIndex >= currentName.Length) charIndex = currentName.Length;
+                }
+            }
+            UpdateCurrentName();
+        }
+
+        private void UpdateCurrentName(){
+            currentNameString = currentName;
+            currentNameString = currentNameString.Insert(charIndex, char_underscore.ToString());
         }
 
         private void toggleCaps()
@@ -280,7 +324,7 @@ namespace Source.PatUtils
 
             StaticSpriteBatch.Instance.DrawString(font_normal, "PLAYER NAME", new Vector2(GameBase.Instance.VirtualWidth * .5f, GameBase.Instance.VirtualHeight * .1f), Color.White, 0.0f, new Vector2(font_normal.GetStringRectangle("PLAYER NAME").Width / 2, .5f), GameBase.Instance.GetCurrentPixelScale(), SpriteEffects.None, 0.0f);
 
-            StaticSpriteBatch.Instance.DrawString(font_normal, currentNameString, new Vector2(GameBase.Instance.VirtualWidth * .5f, GameBase.Instance.VirtualHeight * .1f), Color.White, 0.0f, new Vector2(font_normal.GetStringRectangle(currentNameString).Width / 2, .5f), GameBase.Instance.GetCurrentPixelScale(), SpriteEffects.None, 0.0f);
+            StaticSpriteBatch.Instance.DrawString(font_highlighted, currentNameString, new Vector2(GameBase.Instance.VirtualWidth * .5f, GameBase.Instance.VirtualHeight * .15f), Color.White, 0.0f, new Vector2(font_normal.GetStringRectangle(currentNameString).Width / 2, .5f), GameBase.Instance.GetCurrentPixelScale(), SpriteEffects.None, 0.0f);
 
             StaticSpriteBatch.Instance.End();
         }

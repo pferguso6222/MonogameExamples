@@ -85,10 +85,10 @@ namespace GameTemplate.Desktop
             BitmapFont menu_font_pressed = Content.Load<BitmapFont>(".\\YosterIsland_12px");
             BitmapFont menu_font_copyright = menu_font_normal;
 
-            TitleScreen = new TitleScreen_Base(menu_background, slicedSprite, menu_font_normal, menu_font_highlighted, menu_font_pressed, menu_font_copyright);
-            OptionsScreen = new Options_Base(menu_background, menu_font_normal, menu_font_highlighted, menu_font_pressed);
-            SaveGameSelectScreen = new SaveGameSelect_Base(menu_background, slicedSprite, menu_font_normal, menu_font_highlighted, menu_font_pressed, menu_font_copyright);
-            NameEntryScreen = new NameEntry_Base(menu_background, slicedSprite, menu_font_normal, menu_font_highlighted, menu_font_pressed);
+            TitleScreen = new TitleScreen_Base(menu_background, slicedSprite, menu_font_normal, menu_font_pressed, menu_font_pressed, menu_font_copyright);
+            OptionsScreen = new Options_Base(menu_background, menu_font_normal, menu_font_pressed, menu_font_pressed);
+            SaveGameSelectScreen = new SaveGameSelect_Base(menu_background, slicedSprite, menu_font_normal, menu_font_pressed, menu_font_pressed, menu_font_copyright);
+            NameEntryScreen = new NameEntry_Base(menu_background, slicedSprite, menu_font_normal, menu_font_pressed, menu_font_pressed);
             ChangeGameState(GameState.TITLE_MAIN);//Make this the program start
 
             //scanlines = Content.Load<Effect>("Shaders/CRT");
