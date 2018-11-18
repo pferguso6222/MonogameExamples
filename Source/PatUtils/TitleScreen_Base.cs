@@ -23,6 +23,8 @@ namespace Source.PatUtils
         GamePadState previousGamepadState;
         ButtonMenu menu;
 
+        PopupSelectionDialog popup;
+
         public TitleScreen_Base(Texture2D backgroundImage,
                                 SlicedSprite slicedSprite,
                                 BitmapFont menuFontNormal,
@@ -43,6 +45,23 @@ namespace Source.PatUtils
             base.LoadContent();
             previousState = Keyboard.GetState();
             previousGamepadState = GamePad.GetState(PlayerIndex.One);
+
+            popup = new PopupSelectionDialog(GameBase.Instance,
+                                             slicedSprite,
+                                                                  GameBase.Instance.ScreenPointFromScreenVector(new Vector2(0.5f, 0.5f)),
+                                                                  GameBase.Instance.ScreenPointFromScreenVector(new Vector2(.5f, .25f)),
+                                             GameBase.Instance.GetCurrentPixelScale(),
+                                             SlicedSprite.alignment.ALIGNMENT_MID_CENTER,
+                                             "ARE YOU SURE YOU WANT TO QUIT?",
+                                             "YES",
+                                             "NO",
+                                             font_normal,
+                                             font_pressed,
+                                             font_pressed)
+            {
+                notifyPressedButtonA = QuitGame,
+                notifyPressedButtonB = CancelQuit
+            };
 
             Point position = GameBase.Instance.ScreenPointFromScreenVector(new Vector2(0.5f, 0.5f));
             Point spacing = GameBase.Instance.ScreenPointFromScreenVector(new Vector2(0.0f, .1f));
@@ -86,22 +105,7 @@ namespace Source.PatUtils
 
         private void QuitVerify(){
             menu.Enabled = false;
-            PopupSelectionDialog popup = new PopupSelectionDialog(GameBase.Instance,
-                                             slicedSprite,
-                                                                  GameBase.Instance.ScreenPointFromScreenVector(new Vector2(0.5f, 0.5f)),
-                                                                  GameBase.Instance.ScreenPointFromScreenVector(new Vector2(.5f, .25f)),
-                                             GameBase.Instance.GetCurrentPixelScale(),
-                                             SlicedSprite.alignment.ALIGNMENT_MID_CENTER,
-                                             "ARE YOU SURE YOU WANT TO QUIT?",
-                                             "YES",
-                                             "NO",
-                                             font_normal,
-                                             font_pressed,
-                                             font_pressed)
-            {
-                notifyPressedButtonA = QuitGame,
-                notifyPressedButtonB = CancelQuit
-            };
+            popup.Open();
         }
 
         private void CancelQuit(){
@@ -173,6 +177,12 @@ namespace Source.PatUtils
         public override void UnloadContent()
         {
             base.UnloadContent();
+        }
+
+        public new void Dispose()
+        {
+            popup.Dispose();
+            popup = null;
         }
 
         public override void Draw(GameTime gameTime)

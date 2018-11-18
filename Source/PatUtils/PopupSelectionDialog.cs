@@ -19,6 +19,7 @@ namespace Source.PatUtils
 
         private SlicedSprite _slicedSprite;
         private SlicedSpriteAnimator slicedSpriteAnimator;
+        private SlicedSprite.alignment alignment;
 
         protected BitmapFont font_normal;
         protected BitmapFont font_highlighted;
@@ -62,6 +63,8 @@ namespace Source.PatUtils
         {
             Game = game;
             _slicedSprite = slicedSprite;
+            this.alignment = alignment;
+            _slicedSprite.anchorPoint = this.alignment;
             _endRect = new Rectangle(location.X, location.Y, size.X, size.Y);
             _startRect = new Rectangle(location.X, location.Y, 16, 16);
             this.pixelScaleFactor = pixelScaleFactor;
@@ -81,7 +84,6 @@ namespace Source.PatUtils
             RectangleF buttonBRect = fontNormal.GetStringRectangle(buttonBText);
             buttonBRect.Width *= pixelScaleFactor;
             buttonBRect.Height *= pixelScaleFactor;
-
 
             int contentPaddingY = contentRect.Height / 3;
             int contentPaddingX = contentRect.Width / 3;
@@ -104,7 +106,6 @@ namespace Source.PatUtils
 
             Console.WriteLine("menuPositionX:" + menuPositionX +", Y:" + menuPositionY);
 
-
             menu = new ButtonMenu(new Point(location.X, menuPositionY), 2, 1, menuPaddingX, 0, null, null, Button.ButtonAlignment.CENTER);
 
             buttonA = new BitmapFontButton(StaticSpriteBatch.Instance, font_normal, font_highlighted, font_pressed, _buttonAText, new Point(0, 0), Button.ButtonAlignment.CENTER);
@@ -116,25 +117,30 @@ namespace Source.PatUtils
             menu.addButtonAt(buttonA, 0, 0);
             menu.addButtonAt(buttonB, 1, 0);
 
+            menu.Enabled = false;
+
             //buttonA._position = new Vector2(locatio);
 
             slicedSpriteAnimator = new SlicedSpriteAnimator(GameBase.Instance);
-            GameBase.Instance.Components.Add(this);
             this.DrawOrder = 1;
-            Open();
         }
 
         public void Open(){
+            this.DrawOrder = 100;
+            _slicedSprite.anchorPoint = this.alignment;
+            GameBase.Instance.Components.Add(this);
             slicedSpriteAnimator.AnimateSlicedSprite(_slicedSprite, _startRect, _endRect, .25f, 0f, openComplete);
         }
 
         private void CloseA()
         {
+            menu.Enabled = false;
             this.DrawOrder = -100;
             contentShowing = false;
             slicedSpriteAnimator.AnimateSlicedSprite(_slicedSprite, _endRect, _startRect, .25f, 0f, closeCompleteA);
         }
         private void CloseB(){
+            menu.Enabled = false;
             this.DrawOrder = -100;
             contentShowing = false;
             slicedSpriteAnimator.AnimateSlicedSprite(_slicedSprite, _endRect, _startRect, .25f, 0f, closeCompleteB);
@@ -142,6 +148,7 @@ namespace Source.PatUtils
 
         private void openComplete(Tween tween){
             contentShowing = true;
+            menu.Enabled = true;
             menu.setActiveButton(0, 0);
             notifyOpenComplete?.Invoke();
         }
@@ -151,7 +158,6 @@ namespace Source.PatUtils
             slicedSpriteAnimator.DismissSprite();
             notifyPressedButtonA?.Invoke();
             notifyCloseComplete?.Invoke();
-            Dispose();
         }
 
         private void closeCompleteB(Tween tween)
@@ -160,7 +166,6 @@ namespace Source.PatUtils
             slicedSpriteAnimator.DismissSprite();
             notifyPressedButtonB?.Invoke();
             notifyCloseComplete?.Invoke();
-            Dispose();
         }
 
         private void buttonAPressed(){
