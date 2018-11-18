@@ -31,9 +31,9 @@ namespace Source.PatUtils
         protected Rectangle _startRect;
         protected Rectangle _endRect;
 
-        private string _dialogText;
-        private string _buttonAText;
-        private string _buttonBText;
+        public string _dialogText;
+        public string _buttonAText;
+        public string _buttonBText;
 
         private Vector2 _dialogTextPosition;
 

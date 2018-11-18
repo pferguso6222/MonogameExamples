@@ -29,7 +29,7 @@ namespace Source.PatUtils
             // SaveFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             GameName = gameName;
             saveFile = String.Concat(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "/", GameName, "/Save.dat");
-            Console.WriteLine("SaveFolderFath:" + SaveFolderPath);
+            Console.WriteLine("SaveFolderFath:" + saveFile);
             formatter = new BinaryFormatter();
             Instance = this;
         }
@@ -70,6 +70,7 @@ namespace Source.PatUtils
                 stream = new FileStream(saveFile, FileMode.Open, FileAccess.Read);
                 data = (SaveGameData)formatter.Deserialize(stream);
                 SaveGameEntries = data.SaveEntries;
+                stream.Close();
                 return true;
             }
             else
@@ -82,6 +83,15 @@ namespace Source.PatUtils
             stream = new FileStream(saveFile, FileMode.Truncate, FileAccess.Write);
             formatter.Serialize(stream, data);
             stream.Close();
+        }
+
+        public void EraseData(int index){
+            SaveGameEntry saveGameEntry = new SaveGameEntry();
+            saveGameEntry.ID = index;
+            saveGameEntry.Name = "EMPTY";
+            saveGameEntry.LevelsComplete = 0;
+            data.SaveEntries[index] = saveGameEntry;
+            Save();
         }
     }
 }

@@ -80,6 +80,14 @@ namespace Source.PatUtils
             }
         }
 
+        public void setButtonEnabled(int col, int row, bool enable){
+            Button b = buttons[col, row];
+            if (b != null)
+            {
+                b.Enabled = enable;
+            }
+        }
+
         private void notifyButtonPressed(){
 
         }
@@ -89,6 +97,7 @@ namespace Source.PatUtils
         }
 
         public void addButtonAt(Button button, int col, int row){
+            button.Enabled = true;
             buttons[col, row] = button;
             updateButtonPositions();
         }
@@ -168,14 +177,17 @@ namespace Source.PatUtils
 
                 Button b = buttons[xIndex, yIndex];
 
-                if (b != null)
+                if (b != null && b.Enabled)
                 {
                     b.State = Button.BUTTON_STATE.HIGHLIGHTED;
-                    b.Enabled = true;
+                   // b.Enabled = true;
                     if (sound_move_to_next_button != null)
                     {
                         sound_move_to_next_button.Play();
                     }
+                }
+                if (!b.Enabled){
+                    setActiveOffset(x, y);
                 }
             }
         }
@@ -188,15 +200,15 @@ namespace Source.PatUtils
                 yIndex = row;
                 setAllNormal();
                 Button b = buttons[col, row];
-                if (b != null)
+                if (b != null && b.Enabled)
                 {
                     b.State = Button.BUTTON_STATE.HIGHLIGHTED;
-                    b.Enabled = true;
+                    //b.Enabled = true;
                 }
             }
         }
 
-        private void setAllNormal(){
+        public void setAllNormal(){
             for (int i = 0; i < _cols; i++)
             {
                 for (int j = 0; j < _rows; j++)
@@ -205,7 +217,7 @@ namespace Source.PatUtils
                     if (b != null)
                     {
                         b.State = Button.BUTTON_STATE.NORMAL;
-                        b.Enabled = false;
+                        //b.Enabled = false;
                     }
                 }
             }

@@ -18,6 +18,7 @@ namespace Source.PatUtils
         private BitmapFont font_highlighted;
         private BitmapFont font_pressed;
         private SlicedSprite slicedSprite;
+        PopupSelectionDialog verificationPopup;
 
         KeyboardState previousState;
         GamePadState previousGamepadState;
@@ -43,7 +44,7 @@ namespace Source.PatUtils
         bool caps = true;
 
         string currentName = "";
-        string currentNameString = "ENTER NAME";
+        string currentNameString = "<";
 
         int charIndex = 0;
         int maxChars = 8;
@@ -60,6 +61,14 @@ namespace Source.PatUtils
             font_normal = menuFontNormal;
             font_highlighted = menuFontHighlighted;
             font_pressed = menuFontPressed;
+        }
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            charIndex = 0;
+            currentName = "";
+            currentNameString = "<";
         }
 
         public override void LoadContent()
@@ -117,6 +126,39 @@ namespace Source.PatUtils
             Point position = GameBase.Instance.ScreenPointFromScreenVector(new Vector2(0.15f, 0.28f));
             Point spacing = GameBase.Instance.ScreenPointFromScreenVector(new Vector2(0.0f, .25f));
 
+            verificationPopup = new PopupSelectionDialog(GameBase.Instance,
+                                             slicedSprite,
+                                                                  GameBase.Instance.ScreenPointFromScreenVector(new Vector2(0.5f, 0.5f)),
+                                                                  GameBase.Instance.ScreenPointFromScreenVector(new Vector2(.5f, .25f)),
+                                             GameBase.Instance.GetCurrentPixelScale(),
+                                             SlicedSprite.alignment.ALIGNMENT_MID_CENTER,
+                                             "",
+                                             "YES",
+                                             "NO",
+                                             font_normal,
+                                             font_pressed,
+                                             font_pressed)
+            {
+                notifyPressedButtonA = Submit,
+                notifyPressedButtonB = CancelSubmit
+            };
+
+        }
+
+        private void SubmitVerification(){
+            menu.Enabled = false;
+            string str = "";
+            verificationPopup._dialogText = string.Concat(str, "Is ", currentName, " correct?");
+            verificationPopup.Open();
+        }
+
+        private void Submit(){
+            SaveGameUtility.Instance.data.SaveEntries[SaveGameUtility.Instance.CurrentPlayer].Name = currentName;
+            SaveGameUtility.Instance.Save();
+            GameBase.Instance.ChangeGameState(GameBase.GameState.PLAYER_SELECTION_MAIN);
+        }
+        private void CancelSubmit(){
+            menu.Enabled = true;
         }
 
         private void notifyButtonPressed()
@@ -155,6 +197,14 @@ namespace Source.PatUtils
                     currentName = currentName.Remove(charIndex - 1, 1);
                     charIndex--;
                     if (charIndex <= 0) charIndex = 0;
+                }
+            }
+
+            else if (buttonString == char_end)//submit
+            {
+                if (currentName.Length > 0)
+                {
+                    SubmitVerification();
                 }
             }
 
@@ -205,39 +255,7 @@ namespace Source.PatUtils
 
         private void returnToMain()
         {
-            GameBase.Instance.ChangeGameState(GameBase.GameState.TITLE_MAIN);
-        }
-
-
-        private void QuitVerify()
-        {
-            menu.Enabled = false;
-            PopupSelectionDialog popup = new PopupSelectionDialog(GameBase.Instance,
-                                             slicedSprite,
-                                                                  GameBase.Instance.ScreenPointFromScreenVector(new Vector2(0.5f, 0.5f)),
-                                                                  GameBase.Instance.ScreenPointFromScreenVector(new Vector2(.5f, .25f)),
-                                             GameBase.Instance.GetCurrentPixelScale(),
-                                             SlicedSprite.alignment.ALIGNMENT_MID_CENTER,
-                                             "ARE YOU SURE YOU WANT TO QUIT?",
-                                             "YES",
-                                             "NO",
-                                             font_normal,
-                                             font_pressed,
-                                             font_pressed)
-            {
-                notifyPressedButtonA = QuitGame,
-                notifyPressedButtonB = CancelQuit
-            };
-        }
-
-        private void CancelQuit()
-        {
-            menu.Enabled = true;
-        }
-
-        private void QuitGame()
-        {
-            GameBase.Instance.Exit();
+            GameBase.Instance.ChangeGameState(GameBase.GameState.PLAYER_SELECTION_MAIN);
         }
 
         public override void Update(GameTime gameTime)
@@ -309,15 +327,15 @@ namespace Source.PatUtils
 
         public override void Draw(GameTime gameTime)
         {
-            StaticSpriteBatch.Instance.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, null, Matrix.CreateScale(1.0f));
-            StaticSpriteBatch.Instance.Draw(_background, new Rectangle(new Point(0, 0), new Point(GameBase.Instance.VirtualWidth, GameBase.Instance.VirtualHeight)), Color.White);
+            //StaticSpriteBatch.Instance.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, null, Matrix.CreateScale(1.0f));
+            //StaticSpriteBatch.Instance.Draw(_background, new Rectangle(new Point(0, 0), new Point(GameBase.Instance.VirtualWidth, GameBase.Instance.VirtualHeight)), Color.White);
 
 
-            StaticSpriteBatch.Instance.End();
+            //StaticSpriteBatch.Instance.End();
 
-            slicedSprite.SetRectangle(bkgRect);
-            slicedSprite.anchorPoint = SlicedSprite.alignment.ALIGNMENT_TOP_LEFT;
-            slicedSprite.Draw();
+            //slicedSprite.SetRectangle(bkgRect);
+            //slicedSprite.anchorPoint = SlicedSprite.alignment.ALIGNMENT_TOP_LEFT;
+            //slicedSprite.Draw();
 
             StaticSpriteBatch.Instance.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, null, Matrix.CreateScale(1.0f));
             menu.Draw(gameTime);
