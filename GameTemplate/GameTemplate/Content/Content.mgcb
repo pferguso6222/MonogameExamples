@@ -94,12 +94,6 @@
 /processorParam:Quality=Best
 /build:../../../GenericSounds/ButtonSelected_1.wav;ButtonSelected_1.wav
 
-#begin ../../../Shaders/PixelShaders/Scanlines.fx
-/importer:EffectImporter
-/processor:EffectProcessor
-/processorParam:DebugMode=Auto
-/build:../../../Shaders/PixelShaders/Scanlines.fx;Shaders/Scanlines.fx
-
 #begin Graphics/Bkg_Title.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -123,22 +117,3 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Graphics/TiledDialogBkg_01.png
-
-#begin Shaders/CRT.fx
-/importer:EffectImporter
-/processor:EffectProcessor
-/processorParam:DebugMode=Auto
-/build:Shaders/CRT.fx
-
-#begin Shaders/Scanlines.fx
-/importer:EffectImporter
-/processor:EffectProcessor
-/processorParam:DebugMode=Auto
-/build:Shaders/Scanlines.fx
-
-#begin Shaders/SepiaTone.fx
-/importer:EffectImporter
-/processor:EffectProcessor
-/processorParam:DebugMode=Auto
-/build:Shaders/SepiaTone.fx
-

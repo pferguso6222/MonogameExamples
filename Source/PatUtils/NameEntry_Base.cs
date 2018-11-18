@@ -39,7 +39,13 @@ namespace Source.PatUtils
         string char_end = "END";
         string char_left = "<";
         string char_right = ">";
+        string char_underscore = "_";
         bool caps;
+
+        string currentName = "";
+        string currentNameString = "";
+
+        int charIndex = 0;
 
         public NameEntry_Base(
                                 Texture2D backgroundImage,
@@ -273,6 +279,8 @@ namespace Source.PatUtils
             menu.Draw(gameTime);
 
             StaticSpriteBatch.Instance.DrawString(font_normal, "PLAYER NAME", new Vector2(GameBase.Instance.VirtualWidth * .5f, GameBase.Instance.VirtualHeight * .1f), Color.White, 0.0f, new Vector2(font_normal.GetStringRectangle("PLAYER NAME").Width / 2, .5f), GameBase.Instance.GetCurrentPixelScale(), SpriteEffects.None, 0.0f);
+
+            StaticSpriteBatch.Instance.DrawString(font_normal, currentNameString, new Vector2(GameBase.Instance.VirtualWidth * .5f, GameBase.Instance.VirtualHeight * .1f), Color.White, 0.0f, new Vector2(font_normal.GetStringRectangle(currentNameString).Width / 2, .5f), GameBase.Instance.GetCurrentPixelScale(), SpriteEffects.None, 0.0f);
 
             StaticSpriteBatch.Instance.End();
         }

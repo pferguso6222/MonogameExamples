@@ -24,7 +24,7 @@ namespace GameTemplate.Desktop
         public SlicedSprite slicedSprite;
 
         RenderTarget2D RenderTarget;
-        Effect scanlines;
+        //Effect scanlines;
 
         public Game1(int VirtualWidth, int VirtualHeight) : base(VirtualWidth, VirtualHeight){
             this.VirtualWidth = VirtualWidth;
@@ -91,9 +91,9 @@ namespace GameTemplate.Desktop
             NameEntryScreen = new NameEntry_Base(menu_background, slicedSprite, menu_font_normal, menu_font_highlighted, menu_font_pressed);
             ChangeGameState(GameState.TITLE_MAIN);//Make this the program start
 
-            scanlines = Content.Load<Effect>("Shaders/CRT");
-            scanlines.CurrentTechnique = scanlines.Techniques[0];
-            Console.WriteLine("SHADER:" + scanlines.ToString());
+            //scanlines = Content.Load<Effect>("Shaders/CRT");
+            //scanlines.CurrentTechnique = scanlines.Techniques[0];
+            //Console.WriteLine("SHADER:" + scanlines.ToString());
 
         }
 

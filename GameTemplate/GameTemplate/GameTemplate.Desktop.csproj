@@ -98,9 +98,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MonoGame.Extended, Version=3.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MonoGame.Extended.3.6.0-pullrequest0564-0958\lib\netstandard2.0\MonoGame.Extended.dll</HintPath>
-    </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
     </Reference>
@@ -109,23 +106,26 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="MonoGame.Extended">
+      <HintPath>..\packages\MonoGame.Extended.3.6.0-pullrequest0569-0960\lib\netstandard2.0\MonoGame.Extended.dll</HintPath>
+    </Reference>
     <Reference Include="MonoGame.Extended.Animations">
-      <HintPath>..\packages\MonoGame.Extended.Animations.3.6.0-pullrequest0564-0958\lib\netstandard2.0\MonoGame.Extended.Animations.dll</HintPath>
+      <HintPath>..\packages\MonoGame.Extended.Animations.3.6.0-pullrequest0569-0960\lib\netstandard2.0\MonoGame.Extended.Animations.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Extended.Entities">
-      <HintPath>..\packages\MonoGame.Extended.Entities.3.6.0-pullrequest0564-0958\lib\netstandard2.0\MonoGame.Extended.Entities.dll</HintPath>
+      <HintPath>..\packages\MonoGame.Extended.Entities.3.6.0-pullrequest0569-0960\lib\netstandard2.0\MonoGame.Extended.Entities.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Extended.Graphics">
-      <HintPath>..\packages\MonoGame.Extended.Graphics.3.6.0-pullrequest0564-0958\lib\netstandard2.0\MonoGame.Extended.Graphics.dll</HintPath>
+      <HintPath>..\packages\MonoGame.Extended.Graphics.3.6.0-pullrequest0569-0960\lib\netstandard2.0\MonoGame.Extended.Graphics.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Extended.Particles">
-      <HintPath>..\packages\MonoGame.Extended.Particles.3.6.0-pullrequest0564-0958\lib\netstandard2.0\MonoGame.Extended.Particles.dll</HintPath>
+      <HintPath>..\packages\MonoGame.Extended.Particles.3.6.0-pullrequest0569-0960\lib\netstandard2.0\MonoGame.Extended.Particles.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Extended.Tiled">
-      <HintPath>..\packages\MonoGame.Extended.Tiled.3.6.0-pullrequest0564-0958\lib\netstandard2.0\MonoGame.Extended.Tiled.dll</HintPath>
+      <HintPath>..\packages\MonoGame.Extended.Tiled.3.6.0-pullrequest0569-0960\lib\netstandard2.0\MonoGame.Extended.Tiled.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Extended.Tweening">
-      <HintPath>..\packages\MonoGame.Extended.Tweening.3.6.0-pullrequest0564-0958\lib\netstandard2.0\MonoGame.Extended.Tweening.dll</HintPath>
+      <HintPath>..\packages\MonoGame.Extended.Tweening.3.6.0-pullrequest0569-0960\lib\netstandard2.0\MonoGame.Extended.Tweening.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
