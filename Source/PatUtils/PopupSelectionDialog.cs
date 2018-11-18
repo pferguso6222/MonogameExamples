@@ -31,7 +31,21 @@ namespace Source.PatUtils
         protected Rectangle _startRect;
         protected Rectangle _endRect;
 
-        public string _dialogText;
+        private string _dialogText;
+
+        public string DialogText
+        {
+            get { return _dialogText; }
+            set { 
+                _dialogText = value;
+                RectangleF dialogRect = this.font_normal.GetStringRectangle(_dialogText);
+                dialogRect.Width *= this.pixelScaleFactor;
+                dialogRect.Height *= this.pixelScaleFactor;
+                Rectangle contentRect = _slicedSprite.GetContentAreaRectFromRect(_endRect);
+                int contentPaddingY = contentRect.Height / 3;
+                _dialogTextPosition = new Vector2((contentRect.X + ((contentRect.Width - dialogRect.Width) / 2)), (float)contentRect.Y + (float)contentPaddingY - (dialogRect.Height / 2));
+            }
+        }
         public string _buttonAText;
         public string _buttonBText;
 

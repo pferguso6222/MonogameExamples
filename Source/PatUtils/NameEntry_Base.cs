@@ -148,7 +148,7 @@ namespace Source.PatUtils
         private void SubmitVerification(){
             menu.Enabled = false;
             string str = "";
-            verificationPopup._dialogText = string.Concat(str, "Is ", currentName, " correct?");
+            verificationPopup.DialogText = string.Concat(str, "Is ", currentName, " correct?");
             verificationPopup.Open();
         }
 
