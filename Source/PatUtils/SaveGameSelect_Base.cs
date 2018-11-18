@@ -154,6 +154,12 @@ namespace Source.PatUtils
             updateEnabledButtons();
         }
 
+        private void VerifyDeleteEntry(int index){
+            eraseMenu.Enabled = false;
+            verificationPopup.DialogText = "DELETE " + SaveGameUtility.Instance.SaveGameEntries[index].Name + " PERMANENTLY?";
+            verificationPopup.Open();
+        }
+
         private void updateEnabledButtons(){
             bool noEntries = true;
 
@@ -218,7 +224,7 @@ namespace Source.PatUtils
         {
             SaveGameUtility.Instance.CurrentPlayer = 0;
             if (eraseMode){
-                DeleteEntry();
+                VerifyDeleteEntry(0);
                 return;
             }
             if (SaveGameUtility.Instance.SaveGameEntries[SaveGameUtility.Instance.CurrentPlayer].Name == "EMPTY")
@@ -232,7 +238,7 @@ namespace Source.PatUtils
             SaveGameUtility.Instance.CurrentPlayer = 1;
             if (eraseMode)
             {
-                DeleteEntry();
+                VerifyDeleteEntry(1);
                 return;
             }
             if (SaveGameUtility.Instance.SaveGameEntries[SaveGameUtility.Instance.CurrentPlayer].Name == "EMPTY")
@@ -246,7 +252,7 @@ namespace Source.PatUtils
             SaveGameUtility.Instance.CurrentPlayer = 2;
             if (eraseMode)
             {
-                DeleteEntry();
+                VerifyDeleteEntry(2);
                 return;
             }
             if (SaveGameUtility.Instance.SaveGameEntries[SaveGameUtility.Instance.CurrentPlayer].Name == "EMPTY")
