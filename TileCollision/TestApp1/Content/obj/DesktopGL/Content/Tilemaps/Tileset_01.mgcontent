@@ -3,7 +3,7 @@
   <SourceFile>/Users/obstacledelusions/Projects/MonogameExamples/TileCollision/TestApp1/Content/Tilemaps/Tileset_01.png</SourceFile>
   <SourceTime>2018-09-19T16:42:48.2867-07:00</SourceTime>
   <DestFile>/Users/obstacledelusions/Projects/MonogameExamples/TileCollision/TestApp1/Content/bin/DesktopGL/Content/Tilemaps/Tileset_01.xnb</DestFile>
-  <DestTime>2018-09-22T09:11:09.075951-07:00</DestTime>
+  <DestTime>2018-11-23T21:00:48.056982-08:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-09-06T06:51:48-07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

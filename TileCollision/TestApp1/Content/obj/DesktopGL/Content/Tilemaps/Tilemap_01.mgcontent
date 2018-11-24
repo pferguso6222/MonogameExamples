@@ -3,7 +3,7 @@
   <SourceFile>/Users/obstacledelusions/Projects/MonogameExamples/TileCollision/TestApp1/Content/Tilemaps/Tilemap_01.tmx</SourceFile>
   <SourceTime>2018-09-19T16:57:53.685832-07:00</SourceTime>
   <DestFile>/Users/obstacledelusions/Projects/MonogameExamples/TileCollision/TestApp1/Content/bin/DesktopGL/Content/Tilemaps/Tilemap_01.xnb</DestFile>
-  <DestTime>2018-09-22T09:11:08.986662-07:00</DestTime>
+  <DestTime>2018-11-23T21:00:47.958523-08:00</DestTime>
   <Importer>TiledMapImporter</Importer>
   <ImporterTime>2018-05-23T11:26:24-07:00</ImporterTime>
   <Processor>TiledMapProcessor</Processor>
