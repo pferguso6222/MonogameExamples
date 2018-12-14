@@ -19,7 +19,7 @@ namespace SpriteTest
 
         Texture2D wizTexture;
         AnimatedSprite spr;
-        Sprite spr1;
+       // Sprite spr1;
         
         public Game1()
         {
@@ -55,7 +55,7 @@ namespace SpriteTest
             TextureAtlas wizTextureAtlas = Content.Load<TextureAtlas>("Wiz_Map");
             SpriteSheetAnimationFactory factory = new SpriteSheetAnimationFactory(wizTextureAtlas);
 
-            factory.Add("run", new SpriteSheetAnimationData(new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}, isLooping:true));
+            factory.Add("run", new SpriteSheetAnimationData(new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}, frameDuration:0.05f, isLooping:true));
 
             spr = new AnimatedSprite(factory, "run");
 
@@ -101,11 +101,8 @@ namespace SpriteTest
             base.Draw(gameTime);
 
             spriteBatch.Begin();
-
-            spr1 = spr;
-            spr1.Position = new Vector2(200, 200);
-
-            spriteBatch.Draw(spr1);
+            spr.Position = new Vector2(200, 200);
+            spriteBatch.Draw((Sprite)spr);
 
             spriteBatch.End();
         }
