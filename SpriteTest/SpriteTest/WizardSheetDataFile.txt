@@ -1,0 +1,20 @@
+#
+# Sprite sheet data for MonoGame.
+#
+# To learn how to import these sprites into your MonoGame project visit:
+# https://www.codeandweb.com/texturepacker/monogame
+#
+# Sprite sheet: Wizard_SpriteSheet.png (320 x 32)
+# $TexturePacker:SmartUpdate:91bafae4a7a7bd6d29c0cf49a00d9d3a:dc05173254b17df37c2a879ff75344d9:833b4ae2b38d395aaf21b9e0dd89eafc$
+#
+
+Wiz_Run_001;0;1;1;30;30;30;30;0.5;0.5
+Wiz_Run_002;0;33;1;30;30;30;30;0.5;0.5
+Wiz_Run_003;0;65;1;30;30;30;30;0.5;0.5
+Wiz_Run_004;0;97;1;30;30;30;30;0.5;0.5
+Wiz_Run_005;0;129;1;30;30;30;30;0.5;0.5
+Wiz_Run_006;0;161;1;30;30;30;30;0.5;0.5
+Wiz_Run_007;0;193;1;30;30;30;30;0.5;0.5
+Wiz_Run_008;0;225;1;30;30;30;30;0.5;0.5
+Wiz_Run_009;0;257;1;30;30;30;30;0.5;0.5
+Wiz_Run_010;0;289;1;30;30;30;30;0.5;0.5

@@ -1,0 +1,92 @@
+{"frames": [
+
+{
+	"filename": "Wiz_Run_001.png",
+	"frame": {"x":1,"y":1,"w":30,"h":30},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":30},
+	"sourceSize": {"w":30,"h":30}
+},
+{
+	"filename": "Wiz_Run_002.png",
+	"frame": {"x":33,"y":1,"w":30,"h":30},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":30},
+	"sourceSize": {"w":30,"h":30}
+},
+{
+	"filename": "Wiz_Run_003.png",
+	"frame": {"x":65,"y":1,"w":30,"h":30},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":30},
+	"sourceSize": {"w":30,"h":30}
+},
+{
+	"filename": "Wiz_Run_004.png",
+	"frame": {"x":97,"y":1,"w":30,"h":30},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":30},
+	"sourceSize": {"w":30,"h":30}
+},
+{
+	"filename": "Wiz_Run_005.png",
+	"frame": {"x":129,"y":1,"w":30,"h":30},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":30},
+	"sourceSize": {"w":30,"h":30}
+},
+{
+	"filename": "Wiz_Run_006.png",
+	"frame": {"x":161,"y":1,"w":30,"h":30},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":30},
+	"sourceSize": {"w":30,"h":30}
+},
+{
+	"filename": "Wiz_Run_007.png",
+	"frame": {"x":193,"y":1,"w":30,"h":30},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":30},
+	"sourceSize": {"w":30,"h":30}
+},
+{
+	"filename": "Wiz_Run_008.png",
+	"frame": {"x":225,"y":1,"w":30,"h":30},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":30},
+	"sourceSize": {"w":30,"h":30}
+},
+{
+	"filename": "Wiz_Run_009.png",
+	"frame": {"x":257,"y":1,"w":30,"h":30},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":30},
+	"sourceSize": {"w":30,"h":30}
+},
+{
+	"filename": "Wiz_Run_010.png",
+	"frame": {"x":289,"y":1,"w":30,"h":30},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":30},
+	"sourceSize": {"w":30,"h":30}
+}],
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "Wizard_SpriteSheet.png",
+	"format": "RGBA8888",
+	"size": {"w":320,"h":32},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:359d78055d8f342cb80915ae8948c077:dc05173254b17df37c2a879ff75344d9:22160fb98d38f6312166acba72e2e020$"
+}
+}
