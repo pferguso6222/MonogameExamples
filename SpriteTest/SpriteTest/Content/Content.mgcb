@@ -10,11 +10,16 @@
 
 #-------------------------------- References --------------------------------#
 
-/reference:..\..\packages\MonoGame.Extended.Content.Pipeline.1.1.0\tools\MonoGame.Extended.Content.Pipeline.dll
+/reference:../../packages/MonoGame.Extended.Content.Pipeline.1.1.0/tools/MonoGame.Extended.Content.Pipeline.dll
 
 #---------------------------------- Content ---------------------------------#
 
-#begin ../../../../ProMotion/WizardMaster/SpriteSheets/Wizard_SpriteSheet.png
+#begin Wiz_Map.json
+/importer:TexturePackerJsonImporter
+/processor:TexturePackerProcessor
+/build:Wiz_Map.json
+
+#begin Wizard_SpriteSheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -24,10 +29,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:../../../../ProMotion/WizardMaster/SpriteSheets/Wizard_SpriteSheet.png;Wizard_SpriteSheet.png
-
-#begin Wiz_Map.json
-/importer:TexturePackerJsonImporter
-/processor:TexturePackerProcessor
-/build:Wiz_Map.json
+/build:Wizard_SpriteSheet.png
 
