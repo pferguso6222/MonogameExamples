@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Xna.Framework;
 using MonoGame.Extended.Entities;
 
 namespace EntityComponents
@@ -12,9 +13,7 @@ namespace EntityComponents
 
         public Vector2D()
         {
-
         }
-
     }
 }
   
