@@ -7,9 +7,9 @@ namespace EntityComponents
     public class Vector2D
     {
 
-        float X;
-        float Y;
-        float Length;
+        public int X;
+        public int Y;
+        public int Length;
 
         public Vector2D()
         {

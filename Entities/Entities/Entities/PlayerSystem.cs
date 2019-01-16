@@ -17,6 +17,8 @@ namespace Entities
         GraphicsDevice _graphicsDevice;
         SpriteBatch _spriteBatch;
 
+        int xSpeed = 200;
+
         ComponentMapper <Vector2D> _vector2DMapper;
 
         public PlayerSystem(GraphicsDevice graphicsDevice)
@@ -34,6 +36,8 @@ namespace Entities
         public override void Process(GameTime gameTime, int entityId)
         {
             var vector2d = _vector2DMapper.Get(entityId);
+            vector2d.X += (int) (xSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+            Console.WriteLine("Pat Was Here:Vector2d:" + vector2d.X +", " + vector2d.Y);
         }
     }
 }
