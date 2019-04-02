@@ -100,7 +100,7 @@ namespace SpriteTest
 
             base.Draw(gameTime);
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(samplerState:SamplerState.PointClamp, blendState:null);
             spr.Position = new Vector2(200, 200);
             spriteBatch.Draw((Sprite)spr);
 
