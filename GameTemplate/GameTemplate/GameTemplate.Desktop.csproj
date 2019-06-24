@@ -98,6 +98,27 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="MonoGame.Extended, Version=3.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MonoGame.Extended.3.6.0-beta0001\lib\netstandard2.0\MonoGame.Extended.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Extended.Animations, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MonoGame.Extended.Animations.2.0.0-alpha\lib\netstandard2.0\MonoGame.Extended.Animations.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Extended.Entities, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MonoGame.Extended.Entities.2.0.0-alpha\lib\netstandard2.0\MonoGame.Extended.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Extended.Graphics, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MonoGame.Extended.Graphics.2.0.0-alpha\lib\netstandard2.0\MonoGame.Extended.Graphics.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Extended.Particles, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MonoGame.Extended.Particles.2.0.0-alpha\lib\netstandard2.0\MonoGame.Extended.Particles.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Extended.Tiled, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MonoGame.Extended.Tiled.2.0.0-alpha\lib\netstandard2.0\MonoGame.Extended.Tiled.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Extended.Tweening, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MonoGame.Extended.Tweening.2.0.0-alpha\lib\netstandard2.0\MonoGame.Extended.Tweening.dll</HintPath>
+    </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
     </Reference>
@@ -106,27 +127,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="MonoGame.Extended">
-      <HintPath>..\packages\MonoGame.Extended.3.6.0-pullrequest0569-0960\lib\netstandard2.0\MonoGame.Extended.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoGame.Extended.Animations">
-      <HintPath>..\packages\MonoGame.Extended.Animations.3.6.0-pullrequest0569-0960\lib\netstandard2.0\MonoGame.Extended.Animations.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoGame.Extended.Entities">
-      <HintPath>..\packages\MonoGame.Extended.Entities.3.6.0-pullrequest0569-0960\lib\netstandard2.0\MonoGame.Extended.Entities.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoGame.Extended.Graphics">
-      <HintPath>..\packages\MonoGame.Extended.Graphics.3.6.0-pullrequest0569-0960\lib\netstandard2.0\MonoGame.Extended.Graphics.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoGame.Extended.Particles">
-      <HintPath>..\packages\MonoGame.Extended.Particles.3.6.0-pullrequest0569-0960\lib\netstandard2.0\MonoGame.Extended.Particles.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoGame.Extended.Tiled">
-      <HintPath>..\packages\MonoGame.Extended.Tiled.3.6.0-pullrequest0569-0960\lib\netstandard2.0\MonoGame.Extended.Tiled.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoGame.Extended.Tweening">
-      <HintPath>..\packages\MonoGame.Extended.Tweening.3.6.0-pullrequest0569-0960\lib\netstandard2.0\MonoGame.Extended.Tweening.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Icon.ico" />
@@ -134,6 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
+    <None Include="app.config" />
     <None Include="app.manifest" />
     <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\SDL2.dll">
       <Link>x86\SDL2.dll</Link>
